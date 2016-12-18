@@ -8,7 +8,7 @@
         xmlns:viewModels="clr-namespace:APPD.ViewModels"
         xmlns:views="clr-namespace:APPD.Views"
         Title="The Meme Stash"
-        Width="800" Height="600"
+        Width="1200" Height="675" ResizeMode="CanMinimize" Background="White"
         >
     
     <Window.Resources>
@@ -21,6 +21,6 @@
     </Window.Resources>
 
     <Grid>
-        <ContentControl Content="{Binding CurrentPageViewModel}" HorizontalAlignment="Center" Margin="10" />
+        <ContentControl Content="{Binding CurrentPageViewModel}" HorizontalAlignment="Center" Margin="0" IsTabStop="False" />
     </Grid>
 </Window>

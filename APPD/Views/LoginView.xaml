@@ -4,54 +4,87 @@
                     xmlns:local="clr-namespace:APPD"
                     xmlns:viewModels="clr-namespace:APPD.ViewModels"
                     xmlns:models="clr-namespace:APPD.Models"
-                    xmlns:extToolkit="http://schemas.xceed.com/wpf/xaml/toolkit">
-    <StackPanel Margin="10" Width="300" Height="400" RenderTransformOrigin="0, 0" >
-        <StackPanel.RenderTransform>
-            <TransformGroup>
-                <ScaleTransform/>
-                <SkewTransform/>
-                <RotateTransform/>
-                <TranslateTransform X="160" Y="-47"/>
-            </TransformGroup>
-        </StackPanel.RenderTransform>
-        <extToolkit:WatermarkTextBox x:Name="UsernameInput" 
-                                         Margin="10"
-                                         FontFamily="Segoe UI Light"
-                                         FontSize="16"
-                                         Watermark="Username"
-                                         Text="{Binding Username, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></extToolkit:WatermarkTextBox>
-        <PasswordBox Margin="10" x:Name="passwordBox" FontFamily="Segoe UI Light" FontSize="16" Opacity="0.7"
-                         GotFocus="passwordBoxFocused" LostFocus="passwordBoxLostFocus">
-            <PasswordBox.Background>
-                <VisualBrush Stretch="None" AlignmentX="Left">
-                    <VisualBrush.Visual>
-                        <Label>Password</Label>
-                    </VisualBrush.Visual>
-                </VisualBrush>
-            </PasswordBox.Background>
-            <PasswordBox.InputBindings>
-                <KeyBinding 
-                    Key="Return"
-                    Command="{Binding LogInCommand}"
-                    CommandParameter="{Binding ElementName=passwordBox}"
-                    />
-            </PasswordBox.InputBindings>
-        </PasswordBox>
-        <TextBox Text="{Binding Path=LogInErrorDisplay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                 Foreground="Red" 
-                 FontFamily="Segoe UI Semibold" 
-                 Margin="20 0 3 3"
-                 BorderThickness="0" />
-        <Button Content="Log In"
+                    xmlns:extToolkit="http://schemas.xceed.com/wpf/xaml/toolkit" IsTabStop="False"
+             >
+    <Grid Width="1200" Height="675" RenderTransformOrigin="0.5,0.5">
+        <Grid.Background>
+            <ImageBrush ImageSource="pack://application:,,,/Assets/Images/LoginBackground.png">
+                <ImageBrush.RelativeTransform>
+                    <TransformGroup>
+                        <ScaleTransform CenterY="0.5" CenterX="0.5" ScaleY="0.93"/>
+                        <SkewTransform CenterY="0.5" CenterX="0.5"/>
+                        <RotateTransform CenterY="0.5" CenterX="0.5"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </ImageBrush.RelativeTransform>
+            </ImageBrush>
+        </Grid.Background>
+        <StackPanel Margin="10" Width="300" Height="400" RenderTransformOrigin="0, 0">
+            <StackPanel.RenderTransform> 
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform X="160" Y="-47"/>
+                </TransformGroup>
+            </StackPanel.RenderTransform>
+            <extToolkit:WatermarkTextBox 
+                x:Name="UsernameInput" 
+                Margin="10"
+                FontFamily="Segoe UI Light"
+                FontSize="16"
+                BorderThickness="4"
+                BorderBrush="Black"
+                Watermark="Username"
+                Text="{Binding Username, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="0"
+                KeyboardNavigation.TabNavigation="Continue"
+            >
+            </extToolkit:WatermarkTextBox>
+            <PasswordBox Margin="10" 
+                     x:Name="passwordBox" 
+                     FontFamily="Segoe UI Light" FontSize="16" Opacity="0.7"
+                    BorderThickness="4"
+                    BorderBrush="Black"
+                     GotFocus="passwordBoxFocused" LostFocus="passwordBoxLostFocus" TabIndex="1"
+                     KeyboardNavigation.TabNavigation="Continue">
+                <PasswordBox.Background>
+                    <VisualBrush Stretch="None" AlignmentX="Left">
+                        <VisualBrush.Visual>
+                            <Label>Password</Label>
+                        </VisualBrush.Visual>
+                    </VisualBrush>
+                </PasswordBox.Background>
+                <PasswordBox.InputBindings>
+                    <KeyBinding 
+                        Key="Return"
+                        Command="{Binding LogInCommand}"
+                        CommandParameter="{Binding ElementName=passwordBox}"
+                        />
+                </PasswordBox.InputBindings>
+            </PasswordBox>
+            <TextBox Text="{Binding Path=LogInErrorDisplay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                     Foreground="Red" 
+                     FontFamily="Segoe UI Semibold" 
+                     Margin="20 0 3 3"
+                     BorderThickness="0"
+                     IsTabStop="False" 
+                     Focusable="False" 
+                     Cursor="Arrow"/>
+            <Button Content="LOG IN"
                     Margin="10"
-                    Width="130" Height="50"
-                    FontFamily="Segoe UI Light" FontSize="20"
+                    Width="160" Height="60"
+                    FontFamily="Impact" FontSize="24"
+                    Background="#FF239723"
+                    Foreground="White"
                     Command="{Binding LogInCommand}" 
-                    CommandParameter="{Binding ElementName=passwordBox}"></Button>
-        <Button Content="Sign Up" 
+                    CommandParameter="{Binding ElementName=passwordBox}" TabIndex="2"></Button>
+            <Button Content="SIGN UP" 
                     Margin="10"
-                    Width="130" Height="50"
-                    FontFamily="Segoe UI Light" FontSize="20"
+                    Width="160" Height="60"
+                    Background="Black"
+                    Foreground="White"
+                    FontFamily="Impact" FontSize="24" TabIndex="3"
                     ></Button>
-    </StackPanel>
+        </StackPanel>
+    </Grid>
 </UserControl>

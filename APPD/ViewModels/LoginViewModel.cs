@@ -85,13 +85,13 @@ namespace APPD.ViewModels
                     noPassword = true;
 
                 if (noUsername && noPassword)
-                    LogInErrorDisplay = "Username and password not entered";
+                    LogInErrorDisplay = "Enter a username and password!";
                 else if (noUsername)
-                    LogInErrorDisplay = "Username not entered";
+                    LogInErrorDisplay = "Enter a username!";
                 else if (noPassword)
-                    LogInErrorDisplay = "Password not entered";
+                    LogInErrorDisplay = "Enter a password!";
                 else
-                    LogInErrorDisplay = "Wrong username and/or password";
+                    LogInErrorDisplay = "Wrong username / password!";
                 
             }
         }
