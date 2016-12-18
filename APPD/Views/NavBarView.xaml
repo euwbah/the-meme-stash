@@ -29,5 +29,9 @@
                 Template="{StaticResource HomeLogoButton}" 
                 />
 
+        <StackPanel Orientation="Horizontal"
+                    Margin="5 5 40 5">
+            
+        </StackPanel>
     </StackPanel>
 </UserControl>
