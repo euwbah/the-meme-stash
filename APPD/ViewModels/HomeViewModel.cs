@@ -1,16 +1,14 @@
 ﻿using APPD.Helpers;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace APPD.Models
+namespace APPD.ViewModels
 {
-    public class UsersModel : ObservableObject
+    public class HomeViewModel : ObservableObject, IPageViewModel
     {
-        private List<User> _users;
-        
+
     }
 }

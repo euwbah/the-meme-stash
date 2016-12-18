@@ -1,0 +1,23 @@
+﻿<Window x:Class="APPD.MainView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        mc:Ignorable="d" 
+        xmlns:local="clr-namespace:APPD"
+        xmlns:viewModels="clr-namespace:APPD.ViewModels"
+        xmlns:views="clr-namespace:APPD.Views"
+        Title="The Meme Stash"
+        Width="800" Height="600"
+        >
+    
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type viewModels:LoginViewModel}">
+            <views:LoginView />
+        </DataTemplate>
+    </Window.Resources>
+
+    <Grid>
+        <ContentControl Content="{Binding CurrentPageViewModel}" HorizontalAlignment="Center" Margin="10" />
+    </Grid>
+</Window>

@@ -13,11 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace APPD
+namespace APPD.Views
 {
-    public partial class MainWindow : Window
+    /// <summary>
+    /// Interaction logic for HomeView.xaml
+    /// </summary>
+    public partial class HomeView : UserControl
     {
-        public MainWindow()
+        public HomeView()
         {
             InitializeComponent();
         }

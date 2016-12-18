@@ -18,8 +18,8 @@ namespace APPD
         {
             base.OnStartup(e);
 
-            MainWindow app = new MainWindow();
-            LoginViewModel context = new LoginViewModel();
+            MainView app = new MainView();
+            MainViewModel context = new MainViewModel();
             app.DataContext = context;
             app.Show();
         }
