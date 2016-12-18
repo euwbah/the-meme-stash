@@ -79,6 +79,7 @@
     <Compile Include="Helpers\RelayCommand.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AccountRentalData.cs" />
+    <Compile Include="Models\ApplicationState.cs" />
     <Compile Include="Services\UserServices.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\IPageViewModel.cs" />

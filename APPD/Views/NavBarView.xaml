@@ -31,7 +31,9 @@
 
         <StackPanel Orientation="Horizontal"
                     Margin="5 5 40 5">
-            
+            <Button>
+                <Label Content="{Binding parent.State.CurrentLoggedOnUser.Username}"></Label>
+            </Button>
         </StackPanel>
     </StackPanel>
 </UserControl>

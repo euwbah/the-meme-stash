@@ -1,4 +1,5 @@
 ﻿using APPD.Helpers;
+using APPD.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,8 @@ namespace APPD.ViewModels
         //private ICommand _changePageCommand;
         private IPageViewModel _currentPageViewModel;
         private Dictionary<string, IPageViewModel> _pageViewModels;
+        
+        public ApplicationState State;
 
         public MainViewModel()
         {
@@ -23,6 +26,10 @@ namespace APPD.ViewModels
 
             // Set starting page
             CurrentPageViewModel = PageViewModels["Login"];
+
+            // Instantiate global model
+
+            State = new ApplicationState();
         }
 
         //public ICommand ChangePageCommand
