@@ -36,6 +36,9 @@ namespace APPD.Services
             _localDatabaseOfUsers.Add(new User("XXXemokidXXX", "123456",
                 new List<AccountRentalData>(), new List<Account>(), 60));
 
+            _localDatabaseOfUsers.Add(new User("RobbieRotten", "1umber1",
+                new List<AccountRentalData>(), new List<Account>(), 66965));
+
             // Make life easier
             _localDatabaseOfUsers.Add(new User("a", "a",
                 new List<AccountRentalData>(), new List<Account>(), 60));
