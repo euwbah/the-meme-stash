@@ -10,41 +10,42 @@ namespace APPD.ViewModels
 {
     public class MainViewModel : ObservableObject
     {
-        private ICommand _changePageCommand;
+        //private ICommand _changePageCommand;
         private IPageViewModel _currentPageViewModel;
-        private List<IPageViewModel> _pageViewModels;
+        private Dictionary<string, IPageViewModel> _pageViewModels;
 
         public MainViewModel()
         {
             // Add available pages
-            PageViewModels.Add(new LoginViewModel(this));
+            PageViewModels.Add("Login", new LoginViewModel(this));
+            PageViewModels.Add("Home", new HomeViewModel(this));
 
 
             // Set starting page
-            CurrentPageViewModel = PageViewModels[0];
+            CurrentPageViewModel = PageViewModels["Login"];
         }
 
-        public ICommand ChangePageCommand
-        {
-            get
-            {
-                if (_changePageCommand == null)
-                {
-                    _changePageCommand = new RelayCommand(
-                        p => ChangeViewModel((IPageViewModel)p),
-                        p => p is IPageViewModel);
-                }
+        //public ICommand ChangePageCommand
+        //{
+        //    get
+        //    {
+        //        if (_changePageCommand == null)
+        //        {
+        //            _changePageCommand = new RelayCommand(
+        //                p => ChangeViewModel((IPageViewModel)p),
+        //                p => p is IPageViewModel);
+        //        }
 
-                return _changePageCommand;
-            }
-        }
+        //        return _changePageCommand;
+        //    }
+        //}
 
-        public List<IPageViewModel> PageViewModels
+        public Dictionary<string, IPageViewModel> PageViewModels
         {
             get
             {
                 if (_pageViewModels == null)
-                    _pageViewModels = new List<IPageViewModel>();
+                    _pageViewModels = new Dictionary<string, IPageViewModel>();
 
                 return _pageViewModels;
             }
@@ -66,13 +67,9 @@ namespace APPD.ViewModels
             }
         }
 
-        private void ChangeViewModel(IPageViewModel viewModel)
+        internal void ChangeViewModel(string pageName)
         {
-            if (!PageViewModels.Contains(viewModel))
-                PageViewModels.Add(viewModel);
-
-            CurrentPageViewModel = PageViewModels
-                .FirstOrDefault(vm => vm == viewModel);
+            CurrentPageViewModel = PageViewModels[pageName];
         }
     }
 }

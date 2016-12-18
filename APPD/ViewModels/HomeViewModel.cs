@@ -9,6 +9,11 @@ namespace APPD.ViewModels
 {
     public class HomeViewModel : ObservableObject, IPageViewModel
     {
+        private MainViewModel parent;
 
+        public HomeViewModel(MainViewModel parent)
+        {
+            this.parent = parent;
+        }
     }
 }

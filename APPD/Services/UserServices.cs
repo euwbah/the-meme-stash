@@ -35,6 +35,10 @@ namespace APPD.Services
 
             _localDatabaseOfUsers.Add(new User("XXXemokidXXX", "123456",
                 new List<AccountRentalData>(), new List<Account>(), 60));
+
+            // Make life easier
+            _localDatabaseOfUsers.Add(new User("a", "a",
+                new List<AccountRentalData>(), new List<Account>(), 60));
         }
 
         public static bool LogIn(string username, string password)

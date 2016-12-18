@@ -19,7 +19,7 @@
                                          FontFamily="Segoe UI Light"
                                          FontSize="16"
                                          Watermark="Username"
-                                         Text="{Binding Username}"></extToolkit:WatermarkTextBox>
+                                         Text="{Binding Username, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></extToolkit:WatermarkTextBox>
         <PasswordBox Margin="10" x:Name="passwordBox" FontFamily="Segoe UI Light" FontSize="16" Opacity="0.7"
                          GotFocus="passwordBoxFocused" LostFocus="passwordBoxLostFocus">
             <PasswordBox.Background>
@@ -37,6 +37,11 @@
                     />
             </PasswordBox.InputBindings>
         </PasswordBox>
+        <TextBox Text="{Binding Path=LogInErrorDisplay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                 Foreground="Red" 
+                 FontFamily="Segoe UI Semibold" 
+                 Margin="20 0 3 3"
+                 BorderThickness="0" />
         <Button Content="Log In"
                     Margin="10"
                     Width="130" Height="50"

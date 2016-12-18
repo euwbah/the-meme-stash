@@ -17,6 +17,7 @@ namespace APPD.ViewModels
         private MainViewModel parent;
 
         private string _username;
+        private string _logInErrorDisplay;
 
         private ICommand _logInCommand;
 
@@ -28,7 +29,7 @@ namespace APPD.ViewModels
         #region Properties
         public string Username
         {
-            get { return this._username; }
+            get { return this._username ?? ""; }
             set
             {
                 if(value != this._username)
@@ -38,6 +39,19 @@ namespace APPD.ViewModels
                 }
             }
         }
+        public string LogInErrorDisplay
+        {
+            get
+            {
+                return _logInErrorDisplay ?? "";
+            }
+            set
+            {
+                this._logInErrorDisplay = value;
+                OnPropertyChanged("LogInErrorDisplay");
+            }
+        }
+
         public ICommand LogInCommand
         {
             get
@@ -57,6 +71,29 @@ namespace APPD.ViewModels
         private void logIn(PasswordBox passwordBoxControl)
         {
             bool success = UserServices.LogIn(Username, passwordBoxControl.Password);
+
+            if(success)
+            {
+                parent.ChangeViewModel("Home");
+            }
+            else
+            {
+                bool noUsername = false, noPassword = false;
+                if (Username.Trim().Length == 0)
+                    noUsername = true;
+                if (passwordBoxControl.Password.Length == 0)
+                    noPassword = true;
+
+                if (noUsername && noPassword)
+                    LogInErrorDisplay = "Username and password not entered";
+                else if (noUsername)
+                    LogInErrorDisplay = "Username not entered";
+                else if (noPassword)
+                    LogInErrorDisplay = "Password not entered";
+                else
+                    LogInErrorDisplay = "Wrong username and/or password";
+                
+            }
         }
     }
 }
