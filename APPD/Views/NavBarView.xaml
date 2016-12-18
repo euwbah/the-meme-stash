@@ -6,10 +6,27 @@
              xmlns:local="clr-namespace:APPD.Views"
              mc:Ignorable="d" 
              d:DesignHeight="80" d:DesignWidth="1200">
+    <UserControl.Resources>
+        <ControlTemplate x:Key="HomeLogoButton" TargetType="Button">
+            <Border Name="border">
+                <Image Source="pack://application:,,,/Assets/Images/Logo.png"></Image>
+                <!--no need for content presenter-->
+                <!--<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />-->
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter TargetName="border" Property="BorderBrush" Value="Black" />
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+    </UserControl.Resources>
+    
     <StackPanel Width="1200" Height="80" Margin="0" Background="#FF828282" Orientation="Horizontal">
-        <Button Width="70"
-                Height="70"
-                Style="{StaticResource HomeLogoButton}" 
+        <Button Width="75"
+                Height="75"
+                Margin="20 3 3 3"
+                Cursor="Hand"
+                Template="{StaticResource HomeLogoButton}" 
                 />
 
     </StackPanel>
