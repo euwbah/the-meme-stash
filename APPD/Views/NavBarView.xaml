@@ -56,12 +56,12 @@
             />
 
         <!--Profile | Cart-->
-        <WrapPanel Grid.Row="0"
-                   Grid.Column="2"
-                   Orientation="Horizontal"
-                   Margin="5 0 40 0" HorizontalAlignment="Center" VerticalAlignment="Center"
-                   Width="500"
-                   Height="80"
+        <StackPanel Grid.Row="0"
+                    Grid.Column="2"
+                    Orientation="Horizontal"
+                    Margin="5 0 40 0"
+                    Height="80"
+                    HorizontalAlignment="Right"
                     >
             <Button Background="{x:Null}" 
                     Foreground="White" 
@@ -103,6 +103,6 @@
                            Width="60" Height="57" Margin="20 0 0 0"/>
                 </StackPanel>
             </Button>
-        </WrapPanel>
+        </StackPanel>
     </Grid>
 </UserControl>
