@@ -28,8 +28,8 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100" /> <!-- Home Logo button -->
-            <ColumnDefinition Width="800" /> <!-- Search Bar -->
-            <ColumnDefinition Width="300" /> <!-- Profile | Cart -->
+            <ColumnDefinition Width="600" /> <!-- Search Bar -->
+            <ColumnDefinition Width="500" /> <!-- Profile | Cart -->
         </Grid.ColumnDefinitions>
         
         <!--Home Logo Button-->
@@ -45,7 +45,8 @@
         <extToolkit:WatermarkTextBox
             Grid.Row="0"
             Grid.Column="1"
-            Margin="210 22 210 22"
+            Width="260"
+            Height="40"
             FontFamily="Impact"
             FontSize="18"
             BorderThickness="0"
@@ -58,7 +59,9 @@
         <WrapPanel Grid.Row="0"
                    Grid.Column="2"
                    Orientation="Horizontal"
-                   Margin="5 5 40 5" HorizontalAlignment="Center" VerticalAlignment="Center"
+                   Margin="5 0 40 0" HorizontalAlignment="Center" VerticalAlignment="Center"
+                   Width="500"
+                   Height="80"
                     >
             <Button Background="{x:Null}" 
                     Foreground="White" 
@@ -70,7 +73,7 @@
                          Foreground="White"
                          FontFamily="Segoe UI Black"
                          FontSize="19"
-                         Padding="5" 
+                         Padding="5"  
                          Background="{x:Null}" 
                          BorderThickness="0" IsTabStop="False" Focusable="False"/>
             </Button>
@@ -87,16 +90,17 @@
                     BorderThickness="0" 
                     HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
                     HorizontalAlignment="Center" VerticalAlignment="Center">
-                <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal" Width="160" Height="80" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <TextBox Text="My Cart" 
                              Foreground="White"
                              FontFamily="Segoe UI Black"
                              FontSize="19"
                              Padding="5" 
                              Background="{x:Null}" 
-                             BorderThickness="0" IsTabStop="False" Focusable="False"/>
+                             BorderThickness="0" IsTabStop="False" Focusable="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
 
-
+                    <Image Source="pack://application:,,,/Assets/Images/ShoppingCart.png" 
+                           Width="60" Height="57" Margin="20 0 0 0"/>
                 </StackPanel>
             </Button>
         </WrapPanel>
