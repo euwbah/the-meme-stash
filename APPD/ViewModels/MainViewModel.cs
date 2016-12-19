@@ -77,6 +77,7 @@ namespace APPD.ViewModels
         internal void ChangeViewModel(string pageName)
         {
             CurrentPageViewModel = PageViewModels[pageName];
+            CurrentPageViewModel.PageOpen();
         }
     }
 }

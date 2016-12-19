@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:APPD.Views"
+             xmlns:extToolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
              mc:Ignorable="d" 
              d:DesignHeight="80" d:DesignWidth="1200">
     <UserControl.Resources>
@@ -21,19 +22,83 @@
         </ControlTemplate>
     </UserControl.Resources>
     
-    <StackPanel Width="1200" Height="80" Margin="0" Background="#FF828282" Orientation="Horizontal">
-        <Button Width="75"
+    <Grid Width="1200" Height="80" Margin="0" Background="#FF828282">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100" /> <!-- Home Logo button -->
+            <ColumnDefinition Width="800" /> <!-- Search Bar -->
+            <ColumnDefinition Width="300" /> <!-- Profile | Cart -->
+        </Grid.ColumnDefinitions>
+        
+        <!--Home Logo Button-->
+        <Button Grid.Row="0"
+                Grid.Column="0"
+                Width="75"
                 Height="75"
-                Margin="20 3 3 3"
                 Cursor="Hand"
-                Template="{StaticResource HomeLogoButton}" 
+                Template="{StaticResource HomeLogoButton}" HorizontalAlignment="Center" VerticalAlignment="Center" 
                 />
+        
+        <!--Search Bar-->
+        <extToolkit:WatermarkTextBox
+            Grid.Row="0"
+            Grid.Column="1"
+            Margin="210 22 210 22"
+            FontFamily="Impact"
+            FontSize="18"
+            BorderThickness="0"
+            Watermark="Search"
+            Text="{Binding CurrentSearchString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="0"
+            KeyboardNavigation.TabNavigation="Continue" VerticalContentAlignment="Center"
+            />
 
-        <StackPanel Orientation="Horizontal"
-                    Margin="5 5 40 5">
-            <Button>
-                <Label Content="{Binding parent.State.CurrentLoggedOnUser.Username}"></Label>
+        <!--Profile | Cart-->
+        <WrapPanel Grid.Row="0"
+                   Grid.Column="2"
+                   Orientation="Horizontal"
+                   Margin="5 5 40 5" HorizontalAlignment="Center" VerticalAlignment="Center"
+                    >
+            <Button Background="{x:Null}" 
+                    Foreground="White" 
+                    Padding="10" 
+                    BorderThickness="0" 
+                    HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
+                    HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBox Text="{Binding UsernameDisplayText}" 
+                         Foreground="White"
+                         FontFamily="Segoe UI Black"
+                         FontSize="19"
+                         Padding="5" 
+                         Background="{x:Null}" 
+                         BorderThickness="0" IsTabStop="False" Focusable="False"/>
             </Button>
-        </StackPanel>
-    </StackPanel>
+            <TextBox Text="|" 
+                         Foreground="White"
+                         FontFamily="Segoe UI Black"
+                         FontSize="25"
+                         Padding="20" 
+                         Background="{x:Null}" 
+                         BorderThickness="0" IsTabStop="False" Focusable="False"/>
+            <Button Background="{x:Null}" 
+                    Foreground="White" 
+                    Padding="10" 
+                    BorderThickness="0" 
+                    HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
+                    HorizontalAlignment="Center" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal">
+                    <TextBox Text="My Cart" 
+                             Foreground="White"
+                             FontFamily="Segoe UI Black"
+                             FontSize="19"
+                             Padding="5" 
+                             Background="{x:Null}" 
+                             BorderThickness="0" IsTabStop="False" Focusable="False"/>
+
+
+                </StackPanel>
+            </Button>
+        </WrapPanel>
+    </Grid>
 </UserControl>

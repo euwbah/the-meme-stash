@@ -9,7 +9,10 @@
              d:DesignHeight="675" d:DesignWidth="1200">
     <StackPanel Orientation="Vertical">
         <views:NavBarView Panel.ZIndex="1"/>
-        <views:TrendingView Panel.ZIndex="0" HorizontalAlignment="Left" VerticalAlignment="Top" />
-
+        <StackPanel
+            Orientation="Horizontal"
+            Width="1200" Height="595">
+            <views:TrendingView Panel.ZIndex="0" HorizontalAlignment="Left" VerticalAlignment="Top" />
+        </StackPanel>
     </StackPanel>
 </UserControl>

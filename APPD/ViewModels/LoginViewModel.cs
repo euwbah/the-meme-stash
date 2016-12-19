@@ -26,6 +26,11 @@ namespace APPD.ViewModels
             this.parent = parent;
         }
 
+        public void PageOpen()
+        {
+
+        }
+
         #region Properties
         public string Username
         {
@@ -68,12 +73,14 @@ namespace APPD.ViewModels
         }
         #endregion
 
+
         private void logIn(PasswordBox passwordBoxControl)
         {
-            bool success = UserServices.LogIn(Username, passwordBoxControl.Password);
+            User loggedInUser = UserServices.LogIn(Username, passwordBoxControl.Password);
 
-            if(success)
+            if(loggedInUser != null)
             {
+                parent.State.CurrentLoggedOnUser = loggedInUser;
                 parent.ChangeViewModel("Home");
             }
             else

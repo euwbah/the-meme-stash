@@ -44,13 +44,13 @@ namespace APPD.Services
                 new List<AccountRentalData>(), new List<Account>(), 60));
         }
 
-        public static bool LogIn(string username, string password)
+        public static User LogIn(string username, string password)
         {
             foreach(User user in localDatabaseOfUsers)
                 if (user.Username == username && user.Password == password)
-                    return true;
+                    return user;
 
-            return false;
+            return null;
         }
     }
 }
