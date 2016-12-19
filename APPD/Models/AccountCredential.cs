@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace APPD.Models
 {
-    public class AccountRentalData
+    public class AccountCredential
     {
-        public int ID;
-        public DateTime From;
-        public DateTime To;
-        public 
+
     }
 }

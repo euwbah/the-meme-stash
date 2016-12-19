@@ -78,6 +78,7 @@
     <Compile Include="Helpers\ObservableObject.cs" />
     <Compile Include="Helpers\RelayCommand.cs" />
     <Compile Include="Models\Account.cs" />
+    <Compile Include="Models\AccountCredential.cs" />
     <Compile Include="Models\AccountRentalData.cs" />
     <Compile Include="Models\ApplicationState.cs" />
     <Compile Include="Services\UserServices.cs" />
@@ -183,6 +184,9 @@
     <Resource Include="Assets\Images\ShoppingCart.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Services\Bridges\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
