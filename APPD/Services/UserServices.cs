@@ -26,21 +26,21 @@ namespace APPD.Services
 
             _users = new List<User>();
 
-            _users.Add(new User("PapaDanku", "pinkisawesome",
-                new List<AccountRentalData>(), new List<int>(), 1337));
+            _users.Add(new User(0, "PapaDanku", "pinkisawesome",
+                new List<AccountRentalData>(), new List<int>(), 1337, "yamete"));
 
-            _users.Add(new User("theLegend27", "capitalism",
-                new List<AccountRentalData>(), new List<int>(), 9001));
+            _users.Add(new User(1, "theLegend27", "capitalism",
+                new List<AccountRentalData>(), new List<int>(), 9001, "Who is the legend 27?"));
 
             _users.Add(new User("XXXemokidXXX", "123456",
-                new List<AccountRentalData>(), new List<int>(), 60));
+                new List<AccountRentalData>(), new List<int>(), 60, "nigga please"));
 
             _users.Add(new User("RobbieRotten", "1umber1",
-                new List<AccountRentalData>(), new List<int>(), 66965));
+                new List<AccountRentalData>(), new List<int>(), 66965, "nigga please"));
 
             // Make life easier
             _users.Add(new User("a", "a",
-                new List<AccountRentalData>(), new List<int>(), 60));
+                new List<AccountRentalData>(), new List<int>(), 60, "nigga please"));
         }
 
         public static User LogIn(string username, string password)

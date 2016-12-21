@@ -10,7 +10,7 @@
     <UserControl.Resources>
         <ControlTemplate x:Key="HomeLogoButton" TargetType="Button">
             <Border Name="border">
-                <Image Source="pack://application:,,,/Assets/Images/Logo.png"></Image>
+                <Image Source="pack://application:,,,/Assets/Images/Logo.png" Stretch="Uniform"></Image>
                 <!--no need for content presenter-->
                 <!--<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />-->
             </Border>
@@ -100,7 +100,8 @@
                              BorderThickness="0" IsTabStop="False" Focusable="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
 
                     <Image Source="pack://application:,,,/Assets/Images/ShoppingCart.png" 
-                           Width="60" Height="57" Margin="20 0 0 0"/>
+                           Width="60" Height="57" Margin="20 0 0 0"
+                           Stretch="Uniform"/>
                 </StackPanel>
             </Button>
         </StackPanel>

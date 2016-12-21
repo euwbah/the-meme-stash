@@ -194,8 +194,11 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Assets\SimulatedServer\" />
+    <Folder Include="Assets\SimulatedServer\Assets\Images\" />
     <Folder Include="Services\Bridges\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\SimulatedServer\Database\State.json" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
