@@ -16,6 +16,22 @@ namespace APPD.Models
         public DateTime AccountCreationDate { get; private set; }
         public bool IsFeatured { get; private set; }
 
+        public string DanknessPerDayLongDisplay
+        {
+            get
+            {
+                return DanknessPerDay.ToString() + " Đankness / Day";
+            }
+        }
+
+        public string DanknessPerDayShortDisplay
+        {
+            get
+            {
+                return "Đ " + DanknessPerDay + " / day";
+            }
+        }
+
         public List<AccountCredential> Credentials;
 
         public Account(int ID, string Name, string Description, int DanknessPerDay,

@@ -10,7 +10,7 @@
         <TextBox BorderThickness="0" 
                  Background="Black" 
                  Foreground="White"
-                 Padding="20 5 0 5" FontFamily="Impact" FontSize="25" Focusable="False" IsTabStop="False"
+                 Padding="20 20 0 5" FontFamily="Impact" FontSize="25" Focusable="False" IsTabStop="False"
                  >
             TRENDING</TextBox>
         <ItemsControl IsTabStop="False" Focusable="False">

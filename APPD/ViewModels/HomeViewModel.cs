@@ -1,4 +1,5 @@
 ﻿using APPD.Helpers;
+using APPD.Services;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -86,8 +87,10 @@ namespace APPD.ViewModels
                 {
                     new TextWrapper("FEATURED")
                 };
+                DisplayedItems.AddRange(AccountServices.getFeaturedAccounts());
 
                 DisplayedItems.Add(new TextWrapper("NEW"));
+                DisplayedItems.AddRange(AccountServices.getNewAccounts());
             }
         }
     }

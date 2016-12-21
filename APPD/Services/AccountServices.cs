@@ -14,6 +14,10 @@ namespace APPD.Services
             List<Account> accounts = new List<Account>()
             {
                 new Account(0, "Pakalu Papito", "I am a camel", 40, new DateTime(2013, 9, 11), true,
+                    new List<AccountCredential> { }),
+                new Account(1, "Chublak Punani", "Laro puti", 50, new DateTime(2015, 10, 11), false,
+                    new List<AccountCredential> { }),
+                new Account(2, "Black Guy 69", "Punani", 30, new DateTime(2016, 10, 11), false,
                     new List<AccountCredential> { })
             };
 
@@ -23,13 +27,18 @@ namespace APPD.Services
         internal static List<Account> getFeaturedAccounts()
         {
             List<Account> accounts = getAccountsFromDatabase();
-            return accounts.Where(account => account.IsFeatured).ToList();
+            return accounts.Where(account => account.IsFeatured)
+                           .ToList();
         }
 
         internal static List<Account> getNewAccounts()
         {
+            List<Account> featuredAccounts = getFeaturedAccounts();
             List<Account> accounts = getAccountsFromDatabase();
-            return accounts.OrderByDescending(account => account, new AccountDateComparer()).Take(3).ToList();
+            return accounts.OrderByDescending(account => account, new AccountDateComparer())
+                           .Where(account => !featuredAccounts.Contains(account))
+                           .Take(3)
+                           .ToList();
         }
 
         private class AccountDateComparer : IComparer<Account>

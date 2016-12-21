@@ -9,7 +9,10 @@
              mc:Ignorable="d">
     <Grid>
 
-        <ScrollViewer VerticalScrollBarVisibility="Auto" Width="1000">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Width="985">
+            <ScrollViewer.Resources>
+                <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">15</sys:Double>
+            </ScrollViewer.Resources>
             <!--Note: DisplayedItems will be a typeless ArrayList containing both Accounts to display and strings
             as section headers-->
             <ItemsControl ItemsSource="{Binding DisplayedItems}">
@@ -22,16 +25,53 @@
                     <DataTemplate DataType="{x:Type local:TextWrapper}">
                         <Label Content="{Binding Text}" 
                                IsTabStop="False"
-                               Margin="50 10 0 30"
+                               Margin="50 10 0 10"
                                FontFamily="Impact"
                                FontSize="24"
                                Foreground="Black"
                                />
                     </DataTemplate>
 
-                    <!--<DataTemplate DataType="{x:Type models:Account}">
-
-                    </DataTemplate>-->
+                    <DataTemplate DataType="{x:Type models:Account}">
+                        <Grid Background="#FFDDDDDD" Margin="40 20 80 20">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="500"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Orientation="Vertical"
+                                        Grid.Column="0"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Center">
+                                <Label Content="{Binding Name}"
+                                       FontFamily="Impact"
+                                       Margin="30 10"
+                                       FontSize="26"
+                                       />
+                                <Label Content="{Binding Description}"
+                                       FontFamily="Segoe UI Light"
+                                       Margin="30 1 0 10"
+                                       FontSize="15"
+                                       />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" 
+                                        Grid.Column="1"
+                                        HorizontalAlignment="Right" 
+                                        VerticalAlignment="Center" >
+                                <Label Content="{Binding DanknessPerDayShortDisplay}"
+                                        FontFamily="Segoe UI Light"
+                                        FontSize="18" HorizontalAlignment="Right" VerticalAlignment="Center"
+                                        />
+                                <Button Content=">"
+                                        FontFamily="Impact"
+                                        Padding="16 6"
+                                        Margin="6 6 20 6"
+                                        BorderThickness="0"
+                                        FontSize="30" Background="#FFA2A2A2"
+                                        Foreground="#FFD8EAFF" HorizontalAlignment="Right" VerticalAlignment="Center"
+                                        />
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
                 </ItemsControl.Resources>
             </ItemsControl>
         </ScrollViewer>
