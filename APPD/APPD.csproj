@@ -81,11 +81,15 @@
     <Compile Include="Models\AccountCredential.cs" />
     <Compile Include="Models\AccountRentalData.cs" />
     <Compile Include="Models\ApplicationState.cs" />
+    <Compile Include="Services\AccountServices.cs" />
     <Compile Include="Services\UserServices.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\IPageViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="Views\HomeDisplayListView.xaml.cs">
+      <DependentUpon>HomeDisplayListView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\HomeView.xaml.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>
     </Compile>
@@ -98,6 +102,10 @@
     <Compile Include="Views\TrendingView.xaml.cs">
       <DependentUpon>TrendingView.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\HomeDisplayListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\HomeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -186,6 +194,7 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Assets\SimulatedServer\" />
     <Folder Include="Services\Bridges\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

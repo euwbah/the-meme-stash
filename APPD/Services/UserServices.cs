@@ -9,44 +9,43 @@ namespace APPD.Services
 {
     public static class UserServices
     {
-        private static List<User> _localDatabaseOfUsers;
+        private static List<User> _users;
 
-        private static List<User> localDatabaseOfUsers
+        private static List<User> Users
         {
             get
             {
-                UpdateLocalDatabaseOfUsers();
-                return _localDatabaseOfUsers;
+                readUsersFromDatabase();
+                return _users;
             }
-            set { _localDatabaseOfUsers = value; }
         }
 
-        public static void UpdateLocalDatabaseOfUsers()
+        public static void readUsersFromDatabase()
         {
             // This is just a placeholder for the JSON database
 
-            _localDatabaseOfUsers = new List<User>();
+            _users = new List<User>();
 
-            _localDatabaseOfUsers.Add(new User("PapaDanku", "pinkisawesome",
+            _users.Add(new User("PapaDanku", "pinkisawesome",
                 new List<AccountRentalData>(), new List<int>(), 1337));
 
-            _localDatabaseOfUsers.Add(new User("theLegend27", "capitalism",
+            _users.Add(new User("theLegend27", "capitalism",
                 new List<AccountRentalData>(), new List<int>(), 9001));
 
-            _localDatabaseOfUsers.Add(new User("XXXemokidXXX", "123456",
+            _users.Add(new User("XXXemokidXXX", "123456",
                 new List<AccountRentalData>(), new List<int>(), 60));
 
-            _localDatabaseOfUsers.Add(new User("RobbieRotten", "1umber1",
+            _users.Add(new User("RobbieRotten", "1umber1",
                 new List<AccountRentalData>(), new List<int>(), 66965));
 
             // Make life easier
-            _localDatabaseOfUsers.Add(new User("a", "a",
+            _users.Add(new User("a", "a",
                 new List<AccountRentalData>(), new List<int>(), 60));
         }
 
         public static User LogIn(string username, string password)
         {
-            foreach(User user in localDatabaseOfUsers)
+            foreach(User user in Users)
                 if (user.Username == username && user.Password == password)
                     return user;
 

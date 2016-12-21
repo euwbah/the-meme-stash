@@ -13,6 +13,7 @@
             Orientation="Horizontal"
             Width="1200" Height="595">
             <views:TrendingView Panel.ZIndex="0" HorizontalAlignment="Left" VerticalAlignment="Top" />
+            <views:HomeDisplayListView />
         </StackPanel>
     </StackPanel>
 </UserControl>
