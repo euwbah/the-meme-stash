@@ -32,14 +32,11 @@ namespace APPD.Services
             _users.Add(new User(1, "theLegend27", "capitalism",
                 new List<AccountRentalData>(), new List<int>(), 9001, "Who is the legend 27?"));
 
-            _users.Add(new User("XXXemokidXXX", "123456",
+            _users.Add(new User(2, "XXXemokidXXX", "123456",
                 new List<AccountRentalData>(), new List<int>(), 60, "nigga please"));
 
-            _users.Add(new User("RobbieRotten", "1umber1",
-                new List<AccountRentalData>(), new List<int>(), 66965, "nigga please"));
-
-            // Make life easier
-            _users.Add(new User("a", "a",
+            // Make life easier (temporary account)
+            _users.Add(new User(3, "a", "a",
                 new List<AccountRentalData>(), new List<int>(), 60, "nigga please"));
         }
 

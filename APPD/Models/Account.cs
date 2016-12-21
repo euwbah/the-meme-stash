@@ -16,14 +16,19 @@ namespace APPD.Models
 
         public List<AccountCredential> Credentials;
 
-        public Account(int ID, string Name, string Description, int DanknessPerDay, string imagePath, List<AccountCredential> Credentials)
+        public Account(int ID, string Name, string Description, int DanknessPerDay, List<AccountCredential> Credentials)
         {
             this.ID = ID;
             this.Name = Name;
             this.Description = Description;
             this.DanknessPerDay = DanknessPerDay;
             this.Credentials = Credentials;
-            this.ImagePath = imagePath;
+            this.ImagePath = this.generateImagePath();
+        }
+
+        private string generateImagePath()
+        {
+            return "pack://application:,,,/Assets/Images/AccountThumbnails/" + this.ID + ".png";
         }
     }
 }

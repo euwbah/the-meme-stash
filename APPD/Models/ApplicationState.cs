@@ -54,6 +54,7 @@ namespace APPD.Models
             }
         }
         #endregion
+
         public ApplicationState()
         {
 
