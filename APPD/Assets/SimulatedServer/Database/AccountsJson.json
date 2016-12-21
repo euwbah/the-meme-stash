@@ -1,0 +1,150 @@
+{
+  "Accounts": [
+    {
+      "ID": 0,
+      "Name": "Dat Boi United",
+      "DanknessPerDay": 69.69,
+      "Description": "We shitpost memes about a gif of frog riding a unicycle.",
+      "Credentials": [
+        {
+          "SocialMediaHandle": [ "4chan" ],
+          "Username": "Dat Boi United",
+          "Email": "DBU@gmail.com",
+          "Password": "Ohshitwaddup"
+        },
+        {
+          "SocialMediaHandle": [ "facebook" ],
+          "Username": "Dat Boi United Page",
+          "Email": "DBU@gmail.com",
+          "Password": "Ohshitwaddup"
+        }
+      ],
+      "AccountCreationDate": "12/8/1984",
+      "IsFeatured": true
+    },
+    {
+      "ID": 1,
+      "Name": "Osama Swegladin",
+      "DanknessPerDay": 41148,
+      "Description": "Bringing you the finest memes straight from the middle-east.",
+      "Credentials": [
+        {
+          "SocialMediaHandle": [ "tumblr" ],
+          "Username": "Osama Swegladin",
+          "Email": "AllohaSnackbar@gmail.com",
+          "Password": "iluvg0ats"
+        },
+        {
+          "SocialMediaHandle": [ "twitter" ],
+          "Username": "@Osama_Swegladin",
+          "Email": "AllohaSnackbar@gmail.com",
+          "Password": "iluvg0ats"
+        }
+      ],
+      "AccountCreationDate" :"11/9/2001",
+      "IsFeatured": true
+    },
+    {
+      "ID": 2,
+      "AccountName": "Clorox Bleach",
+      "DanknessPerDay": 645.99,
+      "Description": "Delicious nutritional energy drink for kids.",
+      "Credentials": [
+        {
+          "SocialMediaHandle": [ "twitter" ],
+          "Username": "@BleachClorox",
+          "Email": "CloroX@hotmail.com",
+          "Password": "b134ch"
+        },
+      ],
+      "AccountCreationDate": "2/7/2004",
+      "IsFeatured": false
+    },
+    {
+      "ID": 3,
+      "Name": "Haunted Kojima",
+      "DanknessPerDay": 4554.70,
+      "Description": "One of the few survivors from the pachiko mines",
+      "Credentials": [
+        {
+          "SocialMediaHandle": [ "instagram" ],
+          "Username": "@KojimaTheHaunted",
+          "Email": "TheRealKojima@gmail.com",
+          "Password": "Kojima"
+        },
+        {
+          "SocialMediaHandle": [ "twitter" ],
+          "Username": "@HauntedKojima",
+          "Email": "TheRealKojima@gmail.com",
+          "Password": "Kojima"
+        }
+      ],
+      "AccountCreationDate": "24/8/1963",
+      "IsFeatured": true
+    },
+    {
+      "ID": 4,
+      "Name": "Pakalu Papito",
+      "DanknessPerDay": 665.98,
+      "Description": "A twitter sensation whose real identity is a mystery has become famous for his extremely hilarious and honest tweets about life and everyday things!.",
+      "Credentials": [
+        {
+          "SocialMediaHandle": [ "twitter" ],
+          "Username": "@PakuluPapito",
+          "Email": "PakuluPapito@gmail.com",
+          "Password": "p4p1t0"
+        }
+      ],
+      "AccountCreationDate": "8/7/2015",
+      "IsFeatured": true
+    },
+    {
+      "ID": 5,
+      "Name": "Snoop Dogg Official",
+      "DanknessPerDay": 420,
+      "Description": "Snoop Dogg is the stage name used by Calvin Cordozar Broadus Jr., an American hip hop recording artist and actor, well known for being the highest dude alive",
+      "Credentials": [
+        {
+          "SocialMediaHandle": [ "google+" ],
+          "Username": null,
+          "Email": "Sn00pDawg@gmail.com",
+          "Password": "smooke24/7"
+        },
+        {
+          "SocialMediaHandle": [ "facebook" ],
+          "Username": "The one and only D0GG",
+          "Email": "Sn00pDawg@gmail.com",
+          "Password": "smooke24/7"
+        }
+      ],
+      "AccountCreationDate": "",
+      "IsFeatured": false
+    },
+    {
+      "ID": 6,
+      "Name": "Harambe, the lord and savior",
+      "DanknessPerDay": 45645644564546546545645645645665.99,
+      "Description": "The myth, the meme, the gorilla.",
+      "Credentials": [
+        {
+          "SocialMediaHandle": [ "Reddit" ],
+          "Username": "HarambeTheLord",
+          "Email": "harambae@gmail.com",
+          "Password": "CincinnatiZoo "
+        },
+        {
+          "SocialMediaHandle": [ "facebook" ],
+          "Username": "Harambe",
+          "Email": "harambae@gmail.com",
+          "Password": "CincinnatiZoo "
+        }
+      ],
+      "AccountCreationDate": "",
+      "IsFeatured": true
+    }
+  ]
+
+}
+
+
+ 

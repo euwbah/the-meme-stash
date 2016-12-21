@@ -1,0 +1,35 @@
+{
+         "Users": [
+          {
+            "ID": 0,
+            "username": "PapaDanku",
+            "password": "pinkisawesome",
+            "accountsRented": [ ],
+            "accountsForRent": [ 2 ],
+            "currentAccountRented": [ ],
+            "dankness": 1337,
+            "Bio": "Filthy Frank is the embodiment of everything a person should not be."
+          },
+          {
+            "ID": 1,
+            "username": "theLegend27",
+            "password": "capitalism",
+            "accountsRented": [ 1, 2 ],
+            "accountsForRent": [ ],
+            "currentAccountRented": [ 1 ],
+            "dankness": 9001,
+            "Bio": "TheLegend27 is a fictional character appearing on an online ad for the mobile video game Game of War: Fire Age, where several players start talking about the legendary player and their feats."
+          },
+          {
+            "ID": 2,
+            "username": "XXXemokidXXX",
+            "password": "123456",
+            "accountsRented": [ 1 ],
+            "accountsForRent": [ 3 ],
+            "currentAccountRented": [ ],
+            "dankness": 60
+            "Bio":  "Just an emo."
+          },
+
+      ]
+}
