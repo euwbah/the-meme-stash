@@ -29,7 +29,20 @@ namespace APPD.Services
         internal static List<Account> getNewAccounts()
         {
             List<Account> accounts = getAccountsFromDatabase();
-            return accounts.OrderByDescending();
+            return accounts.OrderByDescending(account => account, new AccountDateComparer()).Take(3).ToList();
+        }
+
+        private class AccountDateComparer : IComparer<Account>
+        {
+            public int Compare(Account x, Account y)
+            {
+                if (x.AccountCreationDate > y.AccountCreationDate)
+                    return 1;
+                else if (x.AccountCreationDate < y.AccountCreationDate)
+                    return -1;
+                else
+                    return 0;
+            }
         }
     }
 }
