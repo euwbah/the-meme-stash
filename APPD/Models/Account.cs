@@ -13,16 +13,21 @@ namespace APPD.Models
         public string Description { get; private set; }
         public string ImagePath { get; private set; }
         public int DanknessPerDay { get; private set; }
+        public DateTime AccountCreationDate { get; private set; }
+        public bool IsFeatured { get; private set; }
 
         public List<AccountCredential> Credentials;
 
-        public Account(int ID, string Name, string Description, int DanknessPerDay, List<AccountCredential> Credentials)
+        public Account(int ID, string Name, string Description, int DanknessPerDay,
+                        DateTime AccountCreationDate, bool IsFeatured, List<AccountCredential> Credentials)
         {
             this.ID = ID;
             this.Name = Name;
             this.Description = Description;
             this.DanknessPerDay = DanknessPerDay;
             this.Credentials = Credentials;
+            this.AccountCreationDate = AccountCreationDate;
+            this.IsFeatured = IsFeatured;
             this.ImagePath = this.generateImagePath();
         }
 

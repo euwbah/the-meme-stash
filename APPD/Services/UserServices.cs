@@ -9,39 +9,32 @@ namespace APPD.Services
 {
     public static class UserServices
     {
-        private static List<User> _users;
 
-        private static List<User> Users
-        {
-            get
-            {
-                readUsersFromDatabase();
-                return _users;
-            }
-        }
-
-        public static void readUsersFromDatabase()
+        public static List<User> readUsersFromDatabase()
         {
             // This is just a placeholder for the JSON database
 
-            _users = new List<User>();
+            List<User> Users = new List<User>();
 
-            _users.Add(new User(0, "PapaDanku", "pinkisawesome",
+            Users.Add(new User(0, "PapaDanku", "pinkisawesome",
                 new List<AccountRentalData>(), new List<int>(), 1337, "yamete"));
 
-            _users.Add(new User(1, "theLegend27", "capitalism",
+            Users.Add(new User(1, "theLegend27", "capitalism",
                 new List<AccountRentalData>(), new List<int>(), 9001, "Who is the legend 27?"));
 
-            _users.Add(new User(2, "XXXemokidXXX", "123456",
+            Users.Add(new User(2, "XXXemokidXXX", "123456",
                 new List<AccountRentalData>(), new List<int>(), 60, "nigga please"));
 
             // Make life easier (temporary account)
-            _users.Add(new User(3, "a", "a",
+            Users.Add(new User(3, "a", "a",
                 new List<AccountRentalData>(), new List<int>(), 60, "nigga please"));
+
+            return Users;
         }
 
         public static User LogIn(string username, string password)
         {
+            var Users = readUsersFromDatabase();
             foreach(User user in Users)
                 if (user.Username == username && user.Password == password)
                     return user;

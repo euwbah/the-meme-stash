@@ -13,11 +13,23 @@ namespace APPD.Services
         {
             List<Account> accounts = new List<Account>()
             {
-                new Account(0, "Pakalu Papito", "I am a camel", 40,
+                new Account(0, "Pakalu Papito", "I am a camel", 40, new DateTime(2013, 9, 11), true,
                     new List<AccountCredential> { })
             };
 
             return accounts;
+        }
+
+        internal static List<Account> getFeaturedAccounts()
+        {
+            List<Account> accounts = getAccountsFromDatabase();
+            return accounts.Where(account => account.IsFeatured).ToList();
+        }
+
+        internal static List<Account> getNewAccounts()
+        {
+            List<Account> accounts = getAccountsFromDatabase();
+            return accounts.OrderByDescending();
         }
     }
 }
