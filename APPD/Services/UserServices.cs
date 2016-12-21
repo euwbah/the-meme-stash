@@ -16,6 +16,8 @@ namespace APPD.Services
 
             List<User> Users = new List<User>();
 
+            string databaseURL = "pack://application:,,,/Assets/SimulatedServer/Database/Users.json";
+
             Users.Add(new User(0, "PapaDanku", "pinkisawesome",
                 new List<AccountRentalData>(), new List<int>(), 1337, "yamete"));
 

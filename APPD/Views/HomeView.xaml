@@ -7,13 +7,21 @@
              xmlns:views="clr-namespace:APPD.Views"
              mc:Ignorable="d" 
              d:DesignHeight="675" d:DesignWidth="1200">
-    <StackPanel Orientation="Vertical">
+    <StackPanel Orientation="Vertical" Width="1200" Height="675">
         <views:NavBarView Panel.ZIndex="1"/>
-        <StackPanel
-            Orientation="Horizontal"
-            Width="1200" Height="595">
-            <views:TrendingView Panel.ZIndex="0" HorizontalAlignment="Left" VerticalAlignment="Top" />
-            <views:HomeDisplayListView />
-        </StackPanel>
+        
+        <WrapPanel Orientation="Horizontal" Width="2400" Height="595">
+            <WrapPanel.RenderTransform>
+                <TransformGroup>
+                    <TranslateTransform x:Name="panelTransform" />
+                </TransformGroup>
+            </WrapPanel.RenderTransform>
+            <StackPanel
+                Orientation="Horizontal"
+                Width="1200" Height="595">
+                <views:TrendingView Panel.ZIndex="0" HorizontalAlignment="Left" VerticalAlignment="Top" />
+                <views:HomeDisplayListView />
+            </StackPanel>
+        </WrapPanel>
     </StackPanel>
 </UserControl>
