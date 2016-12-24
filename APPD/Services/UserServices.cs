@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
+using Newtonsoft.Json;
 
 namespace APPD.Services
 {
@@ -34,14 +36,17 @@ namespace APPD.Services
             return Users;
         }
 
-        public static User LogIn(string username, string password)
+        public static IEnumerable<User> LogIn(string username, string password)
         {
-            var Users = readUsersFromDatabase();
-            foreach(User user in Users)
-                if (user.Username == username && user.Password == password)
-                    return user;
+            string json = File.ReadAllText("Users.json");
+            User u1 = JsonConvert.DeserializeObject<User>(json);
 
-            return null;
+            var lines = File.ReadAllLines("Users.json");
+            foreach (var line in lines)
+            {
+                yield return JsonConvert.DeserializeObject<User>(json);
+            }
+            
         }
     }
 }
