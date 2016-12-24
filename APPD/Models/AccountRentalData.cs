@@ -9,8 +9,7 @@ namespace APPD.Models
 {
     public class AccountRentalData
     {
-        public int ID;
-        public DateTime From;
-        public DateTime To;
+        public int ID; //Referring to Account's ID
+        public List<DateTime> DaysRented;
     }
 }

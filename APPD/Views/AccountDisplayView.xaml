@@ -1,0 +1,521 @@
+﻿<UserControl x:Class="APPD.Views.AccountDisplayView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:s="clr-namespace:System;assembly=mscorlib"
+             xmlns:windows="clr-namespace:System.Windows;assembly=PresentationFramework"
+             xmlns:controls="clr-namespace:System.Windows.Controls;assembly=PresentationFramework"
+             xmlns:primitives="clr-namespace:System.Windows.Controls.Primitives;assembly=PresentationFramework"
+             xmlns:shapes="clr-namespace:System.Windows.Shapes;assembly=PresentationFramework"
+             mc:Ignorable="d" 
+             d:DesignHeight="595" d:DesignWidth="1200"
+             
+             xmlns:local="clr-namespace:APPD.Views"
+             xmlns:converters="clr-namespace:APPD.Views.Converters"
+             xmlns:services="clr-namespace:APPD.Services"
+             xmlns:models="clr-namespace:APPD.Models"
+             >
+
+    <UserControl.Resources>
+        <converters:ConvertDateTime_Account_User_ToCalendarDayBackgroundFillBrush
+            x:Key="goToTheKitchenAndMakeMeASandwich" />
+        <converters:ConvertNullityToVisibility
+            x:Key="convertNullityToVisibility" />
+    </UserControl.Resources>
+
+    <Grid x:Name="TheOutside">
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <ScrollViewer.Resources>
+                <s:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">15</s:Double>
+            </ScrollViewer.Resources>
+            
+            <StackPanel Orientation="Vertical" Width="1200" Height="595" Background="White" Panel.ZIndex="1">
+                <!--Top half-->
+                <Grid Background="#FFD2D1FF">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50" />
+                        <ColumnDefinition Width="300" />
+                        <ColumnDefinition Width="565" />
+                        <ColumnDefinition Width="285" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="250" />
+                    </Grid.RowDefinitions>
+
+                    <Button Content="&lt;"
+                            FontFamily="Impact"
+                            FontSize="50"
+                            Foreground="#CC000000"
+                            Background="{x:Null}"
+                            BorderThickness="0"
+                            Height="90"
+                            VerticalAlignment="Top" Grid.ColumnSpan="2" Margin="0,0,300.4,0"
+                            Command="{Binding BackButtonClick}"
+                        />
+
+                    <Image Grid.Column="1" 
+                           Grid.Row="0"
+                           Margin="50.4,30,50.4,19.6"
+                           Stretch="UniformToFill"
+                           Source="pack://application:,,,/Assets/SimulatedServer/Assets/Images/default.png" />
+
+                    <!--Information-->
+                    <StackPanel Orientation="Vertical" Grid.Column="1" Grid.ColumnSpan="3" Margin="300.4,0,250,-0.4">
+                        <Label Content="{Binding CurrentAccount.Name}" 
+                               FontFamily="Impact"
+                               FontSize="26"
+                               Margin="30 15 30 5"
+                               Height="50"
+                               VerticalContentAlignment="Center"
+                               Width="500"
+                               />
+                        <Label Content="{Binding CurrentAccount.Description}"
+                               FontFamily="Segoe UI Light"
+                               FontSize="18"
+                               Foreground="#EE000000"
+                               Margin="30 5"
+                               Height="90"
+                               Width="500"
+                               />
+                        <Grid Margin="30 5" Height="70" Width="500">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <!--NOTE: Grid.Column="0" is intended for a rating display in future releases-->
+
+                            <WrapPanel Orientation="Horizontal"
+                                       Grid.Column="1"
+                                       HorizontalAlignment="Right"
+                                       VerticalAlignment="Center">
+                                <Label Content="{Binding CurrentAccount.DanknessPerDay}"
+                                       FontFamily="Segoe UI Semilight"
+                                       FontSize="30"
+                                       />
+                                <Label Content="Đankness / Day"
+                                       FontFamily="Segoe UI Semilight"
+                                       FontSize="16"
+                                   />
+                            </WrapPanel>
+                        </Grid>
+                    </StackPanel>
+
+
+                    <!--User action controls-->
+                    <StackPanel Orientation="Vertical"
+                                Grid.Column="3" Margin="4.6,0,5,-0.4"
+                            >
+                        <Label Content="OWNED"
+                               FontFamily="Impact"
+                               FontSize="24" 
+                               Margin="40 20 40 10"
+                               Width="90"
+                               HorizontalAlignment="Right"
+                               HorizontalContentAlignment="Center"
+                               Foreground="White"
+                               Background="#118822"
+                               Visibility="{Binding OwnedLabelVisibility}"
+                           />
+                        <TextBox Text="{Binding AdditionalInformation}"
+                                 FontFamily="Segoe UI Semilight"
+                                 Foreground="#E0000000"
+                                 Background="{x:Null}"
+                                 BorderThickness="0"
+                                 FontSize="14"
+                                 Width="200"
+                                 Height="60"
+                                 Margin="0 20 0 10"
+                                 HorizontalContentAlignment="Right"
+                                 VerticalContentAlignment="Bottom"
+                                 TextWrapping="Wrap"
+                           />
+                        <Button Content="{Binding ActionButtonContent}"
+                                FontFamily="Impact"
+                                FontSize="26"
+                                Foreground="{Binding ActionButtonForeground}"
+                                Background="{Binding ActionButtonBackground}"
+                                BorderThickness="0"
+                                Height="70"
+                                Width="180"
+                                Command="{Binding ActionButtonClick}"
+                                CommandParameter="{Binding ElementName=Calendar}"
+                        />
+                    </StackPanel>
+                </Grid>
+            
+                <!--Bottom half-->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="700" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <ItemsControl ItemsSource="{Binding CurrentAccountCredentials}"
+                                  Visibility="{Binding AccountCredentialsVisibility}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <VirtualizingStackPanel Orientation="Vertical"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+
+                        <ItemsControl.Resources>
+                            <DataTemplate DataType="{x:Type models:AccountCredential}">
+                                <StackPanel Orientation="Vertical" Margin="40 10 20 10">
+                                    <Label Content="{Binding SocialMediaPlatformName}" 
+                                           FontFamily="Impact"
+                                           FontSize="18"
+                                           />
+                                    <StackPanel Orientation="Vertical" Margin="40 0 0 0">
+                                        <WrapPanel Orientation="Horizontal" 
+                                                   Visibility="{Binding Username, Converter={StaticResource convertNullityToVisibility}}">
+                                            <Label Content="username" 
+                                                   Width="100"
+                                                   FontFamily="Segoe UI Semilight"
+                                                   FontSize="15"
+                                                   />
+                                            <Label Content="{Binding Username}"
+                                                   FontSize="15"
+                                                   FontFamily="Segoe UI Semilight"
+                                                   />
+                                        </WrapPanel>
+                                        <WrapPanel Orientation="Horizontal" 
+                                                   Visibility="{Binding Email, Converter={StaticResource convertNullityToVisibility}}">
+                                            <Label Content="email" 
+                                                   FontSize="15"
+                                                   FontFamily="Segoe UI Semilight"
+                                                   Width="100"
+                                                   />
+                                            <Label Content="{Binding Email}" 
+                                                   FontSize="15"
+                                                   FontFamily="Segoe UI Semilight"
+                                                   />
+                                        </WrapPanel>
+                                        <WrapPanel Orientation="Horizontal">
+                                            <Label Content="password" 
+                                                   Width="100"
+                                                   FontSize="15"
+                                                   FontFamily="Segoe UI Semilight"
+                                                   />
+                                            <Label Content="{Binding Password}" 
+                                                   FontSize="15"
+                                                   FontFamily="Segoe UI Semilight"
+                                                   />
+                                        </WrapPanel>
+                                    </StackPanel>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.Resources>
+                    </ItemsControl>
+                </Grid>
+                
+            </StackPanel>
+        </ScrollViewer>
+
+        <Grid Background="#77000000" Panel.ZIndex="{Binding CalendarOverlayZIndex}">
+            <Grid.Style>
+                <Style>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding TooManyDaysMonostable}" Value="True">
+                            <DataTrigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard Storyboard.TargetProperty="Background.(SolidColorBrush.Color)"
+                                                                Duration="0:0:2">
+                                        <ColorAnimation From="#77ff5511"
+                                                                        To="#77000000"
+                                                                        AutoReverse="False"
+                                                                        />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </DataTrigger.EnterActions>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
+            <StackPanel Width="700" Height="300" 
+                        VerticalAlignment="Center" HorizontalAlignment="Center"
+                        Background="#CCFFFFFF"
+                        Orientation="Horizontal"
+                        >
+                <!--Calendar-->
+                <Viewbox Width="260" Height="260"
+                         Margin="40 0">
+                    <Calendar SelectionMode="SingleDate" x:Name="Calendar"
+                              IsTodayHighlighted="False">
+                        <Calendar.CalendarDayButtonStyle>
+                            <Style TargetType="primitives:CalendarDayButton">
+                                <Setter Property="Background" Value="#00000000" />
+                                <Setter Property="FontSize" Value="10" />
+                                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                <Setter Property="VerticalContentAlignment" Value="Center" />
+                                <Setter Property="MinWidth" Value="5" />
+                                <Setter Property="MinHeight" Value="5" />
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="primitives:CalendarDayButton">
+                                            <Grid>
+                                                <windows:VisualStateManager.VisualStateGroups>
+                                                    <windows:VisualStateGroup x:Name="CommonStates">
+                                                        <windows:VisualStateGroup.Transitions>
+                                                            <windows:VisualTransition GeneratedDuration="0:0:0.1" />
+                                                        </windows:VisualStateGroup.Transitions>
+                                                        <windows:VisualState x:Name="Normal" />
+                                                        <windows:VisualState x:Name="MouseOver">
+                                                            <Storyboard>
+                                                                <DoubleAnimation Storyboard.TargetName="Background" Storyboard.TargetProperty="Opacity" To=".5" Duration="0" />
+                                                            </Storyboard>
+                                                        </windows:VisualState>
+                                                        <windows:VisualState x:Name="Pressed">
+                                                            <Storyboard>
+                                                                <DoubleAnimation Storyboard.TargetName="Background" Storyboard.TargetProperty="Opacity" To=".5" Duration="0" />
+                                                            </Storyboard>
+                                                        </windows:VisualState>
+                                                        <windows:VisualState x:Name="Disabled">
+                                                            <Storyboard>
+                                                                <DoubleAnimation Storyboard.TargetName="Background" Storyboard.TargetProperty="Opacity" To="0" Duration="0" />
+                                                                <DoubleAnimation Storyboard.TargetName="Content" Storyboard.TargetProperty="Opacity" To=".35" Duration="0" />
+                                                            </Storyboard>
+                                                        </windows:VisualState>
+                                                    </windows:VisualStateGroup>
+                                                    <windows:VisualStateGroup x:Name="SelectionStates">
+                                                        <windows:VisualStateGroup.Transitions>
+                                                            <windows:VisualTransition GeneratedDuration="0" />
+                                                        </windows:VisualStateGroup.Transitions>
+                                                        <windows:VisualState x:Name="Unselected" />
+                                                        <windows:VisualState x:Name="Selected">
+                                                            <Storyboard>
+                                                                <DoubleAnimation Storyboard.TargetName="SelectedBackground" Storyboard.TargetProperty="Opacity" To=".75" Duration="0" />
+                                                            </Storyboard>
+                                                        </windows:VisualState>
+                                                    </windows:VisualStateGroup>
+                                                    <windows:VisualStateGroup x:Name="CalendarButtonFocusStates">
+                                                        <windows:VisualStateGroup.Transitions>
+                                                            <windows:VisualTransition GeneratedDuration="0" />
+                                                        </windows:VisualStateGroup.Transitions>
+                                                        <windows:VisualState x:Name="CalendarButtonFocused">
+                                                            <Storyboard>
+                                                            </Storyboard>
+                                                        </windows:VisualState>
+                                                        <windows:VisualState x:Name="CalendarButtonUnfocused">
+                                                            <Storyboard>
+                                                            </Storyboard>
+                                                        </windows:VisualState>
+                                                    </windows:VisualStateGroup>
+                                                    <windows:VisualStateGroup x:Name="ActiveStates">
+                                                        <windows:VisualStateGroup.Transitions>
+                                                            <windows:VisualTransition GeneratedDuration="0" />
+                                                        </windows:VisualStateGroup.Transitions>
+                                                        <windows:VisualState x:Name="Active" />
+                                                        <windows:VisualState x:Name="Inactive">
+                                                            <Storyboard>
+                                                                <ColorAnimation Storyboard.TargetName="Content" Storyboard.TargetProperty="(ContentControl.Foreground).(GradientBrush.GradientStops)[2].(GradientStop.Color)" To="#FF777777" Duration="0" />
+                                                                <ColorAnimation Storyboard.TargetName="Content" Storyboard.TargetProperty="(ContentControl.Foreground).(GradientBrush.GradientStops)[3].(GradientStop.Color)" To="#FF777777" Duration="0" />
+                                                            </Storyboard>
+                                                        </windows:VisualState>
+                                                    </windows:VisualStateGroup>
+                                                    <windows:VisualStateGroup x:Name="DayStates">
+                                                        <windows:VisualStateGroup.Transitions>
+                                                            <windows:VisualTransition GeneratedDuration="0" />
+                                                        </windows:VisualStateGroup.Transitions>
+                                                        <windows:VisualState x:Name="RegularDay" />
+                                                        <windows:VisualState x:Name="Today">
+                                                            <Storyboard>
+                                                                <DoubleAnimation Storyboard.TargetName="TodayBackground" Storyboard.TargetProperty="Opacity" To="1" Duration="0" />
+                                                                <DoubleAnimation Storyboard.TargetName="Content" Storyboard.TargetProperty="(ContentControl.Foreground).(GradientBrush.GradientStops)[1].(GradientStop.Offset)" To="1" Duration="0" />
+                                                                <DoubleAnimation Storyboard.TargetName="Content" Storyboard.TargetProperty="(ContentControl.Foreground).(GradientBrush.GradientStops)[2].(GradientStop.Offset)" To="1" Duration="0" />
+                                                            </Storyboard>
+                                                        </windows:VisualState>
+                                                    </windows:VisualStateGroup>
+                                                    <windows:VisualStateGroup x:Name="BlackoutDayStates">
+                                                        <windows:VisualStateGroup.Transitions>
+                                                            <windows:VisualTransition GeneratedDuration="0" />
+                                                        </windows:VisualStateGroup.Transitions>
+                                                        <windows:VisualState x:Name="NormalDay" />
+                                                        <windows:VisualState x:Name="BlackoutDay">
+                                                            <Storyboard>
+                                                                <DoubleAnimation Storyboard.TargetName="BlackoutVisual" Storyboard.TargetProperty="Opacity" To=".2" Duration="0" />
+                                                            </Storyboard>
+                                                        </windows:VisualState>
+                                                    </windows:VisualStateGroup>
+                                                </windows:VisualStateManager.VisualStateGroups>
+
+                                                <Rectangle x:Name="TodayBackground" 
+                                                           RadiusX="1" RadiusY="1"
+                                                           Opacity="0" Fill="#44000000" />
+                                                <Rectangle x:Name="SelectedBackground" RadiusX="1" RadiusY="1" Opacity="0" Fill="{TemplateBinding Background}" />
+                                                
+                                                <!--
+                                                xxxxxxxxdamnitmacrohardxxxxxx
+                                                  xxxxxxxxxxxxxxxxxxxxxxxxx
+                                                    xxxxxxxxxxxxxxxxxxxxx
+                                                     xxxxxxxxxxxxxxxxxxx
+                                                       xxxxxxxxxxxxxxx
+                                                        xxxxxxxxxxxx
+                                                         xxxxxxxxxx
+                                                    ********************
+                                                *****     OVER HERE    *****
+                                                    ********************
+                                                        xxxxxxxxxxxxx
+                                                           xxxxxxx
+                                                              v
+                                                -->
+                                                <Rectangle x:Name="Background" RadiusX="1" RadiusY="1" Opacity="1">
+                                                    <Rectangle.Fill>
+                                                        <MultiBinding Converter="{StaticResource goToTheKitchenAndMakeMeASandwich}">
+                                                            <!--FORMAT: Self : DateTime, DataContext of TheOutside-->
+                                                            <!--NOTE!! DataContext does not necessarily mean 'itself'!
+                                                                Use Path="." to bind to itself
+                                                            -->
+                                                            <Binding Path="." />
+                                                            <Binding Path="DataContext" ElementName="TheOutside"/>
+                                                        </MultiBinding>
+                                                    </Rectangle.Fill>
+                                                </Rectangle>
+
+                                                <ContentControl x:Name="Content"
+                                                                IsTabStop="False"
+                                                                Content="{TemplateBinding Content}" 
+                                                                ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}" 
+                                                                FontSize="{TemplateBinding FontSize}" 
+                                                                Margin="5,1,5,1">
+                                                    <ContentControl.Foreground>
+                                                        <LinearGradientBrush>
+                                                            <GradientStop Offset="0" Color="#FFFFFFFF" />
+                                                            <GradientStop Offset="0" Color="#FFFFFFFF" />
+                                                            <GradientStop Offset="0" Color="#FF333333" />
+                                                            <GradientStop Offset="1" Color="#FF333333" />
+                                                        </LinearGradientBrush>
+                                                    </ContentControl.Foreground>
+                                                </ContentControl>
+
+                                                <Path x:Name="BlackoutVisual" 
+                                                      Opacity="0" 
+                                                      Margin="3" 
+                                                      HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                                                      RenderTransformOrigin="0.5,0.5" 
+                                                      Fill="#FF000000" 
+                                                      Stretch="Fill" 
+                                                      Data="M8.1772461,11.029181 L10.433105,11.029181 L11.700684,12.801641 L12.973633,11.029181 L15.191895,11.029181 L12.844727,13.999395 L15.21875,17.060919 L12.962891,17.060919 L11.673828,15.256231 L10.352539,17.060919 L8.1396484,17.060919 L10.519043,14.042364 z" />
+
+                                                <Rectangle x:Name="FocusVisual" 
+                                                           Visibility="Collapsed" 
+                                                           IsHitTestVisible="false" 
+                                                           RadiusX="1" RadiusY="1" 
+                                                           Stroke="#FF6DBDD1" />
+                                            </Grid>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </Calendar.CalendarDayButtonStyle>
+                    </Calendar>
+                </Viewbox>
+                
+                
+                <StackPanel Orientation="Vertical" Width="360">
+                    <!--Close Button-->
+                    <Button Content="x" 
+                            FontFamily="Lucida Sans"
+                            FontSize="20"
+                            Width="30" Height="30"
+                            HorizontalAlignment="Right"
+                            Margin="10"
+                            BorderThickness="0"
+                            Command="{Binding OverlayCloseClick}"
+                            />
+                    
+                    <!--TheLegend27-->
+                    <WrapPanel Orientation="Horizontal">
+                        <Label Width="20" Height="20"
+                               Background="#bb3377ff" />
+                        <Label Content=" - booked by you" 
+                               FontFamily="Segoe UI Semilight"
+                               FontSize="14"
+                               />
+                    </WrapPanel>
+                    <WrapPanel Orientation="Horizontal">
+                        <Label Width="20" Height="20"
+                               Background="#bbff9933" />
+                        <Label Content=" - booked by others" 
+                               FontFamily="Segoe UI Semilight"
+                               FontSize="14"
+                               />
+                    </WrapPanel>
+                    <WrapPanel Orientation="Horizontal">
+                        <Label Width="20" Height="20"
+                               Background="#bb33ff77" />
+                        <Label Content=" - available" 
+                               FontFamily="Segoe UI Semilight"
+                               FontSize="14"
+                               />
+                    </WrapPanel>
+                    
+                    <!--Days Booked display-->
+                    <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Opacity="0.7" Margin="0 0 20 0">
+                        <!--
+                            NOTE: The overall foreground color of this entire 
+                            wrap panel depends on this label over here vvvvvvvvvvv
+                        -->
+                        <Label Content="Days booked: " 
+                               VerticalAlignment="Top"
+                               FontFamily="Segoe UI Semilight" FontSize="13"
+                               x:Name="DaysBookedLabel"
+                               >
+                            <Label.Style>
+                                <Style>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding TooManyDaysMonostable}" Value="True">
+                                            <DataTrigger.EnterActions>
+                                                <BeginStoryboard>
+                                                    <Storyboard Storyboard.TargetProperty="Foreground.(SolidColorBrush.Color)"
+                                                                Duration="0:0:2">
+                                                        <ColorAnimation From="#ffff4422"
+                                                                        To="#ff000000"
+                                                                        AutoReverse="False"
+                                                                        />
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </DataTrigger.EnterActions>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Label.Style>
+                        </Label>
+                        
+                        <Label Content="{Binding DaysBookedByCurrentUser}"
+                               VerticalAlignment="Stretch" 
+                               FontFamily="Segoe UI Semibold" FontSize="21"
+                               Foreground="{Binding Foreground, ElementName=DaysBookedLabel}"
+                               />
+                        
+                        <Label Content="/" 
+                               VerticalAlignment="Bottom" 
+                               FontFamily="Segoe UI Semilight" FontSize="13"
+                               Foreground="{Binding Foreground, ElementName=DaysBookedLabel}"
+                               />
+                        
+                        <Label Content="{Binding MaxDaysBookablePerAccountPerUser}"
+                               VerticalAlignment="Bottom" 
+                               FontFamily="Segoe UI Semilight" FontSize="13"
+                               Foreground="{Binding Foreground, ElementName=DaysBookedLabel}"
+                               />
+                    </WrapPanel>
+
+                    <!--Confirm Button-->
+                    <Button Content="CONFIRM"
+                            Background="#bb11aa33"
+                            Foreground="#ffffffff" 
+                            Width="130" Height="70"
+                            Margin="0 40 40 0"
+                            FontFamily="Impact"
+                            FontSize="24"
+                            HorizontalAlignment="Right"
+                            BorderThickness="0"
+                            />
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>

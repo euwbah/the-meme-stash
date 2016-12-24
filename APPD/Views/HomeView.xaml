@@ -9,19 +9,73 @@
              d:DesignHeight="675" d:DesignWidth="1200">
     <StackPanel Orientation="Vertical" Width="1200" Height="675">
         <views:NavBarView Panel.ZIndex="1"/>
-        
-        <WrapPanel Orientation="Horizontal" Width="2400" Height="595">
-            <WrapPanel.RenderTransform>
-                <TransformGroup>
-                    <TranslateTransform x:Name="panelTransform" />
-                </TransformGroup>
-            </WrapPanel.RenderTransform>
-            <StackPanel
+        <Canvas>
+            <WrapPanel Orientation="Horizontal" Width="2400" Height="595" RenderTransformOrigin="0.5,0.5" x:Name="WrapPanel">
+                <WrapPanel.RenderTransform>
+                    <TranslateTransform X="0"/>
+                </WrapPanel.RenderTransform>
+
+                <WrapPanel.Style>
+                    <Style TargetType="WrapPanel">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding CurrentScreenString}" Value="Home">
+                                <DataTrigger.EnterActions>
+                                    <StopStoryboard BeginStoryboardName="MoveToAccount" />
+                                    <BeginStoryboard Name="MoveToHome">
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetProperty="(RenderTransform).(TranslateTransform.X)" 
+                                                         To="0"
+                                                         Duration="0:0:1"
+                                                         >
+                                                <DoubleAnimation.EasingFunction>
+                                                    <CubicEase EasingMode="EaseInOut"/>
+                                                </DoubleAnimation.EasingFunction>
+                                            </DoubleAnimation>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </DataTrigger.EnterActions>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding CurrentScreenString}" Value="Account">
+                                <DataTrigger.EnterActions>
+                                    <StopStoryboard BeginStoryboardName="MoveToHome" />
+                                    <BeginStoryboard Name="MoveToAccount">
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetProperty="(RenderTransform).(TranslateTransform.X)"
+                                                         To="-1200"
+                                                         Duration="0:0:1"
+                                                         >
+                                                <DoubleAnimation.EasingFunction>
+                                                    <CubicEase EasingMode="EaseInOut"/>
+                                                </DoubleAnimation.EasingFunction>
+                                            </DoubleAnimation>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </DataTrigger.EnterActions>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </WrapPanel.Style>
+
+                <StackPanel
                 Orientation="Horizontal"
                 Width="1200" Height="595">
-                <views:TrendingView Panel.ZIndex="0" HorizontalAlignment="Left" VerticalAlignment="Top" />
-                <views:HomeDisplayListView />
-            </StackPanel>
-        </WrapPanel>
+                    <!-- Screen 1: Account Search/Display Screen -->
+                    <views:TrendingView Width="200"
+                                    Height="595" 
+                                    Panel.ZIndex="0" 
+                                    HorizontalAlignment="Left" 
+                                    VerticalAlignment="Top" />
+
+                    <views:HomeDisplayListView Width="1000" 
+                                           Height="595"/>
+
+                </StackPanel>
+                <!-- Screen 2: Account Info & Booking Screen -->
+                <views:AccountDisplayView Width="1200" 
+                                          Height="595" 
+                                          DataContext="{Binding AccountViewModel}"
+                                          />
+            </WrapPanel>
+        </Canvas>
     </StackPanel>
 </UserControl>

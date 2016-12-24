@@ -1,4 +1,5 @@
 ﻿using APPD.Helpers;
+using APPD.Models;
 using APPD.Services;
 using System;
 using System.Collections;
@@ -9,16 +10,23 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
+using System.Windows.Input;
 
 namespace APPD.ViewModels
 {
     public class HomeViewModel : ObservableObject, IPageViewModel
     {
-        private MainViewModel parent;
+        public MainViewModel parent { get; private set; }
 
         private string _usernameDisplayText;
         private string _currentSearchString;
         private ArrayList _displayedItems;
+
+        private Screens _currentScreen;
+        private string _currentScreenString;
+
+        private ICommand _accountCommand;
+        
 
         public string UsernameDisplayText
         {
@@ -60,19 +68,62 @@ namespace APPD.ViewModels
                 }
             }
         }
+        public Screens CurrentScreen
+        {
+            get { return _currentScreen; }
+            set
+            {
+                if (value != _currentScreen)
+                {
+                    _currentScreen = value;
+                    CurrentScreenString = _currentScreen.ToScreenString();
+                }
+            }
+        }
+        public string CurrentScreenString
+        {
+            get { return _currentScreenString; }
+            set
+            {
+                _currentScreenString = value;
+                OnPropertyChanged("CurrentScreenString");
+            }
+        }
+        public ICommand AccountCommand
+        {
+            get
+            {
+                if (_accountCommand == null)
+                {
+                    _accountCommand = new RelayCommand(
+                        account =>
+                        {
+                            GoToAccount((Account)account);
+                        }
+                    );
+                }
+
+                return _accountCommand;
+            }
+        }
+
+        public AccountViewModel AccountViewModel { get; set; }
+
 
         public HomeViewModel(MainViewModel parent)
         {
             this.parent = parent;
             this.DisplayedItems = new ArrayList();
+            this.CurrentScreen = Screens.HOME;
+            this.AccountViewModel = new AccountViewModel(this);
         }
 
         public void PageOpen()
         {
-            updateLocals();
+            updateProperties();
         }
 
-        private void updateLocals()
+        private void updateProperties()
         {
             this.UsernameDisplayText = parent.State.CurrentLoggedOnUser.Username;
 
@@ -92,6 +143,33 @@ namespace APPD.ViewModels
                 DisplayedItems.Add(new TextWrapper("NEW"));
                 DisplayedItems.AddRange(AccountServices.getNewAccounts());
             }
+        }
+
+        private void GoToAccount(Account account)
+        {
+            AccountViewModel.CurrentAccount = account;
+            CurrentScreen = Screens.ACCOUNT;
+        }
+    }
+
+    public enum Screens
+    {
+        HOME, ACCOUNT
+    }
+
+    public static class ViewsEnumExtensions
+    {
+        public static string ToScreenString(this Screens v)
+        {
+            switch(v)
+            {
+                case Screens.ACCOUNT:
+                    return "Account";
+                case Screens.HOME:
+                    return "Home";
+            }
+
+            return "";
         }
     }
 

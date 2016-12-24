@@ -82,11 +82,18 @@
     <Compile Include="Models\AccountRentalData.cs" />
     <Compile Include="Models\ApplicationState.cs" />
     <Compile Include="Services\AccountServices.cs" />
+    <Compile Include="Services\StateServices.cs" />
     <Compile Include="Services\UserServices.cs" />
+    <Compile Include="ViewModels\AccountViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\IPageViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="Views\AccountDisplayView.xaml.cs">
+      <DependentUpon>AccountDisplayView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Converters\ConvertDateTime_Account_User_ToCalendarDayBackgroundFillBrush.cs" />
+    <Compile Include="Views\Converters\ConvertNullityToVisibility.cs" />
     <Compile Include="Views\HomeDisplayListView.xaml.cs">
       <DependentUpon>HomeDisplayListView.xaml</DependentUpon>
     </Compile>
@@ -102,6 +109,10 @@
     <Compile Include="Views\TrendingView.xaml.cs">
       <DependentUpon>TrendingView.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\AccountDisplayView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\HomeDisplayListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -196,11 +207,16 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Assets\SimulatedServer\Assets\Images\" />
+    <Folder Include="Assets\SimulatedServer\Assets\Images\Accounts\" />
     <Folder Include="Services\Bridges\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\SimulatedServer\Database\State.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\SimulatedServer\Assets\Images\default.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -15,7 +15,7 @@ namespace APPD.ViewModels
         private IPageViewModel _currentPageViewModel;
         private Dictionary<string, IPageViewModel> _pageViewModels;
         
-        public ApplicationState State;
+        public ApplicationState State { get; set; }
 
         public MainViewModel()
         {

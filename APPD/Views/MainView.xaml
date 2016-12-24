@@ -20,7 +20,9 @@
         </DataTemplate>
     </Window.Resources>
 
-    <Grid>
-        <ContentControl Content="{Binding CurrentPageViewModel}" HorizontalAlignment="Center" Margin="0" IsTabStop="False" />
+    <Grid Width="1200">
+        <ContentControl Content="{Binding CurrentPageViewModel}" HorizontalAlignment="Left" Margin="0" IsTabStop="False" 
+                        HorizontalContentAlignment="Left"
+                        Width="1200"/>
     </Grid>
 </Window>
