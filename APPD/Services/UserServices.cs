@@ -32,31 +32,6 @@ namespace APPD.Services
                 JsonConvert.DeserializeObject<UsersJSONObjectBridge>(usersJsonFileContents);
 
             return deserializedObject.Users;
-
-            //Users.Add(new User(0, "PapaDanku", "pinkisawesome",
-            //    new List<AccountRentalData>(), new List<int>(), 1337, "yamete"));
-
-            //Users.Add(new User(1, "theLegend27", "capitalism",
-            //    new List<AccountRentalData>(), new List<int>(), 9001, "Who is the legend 27?"));
-
-            //Users.Add(new User(2, "XXXemokidXXX", "123456",
-            //    new List<AccountRentalData>(), new List<int>(), 60, "nigga please"));
-
-            //// Make life easier (temporary account)
-            //Users.Add(new User(3, "a", "a",
-            //    new List<AccountRentalData>
-            //    {
-            //        new AccountRentalData {
-            //            DaysRented = new List<DateTime> {
-            //                DateTime.Today,          // This is for debugging purposes
-            //                new DateTime(2017, 1, 3) // Assignment DUE!!!!!
-            //            },
-            //            ID = 0
-            //        }
-            //    },
-            //    new List<int>(), 60, "nigga please"));
-
-            //return Users;
         }
 
         public static User LogIn(string username, string password)
