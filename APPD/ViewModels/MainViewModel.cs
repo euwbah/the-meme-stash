@@ -32,21 +32,6 @@ namespace APPD.ViewModels
             State = new ApplicationState();
         }
 
-        //public ICommand ChangePageCommand
-        //{
-        //    get
-        //    {
-        //        if (_changePageCommand == null)
-        //        {
-        //            _changePageCommand = new RelayCommand(
-        //                p => ChangeViewModel((IPageViewModel)p),
-        //                p => p is IPageViewModel);
-        //        }
-
-        //        return _changePageCommand;
-        //    }
-        //}
-
         public Dictionary<string, IPageViewModel> PageViewModels
         {
             get

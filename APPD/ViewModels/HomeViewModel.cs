@@ -19,14 +19,15 @@ namespace APPD.ViewModels
         public MainViewModel parent { get; private set; }
 
         private string _usernameDisplayText;
+        private string _usernameDanknessDisplayText;
         private string _currentSearchString;
         private ArrayList _displayedItems;
 
-        private Screens _currentScreen;
-        private string _currentScreenString;
+        private bool _changeScreenAnimationMonostable;
 
         private ICommand _accountCommand;
-        
+
+        private double _xTransformFromValue;
 
         public string UsernameDisplayText
         {
@@ -37,6 +38,18 @@ namespace APPD.ViewModels
                 {
                     _usernameDisplayText = value;
                     OnPropertyChanged("UsernameDisplayText");
+                }
+            }
+        }
+        public string UsernameDanknessDisplayText
+        {
+            get { return _usernameDanknessDisplayText; }
+            set
+            {
+                if (value != _usernameDanknessDisplayText)
+                {
+                    _usernameDanknessDisplayText = value;
+                    OnPropertyChanged("UsernameDanknessDisplayText");
                 }
             }
         }
@@ -68,27 +81,6 @@ namespace APPD.ViewModels
                 }
             }
         }
-        public Screens CurrentScreen
-        {
-            get { return _currentScreen; }
-            set
-            {
-                if (value != _currentScreen)
-                {
-                    _currentScreen = value;
-                    CurrentScreenString = _currentScreen.ToScreenString();
-                }
-            }
-        }
-        public string CurrentScreenString
-        {
-            get { return _currentScreenString; }
-            set
-            {
-                _currentScreenString = value;
-                OnPropertyChanged("CurrentScreenString");
-            }
-        }
         public ICommand AccountCommand
         {
             get
@@ -98,12 +90,62 @@ namespace APPD.ViewModels
                     _accountCommand = new RelayCommand(
                         account =>
                         {
-                            GoToAccount((Account)account);
+                            AccountViewModel.CurrentAccount = (Account)account;
+                            Go(from: Screen.HOME, to: Screen.ACCOUNT);
                         }
                     );
                 }
 
                 return _accountCommand;
+            }
+        }
+
+        private double _a, _b;
+        public double A
+        {
+            get
+            {
+                return _a;
+            }
+            set
+            {
+                _a = value;
+                OnPropertyChanged("A");
+            }
+        }
+        public double B
+        {
+            get { return _b; }
+            set
+            {
+                _b = value;
+                OnPropertyChanged("B");
+            }
+        }
+
+        public bool ChangeScreenAnimationMonostable
+        {
+            get { return _changeScreenAnimationMonostable; }
+            set
+            {
+                if (value != _changeScreenAnimationMonostable)
+                {
+                    _changeScreenAnimationMonostable = value;
+                    OnPropertyChanged("ChangeScreenAnimationMonostable");
+                }
+            }
+        }
+
+        public double XTransformFromValue
+        {
+            get { return _xTransformFromValue; }
+            set
+            {
+                if (value != _xTransformFromValue)
+                {
+                    _xTransformFromValue = value;
+                    OnPropertyChanged("XTransformFromValue");
+                }
             }
         }
 
@@ -114,7 +156,8 @@ namespace APPD.ViewModels
         {
             this.parent = parent;
             this.DisplayedItems = new ArrayList();
-            this.CurrentScreen = Screens.HOME;
+            this.XTransformFromValue = 0;
+            this.Go(from: Screen.HOME, to: Screen.HOME);
             this.AccountViewModel = new AccountViewModel(this);
         }
 
@@ -126,6 +169,8 @@ namespace APPD.ViewModels
         private void updateProperties()
         {
             this.UsernameDisplayText = parent.State.CurrentLoggedOnUser.Username;
+            this.UsernameDanknessDisplayText = parent.State.CurrentLoggedOnUser.Dankness.ToString();
+            parent.State.CurrentLoggedOnUser.OnDanknessUpdated += updateDanknessDisplay;
 
             this.performDisplayListViewUpdate();
         }
@@ -145,31 +190,44 @@ namespace APPD.ViewModels
             }
         }
 
-        private void GoToAccount(Account account)
+        private void triggerAnimation()
         {
-            AccountViewModel.CurrentAccount = account;
-            CurrentScreen = Screens.ACCOUNT;
+            ChangeScreenAnimationMonostable = true;
+            ChangeScreenAnimationMonostable = false;
+        }
+
+        private void updateDanknessDisplay(User sender)
+        {
+            this.UsernameDanknessDisplayText = sender.Dankness.ToString();
+        }
+
+        internal void Go(Screen from, Screen to)
+        {
+            this.B = from.ConvertToXTransformValue();
+            var finalPosition = to.ConvertToXTransformValue();
+            this.A = finalPosition - this.B;
+            this.triggerAnimation();
         }
     }
-
-    public enum Screens
+    
+    internal enum Screen
     {
         HOME, ACCOUNT
     }
 
-    public static class ViewsEnumExtensions
+    internal static class ScreenEnumExtensions
     {
-        public static string ToScreenString(this Screens v)
+        internal static double ConvertToXTransformValue(this Screen screen)
         {
-            switch(v)
+            switch(screen)
             {
-                case Screens.ACCOUNT:
-                    return "Account";
-                case Screens.HOME:
-                    return "Home";
+                case Screen.HOME:
+                    return 0;
+                case Screen.ACCOUNT:
+                    return -1200;
+                default:
+                    return 0;
             }
-
-            return "";
         }
     }
 

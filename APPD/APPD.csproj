@@ -92,6 +92,7 @@
     <Compile Include="Views\AccountDisplayView.xaml.cs">
       <DependentUpon>AccountDisplayView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Converters\A_X_Plus_B.cs" />
     <Compile Include="Views\Converters\ConvertDateTime_Account_User_ToCalendarDayBackgroundFillBrush.cs" />
     <Compile Include="Views\Converters\ConvertNullityToVisibility.cs" />
     <Compile Include="Views\HomeDisplayListView.xaml.cs">

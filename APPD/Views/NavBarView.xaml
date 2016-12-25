@@ -37,7 +37,7 @@
                 Grid.Column="0"
                 Width="75"
                 Height="75"
-                Cursor="Hand"
+                Cursor="Arrow"
                 Template="{StaticResource HomeLogoButton}" HorizontalAlignment="Center" VerticalAlignment="Center" 
                 />
         
@@ -76,6 +76,7 @@
                          Padding="5"  
                          Background="{x:Null}" 
                          BorderThickness="0" IsTabStop="False" Focusable="False"/>
+                
             </Button>
             <TextBox Text="|" 
                          Foreground="White"
@@ -90,19 +91,13 @@
                     BorderThickness="0" 
                     HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
                     HorizontalAlignment="Center" VerticalAlignment="Center">
-                <StackPanel Orientation="Horizontal" Width="160" Height="80" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <TextBox Text="My Cart" 
-                             Foreground="White"
-                             FontFamily="Segoe UI Black"
-                             FontSize="19"
-                             Padding="5" 
-                             Background="{x:Null}" 
-                             BorderThickness="0" IsTabStop="False" Focusable="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-
-                    <Image Source="pack://application:,,,/Assets/Images/ShoppingCart.png" 
-                           Width="60" Height="57" Margin="20 0 0 0"
-                           Stretch="Uniform"/>
-                </StackPanel>
+                <TextBox Text="Log Out" 
+                         Foreground="White"
+                         FontFamily="Segoe UI Black"
+                         FontSize="19"
+                         Padding="5" 
+                         Background="{x:Null}" 
+                         BorderThickness="0" IsTabStop="False" Focusable="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
             </Button>
         </StackPanel>
     </Grid>

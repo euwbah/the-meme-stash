@@ -384,7 +384,7 @@ namespace APPD.ViewModels
 
         private void backButtonClicked()
         {
-
+            parent.Go(from: Screen.ACCOUNT, to: Screen.HOME);
         }
 
         private void showOverlay() { CalendarOverlayZIndex = 2; updateOverlay(); }

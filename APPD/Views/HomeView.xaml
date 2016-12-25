@@ -3,46 +3,47 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:local="clr-namespace:APPD"
              xmlns:views="clr-namespace:APPD.Views"
+             xmlns:converters="clr-namespace:APPD.Views.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="675" d:DesignWidth="1200">
+
+    <UserControl.Resources>
+        <converters:A_X_Plus_B x:Key="A_X_Plus_B" />
+    </UserControl.Resources>
     <StackPanel Orientation="Vertical" Width="1200" Height="675">
         <views:NavBarView Panel.ZIndex="1"/>
         <Canvas>
             <WrapPanel Orientation="Horizontal" Width="2400" Height="595" RenderTransformOrigin="0.5,0.5" x:Name="WrapPanel">
                 <WrapPanel.RenderTransform>
-                    <TranslateTransform X="0"/>
+                    <TranslateTransform>
+                        <TranslateTransform.X>
+                            <MultiBinding Converter="{StaticResource A_X_Plus_B}">
+                                <Binding Path="A" />
+                                <Binding Path="Tag" ElementName="WrapPanel"/>
+                                <Binding Path="B" />
+                            </MultiBinding>
+                        </TranslateTransform.X>
+                    </TranslateTransform>
                 </WrapPanel.RenderTransform>
+
+                <WrapPanel.Tag>
+                    <sys:Double>0.0</sys:Double>
+                </WrapPanel.Tag>
 
                 <WrapPanel.Style>
                     <Style TargetType="WrapPanel">
                         <Style.Triggers>
-                            <DataTrigger Binding="{Binding CurrentScreenString}" Value="Home">
+                            <DataTrigger Binding="{Binding ChangeScreenAnimationMonostable}" Value="True">
                                 <DataTrigger.EnterActions>
-                                    <StopStoryboard BeginStoryboardName="MoveToAccount" />
-                                    <BeginStoryboard Name="MoveToHome">
+                                    <BeginStoryboard>
                                         <Storyboard>
-                                            <DoubleAnimation Storyboard.TargetProperty="(RenderTransform).(TranslateTransform.X)" 
-                                                         To="0"
-                                                         Duration="0:0:1"
-                                                         >
-                                                <DoubleAnimation.EasingFunction>
-                                                    <CubicEase EasingMode="EaseInOut"/>
-                                                </DoubleAnimation.EasingFunction>
-                                            </DoubleAnimation>
-                                        </Storyboard>
-                                    </BeginStoryboard>
-                                </DataTrigger.EnterActions>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding CurrentScreenString}" Value="Account">
-                                <DataTrigger.EnterActions>
-                                    <StopStoryboard BeginStoryboardName="MoveToHome" />
-                                    <BeginStoryboard Name="MoveToAccount">
-                                        <Storyboard>
-                                            <DoubleAnimation Storyboard.TargetProperty="(RenderTransform).(TranslateTransform.X)"
-                                                         To="-1200"
-                                                         Duration="0:0:1"
+                                            <DoubleAnimation Storyboard.TargetProperty="Tag" 
+                                                             From="0"
+                                                             To="1"
+                                                             Duration="0:0:1"
                                                          >
                                                 <DoubleAnimation.EasingFunction>
                                                     <CubicEase EasingMode="EaseInOut"/>
