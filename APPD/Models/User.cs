@@ -37,17 +37,17 @@ namespace APPD.Models
 
         internal event DanknessUpdateHandler OnDanknessUpdated;
 
-        public User(int id, string username, string password, List<AccountRentalData> accountsRented, 
-                    List<int> accountsForRent, int dankness, string bio)
+        public User(int ID, string Username, string Password, List<AccountRentalData> AccountsRented, 
+                    List<int> AccountsForRent, int Dankness, string Bio)
         {
-            this.ID = id;
-            this.Username = username;
-            this.Password = password;
-            this.AccountsRented = accountsRented;
-            this.AccountsForRent = accountsForRent;
-            this.Dankness = dankness;
+            this.ID = ID;
+            this.Username = Username;
+            this.Password = Password;
+            this.AccountsRented = AccountsRented;
+            this.AccountsForRent = AccountsForRent;
+            this.Dankness = Dankness;
             this.ProfilePicPath = this.generateProfilePicPath();
-            this.Bio = bio;
+            this.Bio = Bio;
         }
 
         private string generateProfilePicPath()

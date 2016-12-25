@@ -3,99 +3,99 @@
     {
       "ID": 0,
       "Name": "Dat Boi United",
-      "DanknessPerDay": 69.69,
-      "Description": "We shitpost memes about a gif of frog riding a unicycle.",
+      "DanknessPerDay": 15,
+      "Description": "For shitposting memes about a gif of frog riding a unicycle.",
       "Credentials": [
         {
-          "SocialMediaHandle": [ "4chan" ],
+          "SocialMediaPlatformName": "4chan",
           "Username": "Dat Boi United",
           "Email": "DBU@gmail.com",
           "Password": "Ohshitwaddup"
         },
         {
-          "SocialMediaHandle": [ "facebook" ],
+          "SocialMediaPlatformName": "Facebook",
           "Username": "Dat Boi United Page",
           "Email": "DBU@gmail.com",
           "Password": "Ohshitwaddup"
         }
       ],
-      "AccountCreationDate": "12/8/1984",
+      "AccountCreationDate": "1984-8-12T00:00:00Z",
       "IsFeatured": true
     },
     {
       "ID": 1,
       "Name": "Osama Swegladin",
-      "DanknessPerDay": 41148,
+      "DanknessPerDay": 12,
       "Description": "Bringing you the finest memes straight from the middle-east.",
       "Credentials": [
         {
-          "SocialMediaHandle": [ "tumblr" ],
+          "SocialMediaPlatformName": "Tumblr",
           "Username": "Osama Swegladin",
           "Email": "AllohaSnackbar@gmail.com",
           "Password": "iluvg0ats"
         },
         {
-          "SocialMediaHandle": [ "twitter" ],
+          "SocialMediaPlatformName": "Twitter",
           "Username": "@Osama_Swegladin",
           "Email": "AllohaSnackbar@gmail.com",
           "Password": "iluvg0ats"
         }
       ],
-      "AccountCreationDate" :"11/9/2001",
-      "IsFeatured": true
+      "AccountCreationDate" :"2001-9-11T00:00:00Z",
+      "IsFeatured": false
     },
     {
       "ID": 2,
       "AccountName": "Clorox Bleach",
-      "DanknessPerDay": 645.99,
+      "DanknessPerDay": 15,
       "Description": "Delicious nutritional energy drink for kids.",
       "Credentials": [
         {
-          "SocialMediaHandle": [ "twitter" ],
+          "SocialMediaPlatformName": "Twitter",
           "Username": "@BleachClorox",
           "Email": "CloroX@hotmail.com",
           "Password": "b134ch"
         },
       ],
-      "AccountCreationDate": "2/7/2004",
+      "AccountCreationDate": "2004-7-2T00:00:00Z",
       "IsFeatured": false
     },
     {
       "ID": 3,
       "Name": "Haunted Kojima",
-      "DanknessPerDay": 4554.70,
+      "DanknessPerDay": 120,
       "Description": "One of the few survivors from the pachiko mines",
       "Credentials": [
         {
-          "SocialMediaHandle": [ "instagram" ],
+          "SocialMediaPlatformName": "Instagram",
           "Username": "@KojimaTheHaunted",
           "Email": "TheRealKojima@gmail.com",
           "Password": "Kojima"
         },
         {
-          "SocialMediaHandle": [ "twitter" ],
+          "SocialMediaPlatformName": "Twitter",
           "Username": "@HauntedKojima",
           "Email": "TheRealKojima@gmail.com",
           "Password": "Kojima"
         }
       ],
-      "AccountCreationDate": "24/8/1963",
-      "IsFeatured": true
+      "AccountCreationDate": "1963-8-24T00:00:00Z",
+      "IsFeatured": false
     },
     {
       "ID": 4,
       "Name": "Pakalu Papito",
-      "DanknessPerDay": 665.98,
+      "DanknessPerDay": 650,
       "Description": "A twitter sensation whose real identity is a mystery has become famous for his extremely hilarious and honest tweets about life and everyday things!.",
       "Credentials": [
         {
-          "SocialMediaHandle": [ "twitter" ],
+          "SocialMediaPlatformName": "twitter",
           "Username": "@PakuluPapito",
           "Email": "PakuluPapito@gmail.com",
           "Password": "p4p1t0"
         }
       ],
-      "AccountCreationDate": "8/7/2015",
+      "AccountCreationDate": "2015-7-8T00:00:00Z",
       "IsFeatured": true
     },
     {
@@ -105,46 +105,43 @@
       "Description": "Snoop Dogg is the stage name used by Calvin Cordozar Broadus Jr., an American hip hop recording artist and actor, well known for being the highest dude alive",
       "Credentials": [
         {
-          "SocialMediaHandle": [ "google+" ],
+          "SocialMediaPlatformName": "google+",
           "Username": null,
           "Email": "Sn00pDawg@gmail.com",
           "Password": "smooke24/7"
         },
         {
-          "SocialMediaHandle": [ "facebook" ],
+          "SocialMediaPlatformName": "facebook",
           "Username": "The one and only D0GG",
           "Email": "Sn00pDawg@gmail.com",
           "Password": "smooke24/7"
         }
       ],
-      "AccountCreationDate": "",
+      "AccountCreationDate": "2013-4-20T00:00:00Z",
       "IsFeatured": false
     },
     {
       "ID": 6,
       "Name": "Harambe, the lord and savior",
-      "DanknessPerDay": 45645644564546546545645645645665.99,
+      "DanknessPerDay": 1337,
       "Description": "The myth, the meme, the gorilla.",
       "Credentials": [
         {
-          "SocialMediaHandle": [ "Reddit" ],
+          "SocialMediaPlatformName": "Reddit",
           "Username": "HarambeTheLord",
           "Email": "harambae@gmail.com",
           "Password": "CincinnatiZoo "
         },
         {
-          "SocialMediaHandle": [ "facebook" ],
+          "SocialMediaPlatformName": "facebook",
           "Username": "Harambe",
           "Email": "harambae@gmail.com",
           "Password": "CincinnatiZoo "
         }
       ],
-      "AccountCreationDate": "",
+      "AccountCreationDate": "2016-8-20",
       "IsFeatured": true
     }
   ]
 
 }
-
-
- 

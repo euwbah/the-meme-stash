@@ -13,19 +13,19 @@ namespace APPD.Models
         public string Email { get; private set; }
         public string Password { get; private set; }
 
-        public AccountCredential(string socialMediaPlatform, string username, string email, string password)
+        public AccountCredential(string SocialMediaPlatform, string Username, string Email, string Password)
         {
-            if (socialMediaPlatform.Trim() == "")
+            if (SocialMediaPlatform.Trim() == "")
                 throw new ArgumentNullException("SocialMediaPlatform cannot be empty!");
-            if (username.Trim() == "" && email.Trim() == "")
+            if (Username.Trim() == "" && Email.Trim() == "")
                 throw new ArgumentNullException("Either username or email must be specified");
-            if (password.Trim() == "")
+            if (Password.Trim() == "")
                 throw new ArgumentNullException("A password must be specified");
 
-            this.SocialMediaPlatformName = socialMediaPlatform;
-            this.Username = username;
-            this.Email = email;
-            this.Password = password;
+            this.SocialMediaPlatformName = SocialMediaPlatform.ToUpper();
+            this.Username = Username;
+            this.Email = Email;
+            this.Password = Password;
         }
     }
 }

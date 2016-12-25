@@ -380,6 +380,7 @@ namespace APPD.ViewModels
         private void overlayCloseClicked()
         {
             hideOverlay();
+            this.SelectedDates.RemoveAll(iHadAnAbsoluteShitChristmas => true);
         }
 
         private void backButtonClicked()

@@ -9,7 +9,7 @@ namespace APPD.Models
 {
     public class AccountRentalData
     {
-        public int ID; //Referring to Account's ID
-        public List<DateTime> DaysRented;
+        public int ID { get; set; } //Referring to Account's ID
+        public List<DateTime> DaysRented { get; set; }
     }
 }

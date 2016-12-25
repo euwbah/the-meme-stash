@@ -69,15 +69,44 @@
                     BorderThickness="0" 
                     HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
                     HorizontalAlignment="Center" VerticalAlignment="Center">
-                <TextBox Text="{Binding UsernameDisplayText}" 
-                         Foreground="White"
-                         FontFamily="Segoe UI Black"
-                         FontSize="19"
-                         Padding="5"  
-                         Background="{x:Null}" 
-                         BorderThickness="0" IsTabStop="False" Focusable="False"/>
-                
+                <WrapPanel Orientation="Horizontal">
+                    <Image Source="pack://application:,,,/Assets/SimulatedServer/Assets/Images/default.png" 
+                           Margin="15 10"
+                           VerticalAlignment="Center"
+                           Stretch="Uniform"
+                           />
+                    <TextBox Text="{Binding UsernameDisplayText}" 
+                             Foreground="White"
+                             FontFamily="Segoe UI Black"
+                             FontSize="19"
+                             Padding="5"  
+                             Background="{x:Null}" 
+                             BorderThickness="0" IsTabStop="False" Focusable="False"
+                             VerticalAlignment="Center"
+                             VerticalContentAlignment="Center"
+                             />
+                </WrapPanel>
             </Button>
+            <WrapPanel Orientation="Horizontal"
+                       VerticalAlignment="Center"
+                       Margin="8 2 2 2"
+                       Background="#33000000"
+                       >
+                <Label Content="{Binding UsernameDanknessDisplayText}" 
+                       FontFamily="Segoe UI Light"
+                       FontSize="22"
+                       Foreground="White"
+                       Margin="0"
+                       Padding="10 2 2 2"
+                       />
+                <Label Content="Đ"
+                       FontFamily="Segoe UI Semilight"
+                       FontSize="18"
+                       Foreground="White"
+                       Margin="0"
+                       Padding="2 2 10 2"
+                       />
+            </WrapPanel>
             <TextBox Text="|" 
                          Foreground="White"
                          FontFamily="Segoe UI Black"

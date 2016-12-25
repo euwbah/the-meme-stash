@@ -176,7 +176,7 @@
                                                    />
                                             <Label Content="{Binding Username}"
                                                    FontSize="15"
-                                                   FontFamily="Segoe UI Semilight"
+                                                   FontFamily="Courier New"
                                                    />
                                         </WrapPanel>
                                         <WrapPanel Orientation="Horizontal" 
@@ -188,7 +188,7 @@
                                                    />
                                             <Label Content="{Binding Email}" 
                                                    FontSize="15"
-                                                   FontFamily="Segoe UI Semilight"
+                                                   FontFamily="Courier New"
                                                    />
                                         </WrapPanel>
                                         <WrapPanel Orientation="Horizontal">
@@ -199,7 +199,7 @@
                                                    />
                                             <Label Content="{Binding Password}" 
                                                    FontSize="15"
-                                                   FontFamily="Segoe UI Semilight"
+                                                   FontFamily="Courier New"
                                                    />
                                         </WrapPanel>
                                     </StackPanel>
