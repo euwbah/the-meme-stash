@@ -13,7 +13,26 @@
                  Padding="20 20 0 5" FontFamily="Impact" FontSize="25" Focusable="False" IsTabStop="False"
                  >
             TRENDING</TextBox>
-        <ItemsControl IsTabStop="False" Focusable="False">
+        <ItemsControl ItemsSource="{Binding TrendingTags}" IsTabStop="False" Focusable="False">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Button Background="{x:Null}"
+                            BorderThickness="0"
+                            HorizontalContentAlignment="Right"
+                            Padding="2"
+                            Margin="15 8"
+                            >
+                        <TextBox Background="{x:Null}"
+                                 Foreground="White"
+                                 BorderThickness="0"
+                                 FontFamily="Impact" FontSize="18"
+                                 TextWrapping="Wrap"
+                                 HorizontalContentAlignment="Right"
+                                 Text="{Binding Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                 />
+                    </Button>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
         </ItemsControl>
     </StackPanel>
 </UserControl>

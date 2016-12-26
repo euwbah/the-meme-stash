@@ -18,13 +18,31 @@ namespace APPD.Services
                         new AccountCredential("9GAG", "asdfghj", "asdfghj@asdfmovies.com", "asdffdsa"),
                         new AccountCredential("4CHAN", "asdfghj", null, "wefjiwoefj")
                     }),
-                new Account(1, "asdf", "iroauergb", 50, new DateTime(2015, 10, 11), false,
+                new Account(1, "asdf", "iroauergb", 90, new DateTime(2015, 10, 11), false,
                     new List<AccountCredential> { }),
                 new Account(2, "qwerty", "aowvnoeairn", 30, new DateTime(2016, 10, 11), false,
                     new List<AccountCredential> { })
             };
 
             return accounts;
+        }
+
+        internal static User getAuthor(this Account account)
+        {
+            List<User> users = UserServices.readUsersFromDatabase();
+            foreach (User u in users)
+            {
+                foreach(int accountID in u.AccountsForRent)
+                {
+                    if (accountID == account.ID)
+                        return u;
+                }
+            }
+
+#if DEBUG
+            throw new Exception("Database has errors!");
+#endif
+            return null;
         }
 
         internal static List<Account> getFeaturedAccounts()
@@ -71,7 +89,7 @@ namespace APPD.Services
             List<AccountRentalData> rentalDates = getAccountRentalDataList(account);
             List<DateTime> listOfBookableDates = new List<DateTime>();
 
-            for (short daysAfterToday = 0; daysAfterToday <= StateServices.MAX_DAYS_BOOKABLE_IN_ADVANCE; daysAfterToday++)
+            for (short daysAfterToday = 0; daysAfterToday <= ConfigServices.MAX_DAYS_BOOKABLE_IN_ADVANCE; daysAfterToday++)
                 listOfBookableDates.Add(DateTime.Today.AddDays(daysAfterToday));
 
             List<User> users = UserServices.readUsersFromDatabase();

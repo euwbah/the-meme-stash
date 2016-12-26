@@ -84,7 +84,34 @@
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
 
-                            <!--NOTE: Grid.Column="0" is intended for a rating display in future releases-->
+                            <WrapPanel Grid.Column="0"
+                                       Orientation="Horizontal">
+                                <Label Content="Author: " 
+                                       FontSize="14" FontFamily="Segoe UI Semilight"
+                                       VerticalAlignment="Center" VerticalContentAlignment="Center"
+                                       />
+                                <Button Background="{x:Null}"
+                                        BorderThickness="0"
+                                        >
+                                    <WrapPanel Orientation="Horizontal"
+                                               Background="#66000000"
+                                               VerticalAlignment="Center"
+                                               >
+                                        <Image Source="pack://application:,,,/Assets/SimulatedServer/Assets/Images/default.png" 
+                                               Width="40" Height="40"
+                                               Margin="10"
+                                               Stretch="Uniform"
+                                               VerticalAlignment="Center"
+                                               />
+                                        <Label Content="{Binding CurrentAccount.Author.Username}"
+                                               Foreground="#ddffffff"
+                                               Margin="0 0 10 0"
+                                               FontFamily="Impact" FontSize="14"
+                                               VerticalAlignment="Center" VerticalContentAlignment="Center"
+                                               />
+                                    </WrapPanel>
+                                </Button>
+                            </WrapPanel>
 
                             <WrapPanel Orientation="Horizontal"
                                        Grid.Column="1"
@@ -125,11 +152,13 @@
                                  BorderThickness="0"
                                  FontSize="14"
                                  Width="200"
-                                 Height="60"
-                                 Margin="0 20 0 10"
+                                 Height="80"
+                                 Margin="0 10 0 10"
                                  HorizontalContentAlignment="Right"
                                  VerticalContentAlignment="Bottom"
-                                 TextWrapping="Wrap"
+                                 TextWrapping="Wrap" 
+                                 Focusable="False" IsTabStop="False"
+                                 Cursor="Arrow"
                            />
                         <Button Content="{Binding ActionButtonContent}"
                                 FontFamily="Impact"
@@ -173,10 +202,14 @@
                                                    Width="100"
                                                    FontFamily="Segoe UI Semilight"
                                                    FontSize="15"
+                                                   VerticalAlignment="Center"
                                                    />
-                                            <Label Content="{Binding Username}"
-                                                   FontSize="15"
-                                                   FontFamily="Courier New"
+                                            <TextBox Text="{Binding Username, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"
+                                                     FontSize="15"
+                                                     FontFamily="Courier New"
+                                                     Background="{x:Null}"
+                                                     BorderThickness="0"
+                                                     VerticalAlignment="Center"
                                                    />
                                         </WrapPanel>
                                         <WrapPanel Orientation="Horizontal" 
@@ -185,10 +218,14 @@
                                                    FontSize="15"
                                                    FontFamily="Segoe UI Semilight"
                                                    Width="100"
+                                                   VerticalAlignment="Center"
                                                    />
-                                            <Label Content="{Binding Email}" 
-                                                   FontSize="15"
-                                                   FontFamily="Courier New"
+                                            <TextBox Text="{Binding Email, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" 
+                                                     FontSize="15"
+                                                     FontFamily="Courier New"
+                                                     Background="{x:Null}"
+                                                     BorderThickness="0"
+                                                     VerticalAlignment="Center"
                                                    />
                                         </WrapPanel>
                                         <WrapPanel Orientation="Horizontal">
@@ -196,10 +233,14 @@
                                                    Width="100"
                                                    FontSize="15"
                                                    FontFamily="Segoe UI Semilight"
+                                                   VerticalAlignment="Center"
                                                    />
-                                            <Label Content="{Binding Password}" 
-                                                   FontSize="15"
-                                                   FontFamily="Courier New"
+                                            <TextBox Text="{Binding Password, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" 
+                                                     FontSize="15"
+                                                     FontFamily="Courier New"
+                                                     Background="{x:Null}"
+                                                     BorderThickness="0"
+                                                     VerticalAlignment="Center"
                                                    />
                                         </WrapPanel>
                                     </StackPanel>
@@ -216,15 +257,15 @@
             <Grid.Style>
                 <Style>
                     <Style.Triggers>
-                        <DataTrigger Binding="{Binding TooManyDaysMonostable}" Value="True">
+                        <DataTrigger Binding="{Binding ProblemMonostable}" Value="True">
                             <DataTrigger.EnterActions>
                                 <BeginStoryboard>
-                                    <Storyboard Storyboard.TargetProperty="Background.(SolidColorBrush.Color)"
-                                                                Duration="0:0:2">
+                                    <Storyboard Storyboard.TargetProperty="Background.(SolidColorBrush.Color)">
                                         <ColorAnimation From="#77ff5511"
-                                                                        To="#77000000"
-                                                                        AutoReverse="False"
-                                                                        />
+                                                        To="#77000000"
+                                                        AutoReverse="False"
+                                                        Duration="0:0:0.6"
+                                                        />
                                     </Storyboard>
                                 </BeginStoryboard>
                             </DataTrigger.EnterActions>
@@ -232,14 +273,19 @@
                     </Style.Triggers>
                 </Style>
             </Grid.Style>
-            <StackPanel Width="700" Height="300" 
+            <Grid Width="700" Height="300" 
                         VerticalAlignment="Center" HorizontalAlignment="Center"
                         Background="#CCFFFFFF"
-                        Orientation="Horizontal"
                         >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="300" />
+                    <ColumnDefinition Width="200" />
+                    <ColumnDefinition Width="200" />
+                </Grid.ColumnDefinitions>
                 <!--Calendar-->
                 <Viewbox Width="260" Height="260"
-                         Margin="40 0">
+                         Grid.Column="0"
+                         Margin="20 0">
                     <Calendar SelectionMode="SingleDate" x:Name="Calendar"
                               IsTodayHighlighted="False">
                         <Calendar.CalendarDayButtonStyle>
@@ -412,20 +458,13 @@
                         </Calendar.CalendarDayButtonStyle>
                     </Calendar>
                 </Viewbox>
-                
-                
-                <StackPanel Orientation="Vertical" Width="360">
-                    <!--Close Button-->
-                    <Button Content="x" 
-                            FontFamily="Lucida Sans"
-                            FontSize="20"
-                            Width="30" Height="30"
-                            HorizontalAlignment="Right"
-                            Margin="10"
-                            BorderThickness="0"
-                            Command="{Binding OverlayCloseClick}"
-                            />
-                    
+
+
+                <StackPanel Orientation="Vertical" Width="200"
+                            Grid.Column="1"
+                            Margin="0 30 0 0"
+                            >
+
                     <!--TheLegend27-->
                     <WrapPanel Orientation="Horizontal">
                         <Label Width="20" Height="20"
@@ -452,8 +491,86 @@
                                />
                     </WrapPanel>
                     
+                    <!-- Cost -->
+                    <WrapPanel Orientation="Horizontal" Margin="10 40 5 5">
+                        <Label Content="Cost: " 
+                               FontFamily="Segoe UI Light"
+                               Width="50"
+                               VerticalAlignment="Center"
+                               x:Name="kesh">
+                            <Label.Style>
+                                <Style>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding NotDankEnoughMonostable}" Value="True">
+                                            <DataTrigger.EnterActions>
+                                                <BeginStoryboard>
+                                                    <Storyboard Storyboard.TargetProperty="Foreground.(SolidColorBrush.Color)">
+                                                        <ColorAnimation From="#ffff4422"
+                                                                        To="#ff000000"
+                                                                        AutoReverse="False"
+                                                                        Duration="0:0:6"
+                                                                        />
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </DataTrigger.EnterActions>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Label.Style>
+                        </Label>
+                        <Label Content="{Binding BookingCost}" Margin="0" Padding="0 5"
+                               FontFamily="Segoe UI Semilight"
+                               FontSize="16"
+                               VerticalAlignment="Center"
+                               Foreground="{Binding Foreground, ElementName=kesh}"
+                               />
+                        <Label Content="Đ"
+                               FontFamily="Segoe UI Semilight"
+                               VerticalAlignment="Top"
+                               FontSize="13"
+                               Foreground="{Binding Foreground, ElementName=kesh}"
+                               />
+                    </WrapPanel>
+                    <WrapPanel Orientation="Horizontal" Margin="10 5 5 5">
+                        <Label Content="Balance: " 
+                               FontFamily="Segoe UI Light"
+                               Width="50"
+                               VerticalAlignment="Center"
+                               Foreground="{Binding Foreground, ElementName=kesh}"
+                               />
+                        <Label Content="{Binding BalanceAfterBooking}" Margin="0" Padding="0 5"
+                               FontFamily="Segoe UI Semilight"
+                               FontSize="16"
+                               VerticalAlignment="Center"
+                               Foreground="{Binding Foreground, ElementName=kesh}"
+                               />
+                        <Label Content="Đ"
+                               FontFamily="Segoe UI Semilight"
+                               VerticalAlignment="Top"
+                               FontSize="13"
+                               Foreground="{Binding Foreground, ElementName=kesh}"
+                               />
+                    </WrapPanel>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" Width="200"
+                            Grid.Column="2"
+                            >
+                    <!--Close Button-->
+                    <Button Content="x" 
+                            FontFamily="Lucida Sans"
+                            FontSize="20"
+                            Width="30" Height="30"
+                            HorizontalAlignment="Right"
+                            Margin="10"
+                            BorderThickness="0"
+                            Command="{Binding OverlayCloseClick}"
+                            />
                     <!--Days Booked display-->
-                    <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Opacity="0.7" Margin="0 0 20 0">
+                    <WrapPanel Orientation="Horizontal" 
+                               HorizontalAlignment="Right" 
+                               Opacity="0.7"
+                               Margin="0 70 30 0">
                         <!--
                             NOTE: The overall foreground color of this entire 
                             wrap panel depends on this label over here vvvvvvvvvvv
@@ -469,11 +586,11 @@
                                         <DataTrigger Binding="{Binding TooManyDaysMonostable}" Value="True">
                                             <DataTrigger.EnterActions>
                                                 <BeginStoryboard>
-                                                    <Storyboard Storyboard.TargetProperty="Foreground.(SolidColorBrush.Color)"
-                                                                Duration="0:0:2">
+                                                    <Storyboard Storyboard.TargetProperty="Foreground.(SolidColorBrush.Color)">
                                                         <ColorAnimation From="#ffff4422"
                                                                         To="#ff000000"
                                                                         AutoReverse="False"
+                                                                        Duration="0:0:6"
                                                                         />
                                                     </Storyboard>
                                                 </BeginStoryboard>
@@ -513,9 +630,10 @@
                             FontSize="24"
                             HorizontalAlignment="Right"
                             BorderThickness="0"
+                            IsEnabled="{Binding ConfirmButtonEnabled}"
                             />
                 </StackPanel>
-            </StackPanel>
+            </Grid>
         </Grid>
     </Grid>
 </UserControl>

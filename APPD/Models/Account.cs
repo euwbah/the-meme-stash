@@ -1,4 +1,5 @@
-﻿using System;
+﻿using APPD.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,13 +24,17 @@ namespace APPD.Models
                 return DanknessPerDay.ToString() + " Đankness / Day";
             }
         }
-
         public string DanknessPerDayShortDisplay
         {
             get
             {
                 return "Đ " + DanknessPerDay + " / day";
             }
+        }
+
+        public User Author
+        {
+            get { return this.getAuthor(); }
         }
 
         public List<AccountCredential> Credentials;

@@ -46,8 +46,9 @@
                                    />
                             <StackPanel Orientation="Vertical"
                                         Grid.Column="1"
+                                        Margin="0 10 0 0"
                                         HorizontalAlignment="Left"
-                                        VerticalAlignment="Center">
+                                        VerticalAlignment="Top">
                                 <Label Content="{Binding Name}"
                                        FontFamily="Impact"
                                        Margin="30 10"
@@ -58,6 +59,35 @@
                                        Margin="30 1 0 10"
                                        FontSize="15"
                                        />
+                                <WrapPanel Orientation="Horizontal"
+                                           Margin="20 0 0 0"
+                                           >
+                                    <Label Content="Author: " 
+                                       FontSize="14" FontFamily="Segoe UI Semilight"
+                                       VerticalAlignment="Center" VerticalContentAlignment="Center"
+                                       />
+                                    <Button Background="{x:Null}"
+                                            BorderThickness="0"
+                                            >
+                                        <WrapPanel Orientation="Horizontal"
+                                                   Background="#66000000"
+                                                   VerticalAlignment="Center"
+                                                   >
+                                            <Image Source="pack://application:,,,/Assets/SimulatedServer/Assets/Images/default.png" 
+                                                   Width="40" Height="40"
+                                                   Margin="5"
+                                                   Stretch="Uniform"
+                                                   VerticalAlignment="Center"
+                                                   />
+                                            <Label Content="{Binding Author.Username}"
+                                                   Foreground="#ddffffff"
+                                                   Margin="5 0 10 0"
+                                                   FontFamily="Impact" FontSize="14"
+                                                   VerticalAlignment="Center" VerticalContentAlignment="Center"
+                                                   />
+                                        </WrapPanel>
+                                    </Button>
+                                </WrapPanel>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" 
                                         Grid.Column="2"

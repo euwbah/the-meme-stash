@@ -22,12 +22,15 @@ namespace APPD.ViewModels
         private string _usernameDanknessDisplayText;
         private string _currentSearchString;
         private ArrayList _displayedItems;
-
-        private bool _changeScreenAnimationMonostable;
+        private List<string> _trendingTags;
 
         private ICommand _accountCommand;
+        private ICommand _logoutCommand;
 
+        private bool _changeScreenAnimationMonostable;
         private double _xTransformFromValue;
+
+
 
         public string UsernameDisplayText
         {
@@ -81,6 +84,19 @@ namespace APPD.ViewModels
                 }
             }
         }
+        public List<string> TrendingTags
+        {
+            get { return _trendingTags; }
+            set
+            {
+                if (value != _trendingTags)
+                {
+                    _trendingTags = value;
+                    OnPropertyChanged("TrendingTags");
+                }
+            }
+        }
+
         public ICommand AccountCommand
         {
             get
@@ -97,6 +113,22 @@ namespace APPD.ViewModels
                 }
 
                 return _accountCommand;
+            }
+        }
+        public ICommand LogoutCommand
+        {
+            get
+            {
+                if (_logoutCommand == null)
+                {
+                    _logoutCommand = new RelayCommand(param =>
+                    {
+                        parent.ChangeViewModel("Login");
+                        parent.State.CurrentLoggedOnUser = null;
+                    });
+                }
+
+                return _logoutCommand;
             }
         }
 
@@ -135,7 +167,6 @@ namespace APPD.ViewModels
                 }
             }
         }
-
         public double XTransformFromValue
         {
             get { return _xTransformFromValue; }
@@ -150,7 +181,6 @@ namespace APPD.ViewModels
         }
 
         public AccountViewModel AccountViewModel { get; set; }
-
 
         public HomeViewModel(MainViewModel parent)
         {
@@ -168,6 +198,8 @@ namespace APPD.ViewModels
 
         private void updateProperties()
         {
+            this.TrendingTags = SearchServices.TrendingTags;
+
             this.UsernameDisplayText = parent.State.CurrentLoggedOnUser.Username;
             this.UsernameDanknessDisplayText = parent.State.CurrentLoggedOnUser.Dankness.ToString();
             parent.State.CurrentLoggedOnUser.OnDanknessUpdated += updateDanknessDisplay;

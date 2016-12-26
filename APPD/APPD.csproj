@@ -86,7 +86,8 @@
     <Compile Include="Models\AccountRentalData.cs" />
     <Compile Include="Models\ApplicationState.cs" />
     <Compile Include="Services\AccountServices.cs" />
-    <Compile Include="Services\StateServices.cs" />
+    <Compile Include="Services\ConfigServices.cs" />
+    <Compile Include="Services\SearchServices.cs" />
     <Compile Include="Services\UserServices.cs" />
     <Compile Include="ViewModels\AccountViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
@@ -176,6 +177,9 @@
     <Resource Include="Assets\SimulatedServer\Database\Users.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Assets\SimulatedServer\Database\State.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -221,7 +225,7 @@
     <Folder Include="Services\Bridges\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\SimulatedServer\Database\State.json">
+    <Resource Include="Assets\SimulatedServer\Database\Config.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

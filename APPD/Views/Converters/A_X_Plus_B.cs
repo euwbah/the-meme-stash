@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
 
 namespace APPD.Views.Converters
@@ -12,6 +13,9 @@ namespace APPD.Views.Converters
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
+            if (values.Contains(DependencyProperty.UnsetValue))
+                return 0;
+
             double a = (double)(values[0] ?? 0.0);
             double x = (double)(values[1] ?? 0.0);
             double b = (double)(values[2] ?? 0.0);

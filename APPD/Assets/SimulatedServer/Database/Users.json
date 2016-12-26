@@ -1,102 +1,102 @@
 {
-         "Users": [
-          {
-            "ID": 0,
-            "Username": "PapaDanku",
-            "Password": "pinkisawesome",
-            "AccountsRented": [
-              {
-                "ID": 1,
-                "DaysRented": [
-                  "2017-1-17T00:00:00Z",
-                  "2017-1-18T00:00:00Z"
-                ]
-              }
-            ],
-            "AccountsForRent": [
-              0,
-              2
-            ],
-            "Dankness": 1337,
-            "Bio": "Filthy Frank is the embodiment of everything a person should not be."
-          },
-          {
-            "ID": 1,
-            "Username": "theLegend27",
-            "Password": "capitalism",
-            "AccountsRented": [
-              {
-                "ID": 2,
-                "DaysRented": [
-                  "2017-1-17T00:00:00Z",
-                  "2017-1-15T00:00:00Z",
-                  "2017-1-14T00:00:00Z"
-                ]
-              },
-              {
-                "ID": 7,
-                "DaysRented": [
-                  "2017-1-16T00:00:00Z",
-                  "2017-1-17T00:00:00Z"
-                ]
-              }
-            ],
-            "AccountsForRent": [
-              1,
-              3,
-              5
-            ],
-            "Dankness": 9001,
-            "Bio": "TheLegend27 is a fictional character appearing on an online ad for the mobile video game Game of War: Fire Age, where several players start talking about the legendary player and their feats."
-          },
-          {
-            "ID": 2,
-            "Username": "XXXemokidXXX",
-            "Password": "123456",
-            "AccountsRented": [
-              {
-                "ID": 5,
-                "DaysRented": [
-                  "2017-1-14T00:00:00Z",
-                  "2017-1-20T00:00:00Z",
-                  "2017-1-21T00:00:00Z"
-                ]
-              }
-            ],
-            "AccountsForRent": [
-              6,
-              7
-            ],
-            "Dankness": 60,
-            "Bio":  "Just an emo."
-          },
-          {
-            "ID": 3,
-            "Username": "a",
-            "Password": "a",
-            "AccountsRented": [
-              {
-                "ID": 0,
-                "DaysRented": [
-                  "2016-12-25T00:00:00Z",
-                  "2016-12-26T00:00:00Z",
-                  "2016-12-27T00:00:00Z",
-                  "2017-1-3T00:00:00Z"
-                ]
-              },
-              {
-                "ID": 1,
-                "DaysRented": [
-                  "2017-1-1T00:00:00Z",
-                  "2017-1-2T00:00:00Z"
-                ]
-              }
-            ],
-            "AccountsForRent": [
-              4
-            ],
-            "Dankness":  150,
-            "Bio": "aaaa. Aaaaaa Aaaaa a aa aaaaa aaaa, a aaaaa a aaa aa aaaa. Aaaaa, aaaa a aaa aa aaaaa a? AAAAA!"
-          }
-      ]
+  "Users": [
+    {
+      "ID": 0,
+      "Username": "PapaDanku",
+      "Password": "pinkisawesome",
+      "AccountsRented": [
+        {
+          "ID": 1,
+          "DaysRented": [
+            "2017-1-17T00:00:00Z",
+            "2017-1-18T00:00:00Z"
+          ]
+        }
+      ],
+      "AccountsForRent": [
+        0,
+        2
+      ],
+      "Dankness": 1337,
+      "Bio": "Filthy Frank is the embodiment of everything a person should not be."
+    },
+    {
+      "ID": 1,
+      "Username": "theLegend27",
+      "Password": "capitalism",
+      "AccountsRented": [
+        {
+          "ID": 2,
+          "DaysRented": [
+            "2017-1-17T00:00:00Z",
+            "2017-1-15T00:00:00Z",
+            "2017-1-14T00:00:00Z"
+          ]
+        },
+        {
+          "ID": 7,
+          "DaysRented": [
+            "2017-1-16T00:00:00Z",
+            "2017-1-17T00:00:00Z"
+          ]
+        }
+      ],
+      "AccountsForRent": [
+        1,
+        3,
+        5
+      ],
+      "Dankness": 9001,
+      "Bio": "TheLegend27 is a fictional character appearing on an online ad for the mobile video game Game of War: Fire Age, where several players start talking about the legendary player and their feats."
+    },
+    {
+      "ID": 2,
+      "Username": "XXXemokidXXX",
+      "Password": "123456",
+      "AccountsRented": [
+        {
+          "ID": 5,
+          "DaysRented": [
+            "2017-1-14T00:00:00Z",
+            "2017-1-20T00:00:00Z",
+            "2017-1-21T00:00:00Z"
+          ]
+        }
+      ],
+      "AccountsForRent": [
+        6,
+        7
+      ],
+      "Dankness": 60,
+      "Bio": "Just an emo."
+    },
+    {
+      "ID": 3,
+      "Username": "a",
+      "Password": "a",
+      "AccountsRented": [
+        {
+          "ID": 0,
+          "DaysRented": [
+            "2016-12-25T00:00:00Z",
+            "2016-12-26T00:00:00Z",
+            "2016-12-27T00:00:00Z",
+            "2017-1-3T00:00:00Z"
+          ]
+        },
+        {
+          "ID": 1,
+          "DaysRented": [
+            "2017-1-1T00:00:00Z",
+            "2017-1-2T00:00:00Z"
+          ]
+        }
+      ],
+      "AccountsForRent": [
+        4
+      ],
+      "Dankness": 150,
+      "Bio": "aaaa. Aaaaaa Aaaaa a aa aaaaa aaaa, a aaaaa a aaa aa aaaa. Aaaaa, aaaa a aaa aa aaaaa a? AAAAA!"
+    }
+  ]
 }

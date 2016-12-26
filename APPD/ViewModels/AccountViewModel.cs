@@ -24,6 +24,7 @@ namespace APPD.ViewModels
 
         private Visibility _ownedLabelVisibility;
         private string _additionalInformation;
+        private bool _confirmButtonEnabled;
 
         private string _actionButtonContent;
         private Brush _actionButtonForeground;
@@ -38,7 +39,14 @@ namespace APPD.ViewModels
         // For manually handling the coloring of the calendar
         private List<DateTime> _selectedDates;
 
+        private bool _problemMonostable;
         private bool _tooManyDaysMonostable;
+        private bool _notDankEnoughMonostable;
+
+        private int _bookingCost;
+        private int _balanceAfterBooking;
+
+
 
         public Account CurrentAccount
         {
@@ -144,6 +152,18 @@ namespace APPD.ViewModels
                 }
             }
         }
+        public bool ConfirmButtonEnabled
+        {
+            get { return _confirmButtonEnabled; }
+            set
+            {
+                if (_confirmButtonEnabled != value)
+                {
+                    _confirmButtonEnabled = value;
+                    OnPropertyChanged("ConfirmButtonEnabled");
+                }
+            }
+        }
 
         public ICommand ActionButtonClick
         {
@@ -230,10 +250,19 @@ namespace APPD.ViewModels
         {
             get
             {
-                return StateServices.MAX_DAYS_BOOKABLE_PER_ACCOUNT_PER_USER;
+                return ConfigServices.MAX_DAYS_BOOKABLE_PER_ACCOUNT_PER_USER;
             }
         }
 
+        public bool ProblemMonostable
+        {
+            get { return _problemMonostable; }
+            set
+            {
+                _problemMonostable = value;
+                OnPropertyChanged("ProblemMonostable");
+            }
+        }
         public bool TooManyDaysMonostable
         {
             get { return _tooManyDaysMonostable; }
@@ -243,6 +272,41 @@ namespace APPD.ViewModels
                 {
                     _tooManyDaysMonostable = value;
                     OnPropertyChanged("TooManyDaysMonostable");
+                }
+            }
+        }
+        public bool NotDankEnoughMonostable
+        {
+            get { return _notDankEnoughMonostable; }
+            set
+            {
+                _notDankEnoughMonostable = value;
+                OnPropertyChanged("NotDankEnoughMonostable");
+            }
+        }
+
+        public int BookingCost
+        {
+            get { return _bookingCost; }
+            set
+            {
+                if (value != _bookingCost)
+                {
+                    _bookingCost = value;
+                    OnPropertyChanged("BookingCost");
+                }
+            }
+        }
+
+        public int BalanceAfterBooking
+        {
+            get { return _balanceAfterBooking; }
+            set
+            {
+                if (value != _balanceAfterBooking)
+                {
+                    _balanceAfterBooking = value;
+                    OnPropertyChanged("BalanceAfterBooking");
                 }
             }
         }
@@ -279,24 +343,27 @@ namespace APPD.ViewModels
 
                 OwnedLabelVisibility = Visibility.Visible;
                 ActionButtonContent = "EDIT";
+                AdditionalInformation = "";
+
                 ActionButtonForeground = new SolidColorBrush(Color.FromArgb(0xFF, 0xFF, 0xFF, 0xFF));
                 ActionButtonBackground = new SolidColorBrush(Color.FromArgb(0xFF, 0x99, 0x66, 0x11));
 
                 isActionButtonActivated = false;
             }
-            else if (userAlreadyConfirmedBookingDates.Count == StateServices.MAX_DAYS_BOOKABLE_PER_ACCOUNT_PER_USER)
+            else if (userAlreadyConfirmedBookingDates.Count == ConfigServices.MAX_DAYS_BOOKABLE_PER_ACCOUNT_PER_USER)
             {
                 // User has reach max days bookable per account quote
 
                 OwnedLabelVisibility = Visibility.Hidden;
-                ActionButtonContent = "MAXED OUT";
-                AdditionalInformation = "You currently have the maximum of " +
-                                        StateServices.MAX_DAYS_BOOKABLE_PER_ACCOUNT_PER_USER + 
-                                        " days booked. Check out the other accounts we have first, " +
-                                        " and come back again on another day.";
+                ActionButtonContent = "VIEW DATES";
+                AdditionalInformation = "You currently have this account booked for the maximum of " +
+                                        ConfigServices.MAX_DAYS_BOOKABLE_PER_ACCOUNT_PER_USER + 
+                                        " days.";
+
                 ActionButtonForeground = new SolidColorBrush(Color.FromArgb(0xBB, 0xFF, 0xFF, 0xFF));
                 ActionButtonBackground = new SolidColorBrush(Color.FromArgb(0xFF, 0x88, 0x44, 0x44));
-                isActionButtonActivated = false;
+
+                isActionButtonActivated = true;
             }
             else if (CurrentAccount.getListOfBookableDates().Count == 0)
             {
@@ -305,14 +372,18 @@ namespace APPD.ViewModels
                 OwnedLabelVisibility = Visibility.Hidden;
                 ActionButtonContent = "NO STOCK";
                 AdditionalInformation = "This account is fully booked for the next 30 days. Check again tomorrow!";
+
                 ActionButtonForeground = new SolidColorBrush(Color.FromArgb(0xBB, 0xFF, 0xFF, 0xFF));
                 ActionButtonBackground = new SolidColorBrush(Color.FromArgb(0xFF, 0x88, 0x44, 0x44));
+
                 isActionButtonActivated = false;
             }
             else
             {
                 OwnedLabelVisibility = Visibility.Hidden;
                 ActionButtonContent = "RENT NOW";
+                AdditionalInformation = "";
+
                 ActionButtonForeground = new SolidColorBrush(Color.FromArgb(0xFF, 0xFF, 0xFF, 0xFF));
                 ActionButtonBackground = new SolidColorBrush(Color.FromArgb(0xFF, 0x22, 0x99, 0x44));
 
@@ -326,6 +397,8 @@ namespace APPD.ViewModels
         {
             if (isActionButtonActivated)
             {
+                BalanceAfterBooking = parent.parent.State.CurrentLoggedOnUser.Dankness;
+
                 // This part initializes the calendar
 
                 // Updates the calendar's display with h4x
@@ -337,6 +410,8 @@ namespace APPD.ViewModels
 
                 // Add event handler
                 calendar.SelectedDatesChanged += Calendar_SelectedDatesChanged;
+
+                ConfirmButtonEnabled = false;
 
                 showOverlay();
             }
@@ -356,14 +431,21 @@ namespace APPD.ViewModels
                 }
                 else
                 {
-                    if (DaysBookedByCurrentUser < StateServices.MAX_DAYS_BOOKABLE_PER_ACCOUNT_PER_USER)
+                    if (CurrentAccount.getListOfBookableDates().Contains(date))
                     {
-                        if (CurrentAccount.getListOfBookableDates().Contains(date))
+                        if (DaysBookedByCurrentUser >= ConfigServices.MAX_DAYS_BOOKABLE_PER_ACCOUNT_PER_USER &&
+                            BalanceAfterBooking - CurrentAccount.DanknessPerDay >= 0)
+                        {
+                            performTooManyDaysAnimation();
+                        }
+                        else if (BalanceAfterBooking - CurrentAccount.DanknessPerDay < 0)
+                        {
+                            performNotDankEnoughAnimation();
+                        }
+                        else
+                        {
                             SelectedDates.Add(date);
-                    }
-                    else
-                    {
-                        performTooManyDaysAnimation();
+                        }
                     }
                 }
 
@@ -375,6 +457,14 @@ namespace APPD.ViewModels
                 calendar.DisplayDate = calendar.DisplayDate.AddYears(-1);
                 calendar.DisplayDate = date;
             }
+
+            this.BookingCost = this.SelectedDates.Count * CurrentAccount.DanknessPerDay;
+            this.BalanceAfterBooking = parent.parent.State.CurrentLoggedOnUser.Dankness - BookingCost;
+
+            if (SelectedDates.Count == 0)
+                ConfirmButtonEnabled = false;
+            else
+                ConfirmButtonEnabled = true;
         }
 
         private void overlayCloseClicked()
@@ -385,6 +475,7 @@ namespace APPD.ViewModels
 
         private void backButtonClicked()
         {
+            parent.PageOpen();
             parent.Go(from: Screen.ACCOUNT, to: Screen.HOME);
         }
 
@@ -399,8 +490,18 @@ namespace APPD.ViewModels
         private void performTooManyDaysAnimation()
         {
             // it's a monostable kek
+            ProblemMonostable = true;
+            ProblemMonostable = false;
             TooManyDaysMonostable = true;
             TooManyDaysMonostable = false;
+        }
+
+        private void performNotDankEnoughAnimation()
+        {
+            ProblemMonostable = true;
+            ProblemMonostable = false;
+            NotDankEnoughMonostable = true;
+            NotDankEnoughMonostable = false;
         }
     }
 }

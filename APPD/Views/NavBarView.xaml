@@ -55,7 +55,7 @@
             KeyboardNavigation.TabNavigation="Continue" VerticalContentAlignment="Center"
             />
 
-        <!--Profile | Cart-->
+        <!--Profile Info -->
         <StackPanel Grid.Row="0"
                     Grid.Column="2"
                     Orientation="Horizontal"
@@ -65,13 +65,13 @@
                     >
             <Button Background="{x:Null}" 
                     Foreground="White" 
-                    Padding="10" 
+                    Margin="10"
                     BorderThickness="0" 
                     HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
                     HorizontalAlignment="Center" VerticalAlignment="Center">
-                <WrapPanel Orientation="Horizontal">
+                <WrapPanel Orientation="Horizontal" VerticalAlignment="Center">
                     <Image Source="pack://application:,,,/Assets/SimulatedServer/Assets/Images/default.png" 
-                           Margin="15 10"
+                           Margin="15 3"
                            VerticalAlignment="Center"
                            Stretch="Uniform"
                            />
@@ -98,6 +98,7 @@
                        Foreground="White"
                        Margin="0"
                        Padding="10 2 2 2"
+                       VerticalAlignment="Center"
                        />
                 <Label Content="Đ"
                        FontFamily="Segoe UI Semilight"
@@ -105,18 +106,22 @@
                        Foreground="White"
                        Margin="0"
                        Padding="2 2 10 2"
+                       VerticalAlignment="Center"
                        />
             </WrapPanel>
-            <TextBox Text="|" 
+            <!--<TextBox Text="|" 
+            Perhaps this isn't needed
                          Foreground="White"
                          FontFamily="Segoe UI Black"
                          FontSize="25"
                          Padding="20" 
                          Background="{x:Null}" 
-                         BorderThickness="0" IsTabStop="False" Focusable="False"/>
+                         BorderThickness="0" IsTabStop="False" Focusable="False"/>-->
             <Button Background="{x:Null}" 
+                    Command="{Binding LogoutCommand}"
                     Foreground="White" 
                     Padding="10" 
+                    Margin="40 0 0 0"
                     BorderThickness="0" 
                     HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
                     HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -126,7 +131,9 @@
                          FontSize="19"
                          Padding="5" 
                          Background="{x:Null}" 
-                         BorderThickness="0" IsTabStop="False" Focusable="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                         BorderThickness="0" 
+                         IsTabStop="False" Focusable="False"
+                         HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
             </Button>
         </StackPanel>
     </Grid>

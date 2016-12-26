@@ -20,12 +20,8 @@ namespace APPD.Services
 
         public static List<User> readUsersFromDatabase()
         {
-            // This is just a placeholder for the JSON database
-
             string fileURI = "pack://application:,,,/Assets/SimulatedServer/Database/Users.json";
-            
             StreamReader reader = new StreamReader(Application.GetResourceStream(new Uri(fileURI)).Stream);
-
             string usersJsonFileContents = reader.ReadToEnd();
 
             UsersJSONObjectBridge deserializedObject = 
