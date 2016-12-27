@@ -221,7 +221,6 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Assets\SimulatedServer\Assets\Images\Accounts\" />
     <Folder Include="Services\Bridges\" />
   </ItemGroup>
   <ItemGroup>
@@ -231,6 +230,43 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\SimulatedServer\Assets\Images\default.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\SimulatedServer\Assets\Images\Users\0.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\SimulatedServer\Assets\Images\Users\1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\SimulatedServer\Assets\Images\Users\2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\SimulatedServer\Assets\Images\Users\3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\SimulatedServer\Assets\Images\Accounts\0.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\SimulatedServer\Assets\Images\Accounts\1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\SimulatedServer\Assets\Images\Accounts\2.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\SimulatedServer\Assets\Images\Accounts\3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\SimulatedServer\Assets\Images\Accounts\4.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\SimulatedServer\Assets\Images\Accounts\5.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\SimulatedServer\Assets\Images\Accounts\6.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
