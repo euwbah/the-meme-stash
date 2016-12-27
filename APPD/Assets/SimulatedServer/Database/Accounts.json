@@ -6,12 +6,8 @@
       "DanknessPerDay": 15,
       "Description": "For shitposting memes about a gif of frog riding a unicycle.",
       "Tags": [
-        {
-          "Tags": "animals"
-        },
-        {
-          "Tags": "random"
-        }
+         "animals",
+         "random"
       ],
       "Credentials": [
         {
@@ -36,12 +32,8 @@
       "DanknessPerDay": 12,
       "Description": "Bringing you the finest memes straight from the middle-east.",
       "Tags": [
-        {
-          "Tags": "offensive"
-        },
-        {
-          "Tags":  "arabic"
-        }
+        "offensive",
+        "arabic"
       ],
       "Credentials": [
         {
@@ -66,15 +58,9 @@
       "DanknessPerDay": 15,
       "Description": "Delicious nutritional energy drink for kids.",
       "Tags": [
-        {
-          "Tags": "drink"
-        },
-        {
-          "Tags": "dank"
-        },
-        {
-          "Tags": "sucide"
-        }
+          "drink",
+          "dank",
+          "sucide"
       ],
       "Credentials": [
         {
@@ -93,12 +79,8 @@
       "DanknessPerDay": 120,
       "Description": "One of the few survivors from the pachiko mines",
       "Tags": [
-        {
-          "Tags": "japanese"
-        },
-        {
-          "Tags": "gaming"
-        }
+          "japanese",
+           "gaming"
       ],
       "Credentials": [
         {
@@ -140,15 +122,9 @@
       "DanknessPerDay": 420,
       "Description": "Snoop Dogg is the stage name used by Calvin Cordozar Broadus Jr., an American hip hop recording artist and actor, well known for being the highest dude alive",
       "Tags": [
-        {
-          "Tags": "weed"
-        },
-        {
-          "Tags": "dank"
-        },
-        {
-          "Tags": "classic"
-        }
+            "weed",
+            "dank",
+            "classic"
       ],
        "Credentials": [
         {
@@ -172,16 +148,10 @@
       "Name": "Harambe, the lord and savior",
       "DanknessPerDay": 1337,
       "Description": "The myth, the meme, the gorilla.",
-            "Tags": [
-        {
-          "Tags": "dank"
-        },
-        {
-          "Tags": "animal"
-        },
-        {
-          "Tags": "random"
-        }
+      "Tags": [
+        "dank",
+        "animal",
+        "random"
       ],
       "Credentials": [
         {

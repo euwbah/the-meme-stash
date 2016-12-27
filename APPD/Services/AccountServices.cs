@@ -18,7 +18,7 @@ namespace APPD.Services
             public List<Account> Accounts { get; set; }
         }
 
-        public static List<Account> readAccountsFromDatabase()
+        public static List<Account> getAccountsFromDatabase()
         {
             string fileURI = "pack://application:,,,/Assets/SimulatedServer/Database/Accounts.json";
             StreamReader reader = new StreamReader(Application.GetResourceStream(new Uri(fileURI)).Stream);
@@ -52,7 +52,7 @@ namespace APPD.Services
 
         internal static List<Account> getFeaturedAccounts()
         {
-            List<Account> accounts = readAccountsFromDatabase();
+            List<Account> accounts = getAccountsFromDatabase();
             return accounts.Where(account => account.IsFeatured)
                            .ToList();
         }
@@ -60,7 +60,7 @@ namespace APPD.Services
         internal static List<Account> getNewAccounts()
         {
             List<Account> featuredAccounts = getFeaturedAccounts();
-            List<Account> accounts = readAccountsFromDatabase();
+            List<Account> accounts = getAccountsFromDatabase();
             return accounts.OrderByDescending(account => account, new AccountDateComparer())
                            .Where(account => !featuredAccounts.Contains(account))
                            .Take(3)
