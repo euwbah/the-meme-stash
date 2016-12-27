@@ -17,11 +17,20 @@ namespace APPD.Services
                     new List<AccountCredential> {
                         new AccountCredential("9GAG", "asdfghj", "asdfghj@asdfmovies.com", "asdffdsa"),
                         new AccountCredential("4CHAN", "asdfghj", null, "wefjiwoefj")
+                    },
+                    new List<string> {
+                        "nigga", "bitch"
                     }),
                 new Account(1, "asdf", "iroauergb", 90, new DateTime(2015, 10, 11), false,
-                    new List<AccountCredential> { }),
+                    new List<AccountCredential> { },
+                    new List<string> {
+                        "fuckface"
+                    }),
                 new Account(2, "qwerty", "aowvnoeairn", 30, new DateTime(2016, 10, 11), false,
-                    new List<AccountCredential> { })
+                    new List<AccountCredential> { },
+                    new List<string> {
+                        "bitch", "nigga ass"
+                    })
             };
 
             return accounts;

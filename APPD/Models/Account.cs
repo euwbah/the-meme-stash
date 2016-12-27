@@ -39,8 +39,11 @@ namespace APPD.Models
 
         public List<AccountCredential> Credentials;
 
+        public List<string> Tags { get; private set; }
+
         public Account(int ID, string Name, string Description, int DanknessPerDay,
-                        DateTime AccountCreationDate, bool IsFeatured, List<AccountCredential> Credentials)
+                        DateTime AccountCreationDate, bool IsFeatured, List<AccountCredential> Credentials,
+                        List<string> Tags)
         {
             this.ID = ID;
             this.Name = Name;
@@ -50,6 +53,7 @@ namespace APPD.Models
             this.AccountCreationDate = AccountCreationDate;
             this.IsFeatured = IsFeatured;
             this.ImagePath = this.generateImagePath();
+            this.Tags = Tags;
         }
 
         private string generateImagePath()

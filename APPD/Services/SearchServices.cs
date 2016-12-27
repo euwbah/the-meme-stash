@@ -1,9 +1,11 @@
-﻿using Newtonsoft.Json;
+﻿using APPD.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -33,6 +35,42 @@ namespace APPD.Services
                 }
 
                 return _trendingTags;
+            }
+        }
+        
+        internal static List<Account> PerformSearch(string searchQuery, int from, int to)
+        {
+            // Filter out non alphanumeric and non whitespace characters
+            Regex regex = new Regex(@"[\s\da-zA-Z]");
+            searchQuery = new string(searchQuery.Where(chr =>
+            {
+                MatchCollection matches = regex.Matches(chr.ToString());
+                return matches.Count != 0;
+            }).ToArray());
+
+            List<string> queryWords = new List<string>(Regex.Split(searchQuery, @"\s+"));
+
+
+        }
+
+        protected abstract class SearchWrapper<T>
+        {
+            public T Item { get; private set; }
+            public int SearchScore { get; set; }
+
+            public SearchObject(T Item)
+            {
+                this.Item = Item;
+            }
+
+            public abstract void scoreAgainst(string queryString);
+        }
+
+        protected class AccountSearchWrapper : SearchWrapper<Account>
+        {
+            public override void scoreAgainst(string queryString)
+            {
+
             }
         }
     }
