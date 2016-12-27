@@ -211,14 +211,16 @@ namespace APPD.ViewModels
         {
             if (this.CurrentSearchString.Trim().Length == 0)
             {
-                DisplayedItems = new ArrayList
-                {
-                    new TextWrapper("FEATURED")
-                };
+                DisplayedItems.RemoveRange(0, DisplayedItems.Count);
+                DisplayedItems.Add(new TextWrapper("FEATURED"));
                 DisplayedItems.AddRange(AccountServices.getFeaturedAccounts());
 
                 DisplayedItems.Add(new TextWrapper("NEW"));
                 DisplayedItems.AddRange(AccountServices.getNewAccounts());
+            }
+            else
+            {
+
             }
         }
 
