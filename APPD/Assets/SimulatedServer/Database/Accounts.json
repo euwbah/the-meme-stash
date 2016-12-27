@@ -5,6 +5,14 @@
       "Name": "Dat Boi United",
       "DanknessPerDay": 15,
       "Description": "For shitposting memes about a gif of frog riding a unicycle.",
+      "Tags": [
+        {
+          "Tags": "animals"
+        },
+        {
+          "Tags": "random"
+        }
+      ],
       "Credentials": [
         {
           "SocialMediaPlatformName": "4chan",
@@ -27,6 +35,14 @@
       "Name": "Osama Swegladin",
       "DanknessPerDay": 12,
       "Description": "Bringing you the finest memes straight from the middle-east.",
+      "Tags": [
+        {
+          "Tags": "offensive"
+        },
+        {
+          "Tags":  "arabic"
+        }
+      ],
       "Credentials": [
         {
           "SocialMediaPlatformName": "Tumblr",
@@ -49,13 +65,24 @@
       "AccountName": "Clorox Bleach",
       "DanknessPerDay": 15,
       "Description": "Delicious nutritional energy drink for kids.",
+      "Tags": [
+        {
+          "Tags": "drink"
+        },
+        {
+          "Tags": "dank"
+        },
+        {
+          "Tags": "sucide"
+        }
+      ],
       "Credentials": [
         {
           "SocialMediaPlatformName": "Twitter",
           "Username": "@BleachClorox",
           "Email": "CloroX@hotmail.com",
           "Password": "b134ch"
-        },
+        }
       ],
       "AccountCreationDate": "2004-7-2T00:00:00Z",
       "IsFeatured": false
@@ -65,6 +92,14 @@
       "Name": "Haunted Kojima",
       "DanknessPerDay": 120,
       "Description": "One of the few survivors from the pachiko mines",
+      "Tags": [
+        {
+          "Tags": "japanese"
+        },
+        {
+          "Tags": "gaming"
+        }
+      ],
       "Credentials": [
         {
           "SocialMediaPlatformName": "Instagram",
@@ -87,6 +122,7 @@
       "Name": "Pakalu Papito",
       "DanknessPerDay": 650,
       "Description": "A twitter sensation whose real identity is a mystery has become famous for his extremely hilarious and honest tweets about life and everyday things!.",
+      "Tags": "indian",
       "Credentials": [
         {
           "SocialMediaPlatformName": "twitter",
@@ -103,7 +139,18 @@
       "Name": "Snoop Dogg Official",
       "DanknessPerDay": 420,
       "Description": "Snoop Dogg is the stage name used by Calvin Cordozar Broadus Jr., an American hip hop recording artist and actor, well known for being the highest dude alive",
-      "Credentials": [
+      "Tags": [
+        {
+          "Tags": "weed"
+        },
+        {
+          "Tags": "dank"
+        },
+        {
+          "Tags": "classic"
+        }
+      ],
+       "Credentials": [
         {
           "SocialMediaPlatformName": "google+",
           "Username": null,
@@ -125,6 +172,17 @@
       "Name": "Harambe, the lord and savior",
       "DanknessPerDay": 1337,
       "Description": "The myth, the meme, the gorilla.",
+            "Tags": [
+        {
+          "Tags": "dank"
+        },
+        {
+          "Tags": "animal"
+        },
+        {
+          "Tags": "random"
+        }
+      ],
       "Credentials": [
         {
           "SocialMediaPlatformName": "Reddit",

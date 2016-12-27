@@ -1,31 +1,36 @@
 ﻿using APPD.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace APPD.Services
 {
     public static class AccountServices
     {
-        internal static List<Account> getAccountsFromDatabase()
-        {
-            List<Account> accounts = new List<Account>()
-            {
-                new Account(0, "asdfghj", "aergair", 40, new DateTime(2013, 9, 11), true,
-                    new List<AccountCredential> {
-                        new AccountCredential("9GAG", "asdfghj", "asdfghj@asdfmovies.com", "asdffdsa"),
-                        new AccountCredential("4CHAN", "asdfghj", null, "wefjiwoefj")
-                    }),
-                new Account(1, "asdf", "iroauergb", 90, new DateTime(2015, 10, 11), false,
-                    new List<AccountCredential> { }),
-                new Account(2, "qwerty", "aowvnoeairn", 30, new DateTime(2016, 10, 11), false,
-                    new List<AccountCredential> { })
-            };
 
-            return accounts;
+        private class AccountsJSONObjectBridge
+        {
+            public List<Account> Accounts { get; set; }
         }
+
+        public static List<Account> readAccountsFromDatabase()
+        {
+            string fileURI = "pack://application:,,,/Assets/SimulatedServer/Database/Accounts.json";
+            StreamReader reader = new StreamReader(Application.GetResourceStream(new Uri(fileURI)).Stream);
+            string accountsJsonFileContents = reader.ReadToEnd();
+
+            AccountsJSONObjectBridge deserializedObject =
+                JsonConvert.DeserializeObject<AccountsJSONObjectBridge>(accountsJsonFileContents);
+
+            return deserializedObject.Accounts;
+        }
+
+        
 
         internal static User getAuthor(this Account account)
         {
@@ -47,7 +52,7 @@ namespace APPD.Services
 
         internal static List<Account> getFeaturedAccounts()
         {
-            List<Account> accounts = getAccountsFromDatabase();
+            List<Account> accounts = readAccountsFromDatabase();
             return accounts.Where(account => account.IsFeatured)
                            .ToList();
         }
@@ -55,7 +60,7 @@ namespace APPD.Services
         internal static List<Account> getNewAccounts()
         {
             List<Account> featuredAccounts = getFeaturedAccounts();
-            List<Account> accounts = getAccountsFromDatabase();
+            List<Account> accounts = readAccountsFromDatabase();
             return accounts.OrderByDescending(account => account, new AccountDateComparer())
                            .Where(account => !featuredAccounts.Contains(account))
                            .Take(3)
