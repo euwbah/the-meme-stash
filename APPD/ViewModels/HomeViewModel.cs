@@ -26,6 +26,9 @@ namespace APPD.ViewModels
 
         private ICommand _accountCommand;
         private ICommand _logoutCommand;
+        private ICommand _searchBarLostFocus;
+        private ICommand _searchBarGotFocus;
+        private bool searchBarFocused;
 
         private bool _changeScreenAnimationMonostable;
         private double _xTransformFromValue;
@@ -131,6 +134,30 @@ namespace APPD.ViewModels
                 return _logoutCommand;
             }
         }
+        public ICommand SearchBarLostFocus
+        {
+            get
+            {
+                if (_searchBarLostFocus == null)
+                {
+                    _searchBarLostFocus = new RelayCommand(param => this.searchLostFocus());
+                }
+
+                return _searchBarLostFocus;
+            }
+        }
+        public ICommand SearchBarGotFocus
+        {
+            get
+            {
+                if (_searchBarGotFocus == null)
+                {
+                    _searchBarGotFocus = new RelayCommand(param => this.searchGotFocus());
+                }
+
+                return _searchBarGotFocus;
+            }
+        }
 
         private double _a, _b;
         public double A
@@ -209,9 +236,9 @@ namespace APPD.ViewModels
 
         private void performDisplayListViewUpdate()
         {
-            if (this.CurrentSearchString.Trim().Length == 0)
+           if (this.CurrentSearchString.Trim().Length == 0)
             {
-                DisplayedItems.RemoveRange(0, DisplayedItems.Count);
+                DisplayedItems = new ArrayList();
                 DisplayedItems.Add(new TextWrapper("FEATURED"));
                 DisplayedItems.AddRange(AccountServices.getFeaturedAccounts());
 
@@ -220,7 +247,14 @@ namespace APPD.ViewModels
             }
             else
             {
+                List<Account> searchedAccounts =
+                    SearchServices.PerformSearch(CurrentSearchString, 0, 5, SearchServices.SearchMethod.RELEVANCE);
 
+                DisplayedItems = new ArrayList();
+                DisplayedItems.AddRange(searchedAccounts);
+
+                //DisplayedItems.RemoveRange(0, DisplayedItems.Count);
+                //DisplayedItems.AddRange(searchedAccounts);
             }
         }
 
@@ -233,6 +267,17 @@ namespace APPD.ViewModels
         private void updateDanknessDisplay(User sender)
         {
             this.UsernameDanknessDisplayText = sender.Dankness.ToString();
+        }
+
+        private void searchLostFocus()
+        {
+            searchBarFocused = false;
+            this.performDisplayListViewUpdate();
+        }
+        private void searchGotFocus()
+        {
+            searchBarFocused = true;
+            this.performDisplayListViewUpdate();
         }
 
         internal void Go(Screen from, Screen to)

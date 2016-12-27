@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:APPD.Views"
              xmlns:extToolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
              mc:Ignorable="d" 
              d:DesignHeight="80" d:DesignWidth="1200">
     <UserControl.Resources>
@@ -53,7 +54,16 @@
             Watermark="Search"
             Text="{Binding CurrentSearchString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="0"
             KeyboardNavigation.TabNavigation="Continue" VerticalContentAlignment="Center"
-            />
+            >
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="LostFocus">
+                    <i:InvokeCommandAction Command="{Binding SearchBarLostFocus}" />
+                </i:EventTrigger>
+                <i:EventTrigger EventName="GotFocus">
+                    <i:InvokeCommandAction Command="{Binding SearchBarGotFocus}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </extToolkit:WatermarkTextBox>
 
         <!--Profile Info -->
         <StackPanel Grid.Row="0"

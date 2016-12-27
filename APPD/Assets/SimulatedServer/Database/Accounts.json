@@ -54,13 +54,14 @@
     },
     {
       "ID": 2,
-      "AccountName": "Clorox Bleach",
+      "Name": "Clorox Bleach",
       "DanknessPerDay": 15,
       "Description": "Delicious nutritional energy drink for kids.",
       "Tags": [
-          "drink",
-          "dank",
-          "sucide"
+        "drink",
+        "dank",
+        "suicide",
+        "dark"
       ],
       "Credentials": [
         {
@@ -80,7 +81,7 @@
       "Description": "One of the few survivors from the pachiko mines",
       "Tags": [
           "japanese",
-           "gaming"
+          "gaming"
       ],
       "Credentials": [
         {
@@ -105,7 +106,7 @@
       "DanknessPerDay": 650,
       "Description": "A twitter sensation whose real identity is a mystery has become famous for his extremely hilarious and honest tweets about life and everyday things!.",
       "Tags": [
-        "indian"
+        "camel"
       ],
       "Credentials": [
         {
