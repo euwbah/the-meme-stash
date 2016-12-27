@@ -104,7 +104,9 @@
       "Name": "Pakalu Papito",
       "DanknessPerDay": 650,
       "Description": "A twitter sensation whose real identity is a mystery has become famous for his extremely hilarious and honest tweets about life and everyday things!.",
-      "Tags": "indian",
+      "Tags": [
+        "indian"
+      ],
       "Credentials": [
         {
           "SocialMediaPlatformName": "twitter",

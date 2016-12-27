@@ -38,27 +38,33 @@ namespace APPD.Services
             }
         }
         
-        internal static List<Account> PerformSearch(string searchQuery, int from, int to)
-        {
-            // Filter out non alphanumeric and non whitespace characters
-            Regex regex = new Regex(@"[\s\da-zA-Z]");
-            searchQuery = new string(searchQuery.Where(chr =>
-            {
-                MatchCollection matches = regex.Matches(chr.ToString());
-                return matches.Count != 0;
-            }).ToArray());
+        //internal static List<Account> PerformSearch(string searchQuery, int from, int to)
+        //{
+        //    // Filter out non alphanumeric and non whitespace characters
+        //    Regex regex = new Regex(@"[\s\da-zA-Z]");
+        //    searchQuery = new string(searchQuery.Where(chr =>
+        //    {
+        //        MatchCollection matches = regex.Matches(chr.ToString());
+        //        return matches.Count != 0;
+        //    }).ToArray());
 
-            List<string> queryWords = new List<string>(Regex.Split(searchQuery, @"\s+"));
+        //    List<string> queryWords = new List<string>(Regex.Split(searchQuery, @"\s+"));
 
+        //    List<AccountSearchWrapper> searchObjects = new List<AccountSearchWrapper>();
 
-        }
+        //    List<Account> accounts = AccountServices.getAccountsFromDatabase();
+        //    foreach(Account a in accounts)
+        //    {
+        //        accoun
+        //    }
+        //}
 
         protected abstract class SearchWrapper<T>
         {
             public T Item { get; private set; }
             public int SearchScore { get; set; }
 
-            public SearchObject(T Item)
+            public SearchWrapper(T Item)
             {
                 this.Item = Item;
             }
@@ -68,6 +74,10 @@ namespace APPD.Services
 
         protected class AccountSearchWrapper : SearchWrapper<Account>
         {
+            public AccountSearchWrapper(Account Item) : base(Item)
+            {
+
+            }
             public override void scoreAgainst(string queryString)
             {
 
