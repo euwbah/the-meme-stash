@@ -62,7 +62,8 @@
         "drink",
         "dank",
         "dark",
-        "shitpost"
+        "shitpost",
+        "offensive"
       ],
       "Credentials": [
         {
@@ -173,6 +174,61 @@
         }
       ],
       "AccountCreationDate": "2016-8-20",
+      "IsFeatured": true
+    },
+    {
+      "ID": 7,
+      "Name": "Rare Pepes™ ",
+      "DanknessPerDay": 136969.69,
+      "Description": "One of the last meme stashs containing the few surviving Pepes from Hillary Clinton's purge",
+      "Tags": [
+        "animal",
+        "dank",
+        "offensive"
+      ],
+      "Credentials": [
+        {
+          "SocialMediaPlatformName": "twitter",
+          "Username": "@Rare_Pepe_Official",
+          "Email": "pepeRare@gmail.com",
+          "Password": "wojak"
+        },
+        {
+          "SocialMediaPlatformName": "facebook",
+          "Username": "The rare Pepe collection",
+          "Email": "pepeRare@gmail.com",
+          "Password": "wojak"
+        }
+      ],
+      "AccountCreationDate": "1945-4-30",
+      "IsFeatured": false
+    },
+    {
+      "ID": 8,
+      "Name": "We are number #1 remixes",
+      "DanknessPerDay": 1981.69,
+      "Description": "[We Are Number One] is a song sung by main villain Robbie Rotten and his clones in the Icelandic children’s television show LazyTown. Online, the song has gained a spontaneous surge of parodies and mashups through Soundcloud and YouTube. The popularity also cured Robbie Rotten's actor, Stefán Karl Stefánsson, of cancer which was caused by the memes.",
+      "Tags": [
+        "song",
+        "dank",
+        "lazy",
+        "town"
+      ],
+      "Credentials": [
+        {
+          "SocialMediaPlatformName": "twitter",
+          "Username": "@We_Are_Number_One",
+          "Email": "number1@gmail.com",
+          "Password": "CRUNCH"
+        },
+        {
+          "SocialMediaPlatformName": "Youtube",
+          "Username": "WeAreNumber1",
+          "Email": "number1@gmail.com",
+          "Password": "CRUNCH"
+        }
+      ],
+      "AccountCreationDate": "2016-8-6",
       "IsFeatured": true
     }
   ]

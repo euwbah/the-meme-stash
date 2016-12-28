@@ -1,4 +1,4 @@
-{
+﻿{
   "Users": [
     {
       "ID": 0,
@@ -97,6 +97,55 @@
       ],
       "Dankness": 150,
       "Bio": "aaaa. Aaaaaa Aaaaa a aa aaaaa aaaa, a aaaaa a aaa aa aaaa. Aaaaa, aaaa a aaa aa aaaaa a? AAAAA!"
+    },
+    {
+      "ID": 4,
+      "Username": "WojakTheFeel",
+      "Password": "2sed5me",
+      "AccountsRented": [ ],
+      "AccountsForRent": [
+        7
+      ],
+      "Dankness": 0,
+      "Bio": "What's the point of this site. This aren't even real meme accounts. I dont even have any dankness points. What the point in anything anyway."
+    },
+    {
+      "ID": 5,
+      "Username": "Gabe_the_dog",
+      "Password": "b9rk",
+      "AccountsRented": [
+        {
+          "ID": 8,
+          "DaysRented": [
+            "2016-12-27T00:00:00Z",
+            "2016-12-28T00:00:00Z",
+            "2016-12-29T00:00:00Z",
+            "2017-1-3T00:00:00Z"
+          ]
+        }
+      ],
+      "AccountsForRent": [ ],
+      "Dankness": 150,
+      "Bio": "Bork borkbork bork borkborkbork? Borkybork-bork bork borkybork bork bork bork BORK!"
+    },
+    {
+      "ID": 6,
+      "Username": "SportaFl0p",
+      "Password": "dabdabdab",
+      "AccountsRented": [
+        {
+          "ID": 7,
+          "DaysRented": [
+            "2017-1-1T00:00:00Z",
+            "2017-1-2T00:00:00Z"
+          ]
+        }
+      ],
+      "AccountsForRent": [
+        8
+      ],
+      "Dankness": 18956560.99,
+      "Bio": "Lmao Robbie Rotten may have cured cancer but I invented the DAB ( ͡° ͜ʖ ͡°)"
     }
   ]
 }
