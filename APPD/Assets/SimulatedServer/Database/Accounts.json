@@ -3,7 +3,7 @@
     {
       "ID": 0,
       "Name": "Dat Boi United",
-      "DanknessPerDay": 15,
+      "DanknessPerDay": 42,
       "Description": "For shitposting memes about a gif of frog riding a unicycle.",
       "Tags": [
         "animal",
@@ -24,8 +24,8 @@
           "Password": "Ohshitwaddup"
         }
       ],
-      "AccountCreationDate": "1984-8-12T00:00:00Z",
-      "IsFeatured": true
+      "AccountCreationDate": "2012-8-12T00:00:00Z",
+      "IsFeatured": false
     },
     {
       "ID": 1,
@@ -173,18 +173,18 @@
           "Password": "CincinnatiZoo "
         }
       ],
-      "AccountCreationDate": "2016-8-20",
+      "AccountCreationDate": "2016-8-20T00:00:00Z",
       "IsFeatured": true
     },
     {
       "ID": 7,
-      "Name": "Rare Pepes™ ",
-      "DanknessPerDay": 136969.69,
-      "Description": "One of the last meme stashs containing the few surviving Pepes from Hillary Clinton's purge",
+      "Name": "Rare Pepes",
+      "DanknessPerDay": 1100,
+      "Description": "One of the last meme stashes containing the few surviving Pepes from Hillary Clinton's purge",
       "Tags": [
         "animal",
         "dank",
-        "offensive"
+        "clasic"
       ],
       "Credentials": [
         {
@@ -200,17 +200,17 @@
           "Password": "wojak"
         }
       ],
-      "AccountCreationDate": "1945-4-30",
+      "AccountCreationDate": "2015-4-30T00:00:00Z",
       "IsFeatured": false
     },
     {
       "ID": 8,
       "Name": "We are number #1 remixes",
-      "DanknessPerDay": 1981.69,
-      "Description": "[We Are Number One] is a song sung by main villain Robbie Rotten and his clones in the Icelandic children’s television show LazyTown. Online, the song has gained a spontaneous surge of parodies and mashups through Soundcloud and YouTube. The popularity also cured Robbie Rotten's actor, Stefán Karl Stefánsson, of cancer which was caused by the memes.",
+      "DanknessPerDay": 1900,
+      "Description": "[We Are Number One] is a song sung by main villain Robbie Rotten and his clones in the Icelandic children's television show LazyTown. Online, the song has gained a spontaneous surge of parodies and mashups through Soundcloud and YouTube. The popularity also cured Robbie Rotten's actor, Stefan Karl Stefansson, of cancer which was caused by the memes.",
       "Tags": [
         "song",
-        "dank",
+        "shitpost",
         "lazy",
         "town"
       ],
@@ -228,7 +228,7 @@
           "Password": "CRUNCH"
         }
       ],
-      "AccountCreationDate": "2016-8-6",
+      "AccountCreationDate": "2016-8-6T00:00:00Z",
       "IsFeatured": true
     }
   ]

@@ -373,7 +373,7 @@ namespace APPD.ViewModels
                     List<Account> notCurrentlyInPossession =
                         AccountServices.getAccountsRentedBy(parent.State.CurrentLoggedOnUser, false);
 
-                    if (currentlyInPossession.Count != 0 && notCurrentlyInPossession.Count != 0)
+                    if (currentlyInPossession.Count != 0 || notCurrentlyInPossession.Count != 0)
                     {
                         DisplayedItems.Add(new Header("ACTIVE"));
                         if (currentlyInPossession.Count != 0)

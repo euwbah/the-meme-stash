@@ -78,10 +78,10 @@
         {
           "ID": 0,
           "DaysRented": [
-            "2016-12-27T00:00:00Z",
-            "2016-12-28T00:00:00Z",
-            "2016-12-29T00:00:00Z",
-            "2017-1-3T00:00:00Z"
+            "2017-1-17T00:00:00Z",
+            "2017-2-18T00:00:00Z",
+            "2017-3-19T00:00:00Z",
+            "2017-4-3T00:00:00Z"
           ]
         },
         {
@@ -95,7 +95,7 @@
       "AccountsForRent": [
         4
       ],
-      "Dankness": 150,
+      "Dankness": 400,
       "Bio": "aaaa. Aaaaaa Aaaaa a aa aaaaa aaaa, a aaaaa a aaa aa aaaa. Aaaaa, aaaa a aaa aa aaaaa a? AAAAA!"
     },
     {
@@ -117,10 +117,10 @@
         {
           "ID": 8,
           "DaysRented": [
-            "2016-12-27T00:00:00Z",
-            "2016-12-28T00:00:00Z",
-            "2016-12-29T00:00:00Z",
-            "2017-1-3T00:00:00Z"
+            "2016-1-14T00:00:00Z",
+            "2016-1-15T00:00:00Z",
+            "2016-1-16T00:00:00Z",
+            "2017-1-5T00:00:00Z"
           ]
         }
       ],
@@ -136,15 +136,15 @@
         {
           "ID": 7,
           "DaysRented": [
-            "2017-1-1T00:00:00Z",
-            "2017-1-2T00:00:00Z"
+            "2017-1-3T00:00:00Z",
+            "2017-1-4T00:00:00Z"
           ]
         }
       ],
       "AccountsForRent": [
         8
       ],
-      "Dankness": 18956560.99,
+      "Dankness": 14200,
       "Bio": "Lmao Robbie Rotten may have cured cancer but I invented the DAB ( ͡° ͜ʖ ͡°)"
     }
   ]

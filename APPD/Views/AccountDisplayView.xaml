@@ -82,11 +82,12 @@
                                  TextWrapping="Wrap"
                                  Cursor="Arrow"
                                  FontFamily="Segoe UI Light"
-                                 FontSize="18"
+                                 FontSize="16"
                                  Foreground="#EE000000"
                                  Margin="30 5"
                                  Height="90"
                                  Width="500"
+                                 ScrollViewer.VerticalScrollBarVisibility="Auto"
                                />
                         <Grid Margin="30 5" Height="70" Width="500">
                             <Grid.ColumnDefinitions>

@@ -73,15 +73,17 @@
                                         VerticalAlignment="Top">
 
                                 <TextBox Text="{Binding Name, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
-                                             FontFamily="Impact"
-                                             Cursor="Arrow"
-                                             Focusable="False"
-                                             Margin="30 10 10 10"
-                                             Width="300"
-                                             FontSize="26"
-                                             Background="{x:Null}"
-                                             BorderThickness="0"
-                                             TextWrapping="Wrap"
+                                         FontFamily="Impact"
+                                         Cursor="Arrow"
+                                         Focusable="False"
+                                         Margin="30 10 10 10"
+                                         Width="300"
+                                         FontSize="26"
+                                         Background="{x:Null}"
+                                         BorderThickness="0"
+                                         TextWrapping="Wrap"
+                                         HorizontalAlignment="Left"
+                                         HorizontalContentAlignment="Left"
                                            />
 
                                 <TextBox Text="{Binding Description, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
@@ -93,9 +95,11 @@
                                          Background="{x:Null}"
                                          BorderThickness="0"
                                          TextWrapping="Wrap"
+                                         HorizontalAlignment="Left"
+                                         HorizontalContentAlignment="Left"
                                        />
                                 <WrapPanel Orientation="Horizontal"
-                                           Margin="20 0 0 0"
+                                           Margin="20 0 0 20"
                                            >
                                     <Label Content="Author: " 
                                        FontSize="14" FontFamily="Segoe UI Semilight"
