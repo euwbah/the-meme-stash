@@ -148,7 +148,8 @@ namespace APPD.Services
             {
                 foreach(AccountRentalData ard in user.AccountsRented)
                 {
-                    listOfBookableDates.RemoveAll(date => ard.DaysRented.Contains(date));
+                    if (ard.ID == account.ID)
+                        listOfBookableDates.RemoveAll(date => ard.DaysRented.Contains(date));
                 }
             }
 

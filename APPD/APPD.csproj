@@ -105,6 +105,7 @@
     <Compile Include="Views\Converters\ConvertDateTime_Account_User_ToCalendarDayBackgroundFillBrush.cs" />
     <Compile Include="Views\Converters\ConvertNullityToVisibility.cs" />
     <Compile Include="Views\Converters\Hashtaginator2000.cs" />
+    <Compile Include="Views\Converters\HomeListViewAccountConverters.cs" />
     <Compile Include="Views\HomeDisplayListView.xaml.cs">
       <DependentUpon>HomeDisplayListView.xaml</DependentUpon>
     </Compile>

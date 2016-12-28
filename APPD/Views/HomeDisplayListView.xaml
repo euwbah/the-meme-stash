@@ -6,7 +6,14 @@
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:local="clr-namespace:APPD.ViewModels"
              xmlns:models="clr-namespace:APPD.Models"
+             xmlns:converters="clr-namespace:APPD.Views.Converters"
              mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <converters:ConvertAccountToVisibility x:Key="infoLabelVisibility" />
+        <converters:ConvertAccountToContent x:Key="infoLabelContent" />
+        <converters:ConvertAccountToBackground x:Key="infoLabelBackground" />
+    </UserControl.Resources>
     <Grid>
 
         <ScrollViewer VerticalScrollBarVisibility="Auto" Width="985">
@@ -51,7 +58,7 @@
                         <Grid Background="#FFDDDDDD" Margin="40 20 80 20">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="200" />
-                                <ColumnDefinition Width="400"/>
+                                <ColumnDefinition Width="450"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <Image Source="{Binding ImagePath}" 
@@ -64,16 +71,19 @@
                                         Margin="0 10 0 0"
                                         HorizontalAlignment="Left"
                                         VerticalAlignment="Top">
+
                                 <TextBox Text="{Binding Name, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
-                                         FontFamily="Impact"
-                                         Cursor="Arrow"
-                                         Focusable="False"
-                                         Margin="30 10"
-                                         FontSize="26"
-                                         Background="{x:Null}"
-                                         BorderThickness="0"
-                                         TextWrapping="Wrap"
-                                       />
+                                             FontFamily="Impact"
+                                             Cursor="Arrow"
+                                             Focusable="False"
+                                             Margin="30 10 10 10"
+                                             Width="300"
+                                             FontSize="26"
+                                             Background="{x:Null}"
+                                             BorderThickness="0"
+                                             TextWrapping="Wrap"
+                                           />
+
                                 <TextBox Text="{Binding Description, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                                          FontFamily="Segoe UI Light"
                                          Margin="30 1 0 10"
@@ -114,25 +124,61 @@
                                     </Button>
                                 </WrapPanel>
                             </StackPanel>
-                            <StackPanel Orientation="Horizontal" 
+                            <StackPanel Orientation="Vertical" 
                                         Grid.Column="2"
                                         HorizontalAlignment="Right" 
                                         VerticalAlignment="Center" >
-                                <Label Content="{Binding DanknessPerDayShortDisplay}"
-                                        FontFamily="Segoe UI Light"
-                                        FontSize="18" HorizontalAlignment="Right" VerticalAlignment="Center"
-                                        />
-                                <Button Content=">"
-                                        FontFamily="Impact"
-                                        Padding="16 10"
-                                        Margin="6 6 20 6"
-                                        BorderThickness="0"
-                                        FontSize="30" Background="#FFA2A2A2"
-                                        Foreground="#FFD8EAFF" HorizontalAlignment="Right" VerticalAlignment="Center"
-                                        Command="{Binding ElementName=itemsControl, Path=DataContext.AccountCommand}"
-                                        CommandParameter="{Binding DataContext, RelativeSource={RelativeSource AncestorType={x:Type ContentPresenter}}}"
-                                        DataContext=""
-                                        />
+                                
+                                <Label Height="55"
+                                       Margin="10"
+                                       Padding="10 0"
+                                       HorizontalContentAlignment="Center"
+                                       VerticalContentAlignment="Center"
+                                       FontFamily="Impact"
+                                       FontSize="20"
+                                       Foreground="White"
+                                       >
+                                    <Label.Visibility>
+                                        <MultiBinding Converter="{StaticResource infoLabelVisibility}">
+                                            <Binding Path="." />
+                                            <Binding Path="DataContext.parent.State.CurrentLoggedOnUser" 
+                                                         ElementName="itemsControl"/>
+                                        </MultiBinding>
+                                    </Label.Visibility>
+                                    <Label.Content>
+                                        <MultiBinding Converter="{StaticResource infoLabelContent}">
+                                            <Binding Path="." />
+                                            <Binding Path="DataContext.parent.State.CurrentLoggedOnUser" 
+                                                         ElementName="itemsControl"/>
+                                        </MultiBinding>
+                                    </Label.Content>
+                                    <Label.Background>
+                                        <MultiBinding Converter="{StaticResource infoLabelBackground}">
+                                            <Binding Path="." />
+                                            <Binding Path="DataContext.parent.State.CurrentLoggedOnUser" 
+                                                         ElementName="itemsControl"/>
+                                        </MultiBinding>
+                                    </Label.Background>
+                                </Label>
+                                <StackPanel Orientation="Horizontal"
+                                            HorizontalAlignment="Right"
+                                            VerticalAlignment="Center">
+                                    <Label Content="{Binding DanknessPerDayShortDisplay}"
+                                            FontFamily="Segoe UI Light"
+                                            FontSize="18" HorizontalAlignment="Right" VerticalAlignment="Center"
+                                            />
+                                    <Button Content=">"
+                                            FontFamily="Impact"
+                                            Padding="16 10"
+                                            Margin="6 6 20 6"
+                                            BorderThickness="0"
+                                            FontSize="30" Background="#FFA2A2A2"
+                                            Foreground="#FFD8EAFF" HorizontalAlignment="Right" VerticalAlignment="Center"
+                                            Command="{Binding ElementName=itemsControl, Path=DataContext.AccountCommand}"
+                                            CommandParameter="{Binding DataContext, RelativeSource={RelativeSource AncestorType={x:Type ContentPresenter}}}"
+                                            DataContext=""
+                                            />
+                                </StackPanel>
                                 <!--NOTE: Setting RelativeSource to an ancestor of type ContentPresenter will effectively
                                 return the source of the item in iteration itself-->
                             </StackPanel>

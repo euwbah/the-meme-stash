@@ -85,7 +85,15 @@ namespace APPD.Services
             AccountRentalData rentalData = transactingUser.AccountsRented.Where(x => x.ID == accountID)
                                             .ToList().ElementAtOrDefault(0);
             if (rentalData == null)
-                return null;
+            {
+                AccountRentalData newRentalData = new AccountRentalData
+                {
+                    DaysRented = new List<DateTime>(),
+                    ID = accountID
+                };
+                transactingUser.AccountsRented.Add(newRentalData);
+                rentalData = newRentalData;
+            }
 
             rentalData.DaysRented.AddRange(dates);
 

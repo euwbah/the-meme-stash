@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:APPD.Views"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:converters="clr-namespace:APPD.Views.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="605" d:DesignWidth="200">
@@ -36,151 +37,156 @@
             </Style.Triggers>
         </Style>
     </UserControl.Resources>
-    
-    <StackPanel Background="Black" Width="200" Height="605" x:Name="TheGloriousOutside">
-        <Button Background="{Binding ExploreBackground}"
-                Foreground="{Binding ExploreForeground}"
-                BorderThickness="0"
-                Cursor="Hand"
-                Padding="5"
-                Margin="5"
-                Content="EXPORE"
-                FontFamily="Impact" FontSize="30"
-                Command="{Binding DisplayCommand}"
-                CommandParameter="explore"
-            >
-            <Button.Style>
-                <Style TargetType="{x:Type Button}">
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="{x:Type Button}">
-                                <Border Background="{TemplateBinding Background}"
-                                BorderBrush="Black" BorderThickness="0">
-                                    <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
-                                              VerticalAlignment="{TemplateBinding HorizontalContentAlignment}"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="#FFDDDDDD"/>
-                            <Setter Property="Foreground" Value="#FF222222"/>
-                        </Trigger>
-                        <Trigger Property="IsMouseOver" Value="False">
-                            <Setter Property="Background" Value="{Binding ExploreBackground}"/>
-                            <Setter Property="Foreground" Value="{Binding ExploreForeground}"/>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Button.Style>
-        </Button>
-        <Button Background="{Binding OwnedBackground}"
-                Foreground="{Binding OwnedForeground}"
-                BorderThickness="0"
-                Cursor="Hand"
-                Padding="5"
-                Margin="5"
-                Content="OWNED"
-                FontFamily="Impact" FontSize="30"
-                Command="{Binding DisplayCommand}"
-                CommandParameter="owned"
-           >
-            <Button.Style>
-                <Style TargetType="{x:Type Button}">
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="{x:Type Button}">
-                                <Border Background="{TemplateBinding Background}"
-                                BorderBrush="Black" BorderThickness="0">
-                                    <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
-                                              VerticalAlignment="{TemplateBinding HorizontalContentAlignment}"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="#FFDDDDDD"/>
-                            <Setter Property="Foreground" Value="#FF222222"/>
-                        </Trigger>
-                        <Trigger Property="IsMouseOver" Value="False">
-                            <Setter Property="Background" Value="{Binding OwnedBackground}"/>
-                            <Setter Property="Foreground" Value="{Binding OwnedForeground}"/>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Button.Style>
-        </Button>
-        <Button Background="{Binding RentedBackground}"
-                Foreground="{Binding RentedForeground}"
-                BorderThickness="0"
-                Cursor="Hand"
-                Padding="5"
-                Margin="5"
-                Content="RENTED"
-                FontFamily="Impact" FontSize="30"
-                Command="{Binding DisplayCommand}"
-                CommandParameter="rented"
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Hidden">
+        <ScrollViewer.Resources>
+            <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">6</sys:Double>
+        </ScrollViewer.Resources>
+        <StackPanel Background="Black" Width="200" Height="605" x:Name="TheGloriousOutside">
+            <Button Background="{Binding ExploreBackground}"
+                    Foreground="{Binding ExploreForeground}"
+                    BorderThickness="0"
+                    Cursor="Hand"
+                    Padding="5"
+                    Margin="5"
+                    Content="EXPORE"
+                    FontFamily="Impact" FontSize="30"
+                    Command="{Binding DisplayCommand}"
+                    CommandParameter="explore"
                 >
-            <Button.Style>
-                <Style TargetType="{x:Type Button}">
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="{x:Type Button}">
-                                <Border Background="{TemplateBinding Background}"
-                                BorderBrush="Black" BorderThickness="0">
-                                    <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
-                                              VerticalAlignment="{TemplateBinding HorizontalContentAlignment}"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="#FFDDDDDD"/>
-                            <Setter Property="Foreground" Value="#FF222222"/>
-                        </Trigger>
-                        <Trigger Property="IsMouseOver" Value="False">
-                            <Setter Property="Background" Value="{Binding RentedBackground}"/>
-                            <Setter Property="Foreground" Value="{Binding RentedForeground}"/>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Button.Style>
-        </Button>
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border Background="{TemplateBinding Background}"
+                                    BorderBrush="Black" BorderThickness="0">
+                                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                                  VerticalAlignment="{TemplateBinding HorizontalContentAlignment}"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FFDDDDDD"/>
+                                <Setter Property="Foreground" Value="#FF222222"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="False">
+                                <Setter Property="Background" Value="{Binding ExploreBackground}"/>
+                                <Setter Property="Foreground" Value="{Binding ExploreForeground}"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <Button Background="{Binding OwnedBackground}"
+                    Foreground="{Binding OwnedForeground}"
+                    BorderThickness="0"
+                    Cursor="Hand"
+                    Padding="5"
+                    Margin="5"
+                    Content="OWNED"
+                    FontFamily="Impact" FontSize="30"
+                    Command="{Binding DisplayCommand}"
+                    CommandParameter="owned"
+               >
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border Background="{TemplateBinding Background}"
+                                    BorderBrush="Black" BorderThickness="0">
+                                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                                  VerticalAlignment="{TemplateBinding HorizontalContentAlignment}"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FFDDDDDD"/>
+                                <Setter Property="Foreground" Value="#FF222222"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="False">
+                                <Setter Property="Background" Value="{Binding OwnedBackground}"/>
+                                <Setter Property="Foreground" Value="{Binding OwnedForeground}"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <Button Background="{Binding RentedBackground}"
+                    Foreground="{Binding RentedForeground}"
+                    BorderThickness="0"
+                    Cursor="Hand"
+                    Padding="5"
+                    Margin="5"
+                    Content="RENTED"
+                    FontFamily="Impact" FontSize="30"
+                    Command="{Binding DisplayCommand}"
+                    CommandParameter="rented"
+                    >
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border Background="{TemplateBinding Background}"
+                                    BorderBrush="Black" BorderThickness="0">
+                                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                                  VerticalAlignment="{TemplateBinding HorizontalContentAlignment}"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FFDDDDDD"/>
+                                <Setter Property="Foreground" Value="#FF222222"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="False">
+                                <Setter Property="Background" Value="{Binding RentedBackground}"/>
+                                <Setter Property="Foreground" Value="{Binding RentedForeground}"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
         
-        <TextBox BorderThickness="0" 
-                 Background="Black" 
-                 Foreground="White"
-                 Padding="20 20 0 5" FontFamily="Impact" FontSize="25" Focusable="False" IsTabStop="False"
-                 >
-            TRENDING</TextBox>
-        <ItemsControl ItemsSource="{Binding TrendingTags}" IsTabStop="False" Focusable="False">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <Button BorderThickness="0"
-                            HorizontalContentAlignment="Right"
-                            Padding="2"
-                            Margin="15 8"
-                            Command="{Binding DataContext.TrendingTagCommand, ElementName=TheGloriousOutside}"
-                            CommandParameter="{Binding }"
-                            Style="{StaticResource heshtehgStyle}"
-                            x:Name="parentButton"
-                            >
-                        <TextBox Background="{x:Null}"
-                                 Foreground="{Binding Foreground, ElementName=parentButton}"
-                                 BorderThickness="0"
-                                 FontFamily="Impact" FontSize="18"
-                                 TextWrapping="Wrap"
-                                 HorizontalContentAlignment="Right"
-                                 Focusable="False"
-                                 Text="{Binding Mode=OneWay, UpdateSourceTrigger=PropertyChanged,
-                            Converter={StaticResource heshtehg}}"
-                                 />
-                    </Button>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
-    </StackPanel>
+            <TextBox BorderThickness="0" 
+                     Background="Black" 
+                     Foreground="White"
+                     Padding="20 80 0 5" FontFamily="Impact" FontSize="25" Focusable="False" IsTabStop="False"
+                     >
+                TRENDING</TextBox>
+            <ItemsControl ItemsSource="{Binding TrendingTags}" IsTabStop="False" Focusable="False">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Button BorderThickness="0"
+                                HorizontalContentAlignment="Right"
+                                Padding="2"
+                                Margin="15 8"
+                                Command="{Binding DataContext.TrendingTagCommand, ElementName=TheGloriousOutside}"
+                                CommandParameter="{Binding }"
+                                Style="{StaticResource heshtehgStyle}"
+                                x:Name="parentButton"
+                                >
+                            <TextBox Background="{x:Null}"
+                                     Foreground="{Binding Foreground, ElementName=parentButton}"
+                                     BorderThickness="0"
+                                     FontFamily="Impact" FontSize="18"
+                                     TextWrapping="Wrap"
+                                     HorizontalContentAlignment="Right"
+                                     Focusable="False"
+                                     Text="{Binding Mode=OneWay, UpdateSourceTrigger=PropertyChanged,
+                                Converter={StaticResource heshtehg}}"
+                                     />
+                        </Button>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+    </ScrollViewer>
 </UserControl>
