@@ -22,15 +22,30 @@
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.Resources>
-                    <DataTemplate DataType="{x:Type local:TextWrapper}">
+                    <DataTemplate DataType="{x:Type local:Header}">
                         <Label Content="{Binding Text}" 
                                IsTabStop="False"
-                               Margin="50 10 0 10"
+                               Margin="50 20 0 10"
                                FontFamily="Impact"
                                FontSize="24"
                                Foreground="Black"
                                />
                     </DataTemplate>
+                    <DataTemplate DataType="{x:Type local:Info}">
+                        <TextBox Text="{Binding Text}" 
+                                 IsTabStop="False"
+                                 Margin="100 10 200 10"
+                                 FontFamily="Segoe UI Semilight"
+                                 FontSize="20"
+                                 Foreground="Black"
+                                 Focusable="False"
+                                 BorderThickness="0"
+                                 Background="Transparent"
+                                 Cursor="Arrow"
+                                 TextWrapping="Wrap"
+                               />
+                    </DataTemplate>
+
 
                     <DataTemplate DataType="{x:Type models:Account}" x:Name="AccountElement">
                         <Grid Background="#FFDDDDDD" Margin="40 20 80 20">
@@ -39,7 +54,7 @@
                                 <ColumnDefinition Width="400"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <Image Source="pack://application:,,,/Assets/SimulatedServer/Assets/Images/default.png" 
+                            <Image Source="{Binding ImagePath}" 
                                    Grid.Column="0"
                                    Width="160" Height="160"
                                    Margin="20"
@@ -50,7 +65,9 @@
                                         HorizontalAlignment="Left"
                                         VerticalAlignment="Top">
                                 <TextBox Text="{Binding Name, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
-                                         FontFamily="Impact" 
+                                         FontFamily="Impact"
+                                         Cursor="Arrow"
+                                         Focusable="False"
                                          Margin="30 10"
                                          FontSize="26"
                                          Background="{x:Null}"
@@ -60,6 +77,8 @@
                                 <TextBox Text="{Binding Description, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                                          FontFamily="Segoe UI Light"
                                          Margin="30 1 0 10"
+                                         Cursor="Arrow"
+                                         Focusable="False"
                                          FontSize="15"
                                          Background="{x:Null}"
                                          BorderThickness="0"
@@ -79,7 +98,7 @@
                                                    Background="#66000000"
                                                    VerticalAlignment="Center"
                                                    >
-                                            <Image Source="pack://application:,,,/Assets/SimulatedServer/Assets/Images/default.png" 
+                                            <Image Source="{Binding Author.ProfilePicPath}" 
                                                    Width="40" Height="40"
                                                    Margin="5"
                                                    Stretch="Uniform"

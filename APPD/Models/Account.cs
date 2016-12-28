@@ -58,7 +58,7 @@ namespace APPD.Models
 
         private string generateImagePath()
         {
-            return "pack://application:,,,/Assets/Images/AccountThumbnails/" + this.ID + ".png";
+            return "pack://application:,,,/Assets/SimulatedServer/Assets/Images/Accounts/" + this.ID + ".png";
         }
     }
 }

@@ -44,7 +44,7 @@ namespace APPD.Services
             get
             {
                 string fileURI = "pack://application:,,,/Assets/SimulatedServer/Database/Config.json";
-                StreamReader reader = new StreamReader(Application.GetResourceStream(new Uri(fileURI)).Stream);
+                StreamReader reader = new StreamReader(Application.GetContentStream(new Uri(fileURI)).Stream);
                 string configJsonFileContents = reader.ReadToEnd();
 
                 var definition = new { UserIDCounter = 0 };
@@ -59,7 +59,7 @@ namespace APPD.Services
             get
             {
                 string fileURI = "pack://application:,,,/Assets/SimulatedServer/Database/Config.json";
-                StreamReader reader = new StreamReader(Application.GetResourceStream(new Uri(fileURI)).Stream);
+                StreamReader reader = new StreamReader(Application.GetContentStream(new Uri(fileURI)).Stream);
                 string configJsonFileContents = reader.ReadToEnd();
 
                 var definition = new { AccountIDCounter = 0 };
@@ -73,7 +73,7 @@ namespace APPD.Services
         {
             string fileURI = "pack://application:,,,/Assets/SimulatedServer/Database/Config.json";
 
-            StreamReader reader = new StreamReader(Application.GetResourceStream(new Uri(fileURI)).Stream);
+            StreamReader reader = new StreamReader(Application.GetContentStream(new Uri(fileURI)).Stream);
 
             string configJsonFileContents = reader.ReadToEnd();
 

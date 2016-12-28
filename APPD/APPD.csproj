@@ -104,6 +104,7 @@
     <Compile Include="Views\Converters\A_X_Plus_B.cs" />
     <Compile Include="Views\Converters\ConvertDateTime_Account_User_ToCalendarDayBackgroundFillBrush.cs" />
     <Compile Include="Views\Converters\ConvertNullityToVisibility.cs" />
+    <Compile Include="Views\Converters\Hashtaginator2000.cs" />
     <Compile Include="Views\HomeDisplayListView.xaml.cs">
       <DependentUpon>HomeDisplayListView.xaml</DependentUpon>
     </Compile>
@@ -116,8 +117,8 @@
     <Compile Include="Views\NavBarView.xaml.cs">
       <DependentUpon>NavBarView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\TrendingView.xaml.cs">
-      <DependentUpon>TrendingView.xaml</DependentUpon>
+    <Compile Include="Views\AsidePanelView.xaml.cs">
+      <DependentUpon>AsidePanelView.xaml</DependentUpon>
     </Compile>
     <Page Include="Views\AccountDisplayView.xaml">
       <SubType>Designer</SubType>
@@ -151,7 +152,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\TrendingView.xaml">
+    <Page Include="Views\AsidePanelView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -175,15 +176,15 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Resource Include="Assets\SimulatedServer\Database\Accounts.json">
+    <Content Include="Assets\SimulatedServer\Database\Accounts.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Assets\SimulatedServer\Database\Users.json">
+    </Content>
+    <Content Include="Assets\SimulatedServer\Database\Users.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Assets\SimulatedServer\Database\State.json">
+    </Content>
+    <Content Include="Assets\SimulatedServer\Database\State.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
+    </Content>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -228,9 +229,9 @@
     <Folder Include="Services\Bridges\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\SimulatedServer\Database\Config.json">
+    <Content Include="Assets\SimulatedServer\Database\Config.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\SimulatedServer\Assets\Images\default.png">
@@ -258,7 +259,7 @@
     <Resource Include="Assets\SimulatedServer\Assets\Images\Accounts\1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Assets\SimulatedServer\Assets\Images\Accounts\2.jpg">
+    <Resource Include="Assets\SimulatedServer\Assets\Images\Accounts\2.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Assets\SimulatedServer\Assets\Images\Accounts\3.png">

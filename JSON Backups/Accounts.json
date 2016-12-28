@@ -6,9 +6,8 @@
       "DanknessPerDay": 15,
       "Description": "For shitposting memes about a gif of frog riding a unicycle.",
       "Tags": [
-        "animal",
-        "random",
-        "shitpost"
+         "animals",
+         "random"
       ],
       "Credentials": [
         {
@@ -50,7 +49,7 @@
           "Password": "iluvg0ats"
         }
       ],
-      "AccountCreationDate": "2001-9-11T00:00:00Z",
+      "AccountCreationDate" :"2001-9-11T00:00:00Z",
       "IsFeatured": false
     },
     {
@@ -61,8 +60,8 @@
       "Tags": [
         "drink",
         "dank",
-        "dark",
-        "shitpost"
+        "suicide",
+        "dark"
       ],
       "Credentials": [
         {
@@ -81,8 +80,8 @@
       "DanknessPerDay": 120,
       "Description": "One of the few survivors from the pachiko mines",
       "Tags": [
-        "japanese",
-        "gaming"
+          "japanese",
+          "gaming"
       ],
       "Credentials": [
         {
@@ -105,10 +104,9 @@
       "ID": 4,
       "Name": "Pakalu Papito",
       "DanknessPerDay": 650,
-      "Description": "A twitter sensation whose real identity is a mystery has become famous for his extremely hilarious and honest tweets about life and everyday things!",
+      "Description": "A twitter sensation whose real identity is a mystery has become famous for his extremely hilarious and honest tweets about life and everyday things!.",
       "Tags": [
-        "camel",
-        "shitpost"
+        "camel"
       ],
       "Credentials": [
         {
@@ -127,11 +125,11 @@
       "DanknessPerDay": 420,
       "Description": "Snoop Dogg is the stage name used by Calvin Cordozar Broadus Jr., an American hip hop recording artist and actor, well known for being the highest dude alive",
       "Tags": [
-        "weed",
-        "dank",
-        "classic"
+            "weed",
+            "dank",
+            "classic"
       ],
-      "Credentials": [
+       "Credentials": [
         {
           "SocialMediaPlatformName": "google+",
           "Username": null,

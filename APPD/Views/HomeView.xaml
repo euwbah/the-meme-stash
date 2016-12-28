@@ -61,7 +61,7 @@
                 Orientation="Horizontal"
                 Width="1200" Height="595">
                     <!-- Screen 1: Account Search/Display Screen -->
-                    <views:TrendingView Width="200"
+                    <views:AsidePanelView Width="200"
                                     Height="595" 
                                     Panel.ZIndex="0" 
                                     HorizontalAlignment="Left" 

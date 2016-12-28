@@ -18,6 +18,7 @@ namespace APPD.ViewModels
     {
         public HomeViewModel parent { get; private set; }
 
+        #region Fields
         private Account _currentAccount;
         private List<AccountRentalData> _rentalDataList;
         private Visibility _accountCredentialsVisibility;
@@ -33,6 +34,7 @@ namespace APPD.ViewModels
         private ICommand _actionButtonClick;
         private ICommand _overlayCloseClick;
         private ICommand _backButtonClick;
+        private ICommand _confirmButtonClick;
 
         private int _calendarOverlayZIndex;
         
@@ -45,9 +47,9 @@ namespace APPD.ViewModels
 
         private int _bookingCost;
         private int _balanceAfterBooking;
+        #endregion
 
-
-
+        #region Properties
         public Account CurrentAccount
         {
             get { return _currentAccount; }
@@ -202,6 +204,18 @@ namespace APPD.ViewModels
                 return _backButtonClick;
             }
         }
+        public ICommand ConfirmButtonClick
+        {
+            get
+            {
+                if (_confirmButtonClick == null)
+                {
+                    _confirmButtonClick = new RelayCommand(param => this.confirmButtonClicked());
+                }
+
+                return _confirmButtonClick;
+            }
+        }
 
         // Set this greater than 1 to show
         public int CalendarOverlayZIndex
@@ -310,6 +324,7 @@ namespace APPD.ViewModels
                 }
             }
         }
+        #endregion
 
         // Not using the Button.IsEnabled property to h4x custom styling.
         private bool isActionButtonActivated;
@@ -472,11 +487,29 @@ namespace APPD.ViewModels
             hideOverlay();
             this.SelectedDates.RemoveAll(iHadAnAbsoluteShitChristmas => true);
         }
-
         private void backButtonClicked()
         {
             parent.PageOpen();
             parent.Go(from: Screen.ACCOUNT, to: Screen.HOME);
+        }
+        private void confirmButtonClicked()
+        {
+            if (SelectedDates.Count != 0) // Just checking...
+            {
+                // This will be null if something is wrong
+                User transactingUser = parent.parent.State.CurrentLoggedOnUser.PerformRental(SelectedDates, CurrentAccount);
+                if (transactingUser != null)
+                {
+                    this.updateProperties();
+                    hideOverlay();
+                }
+                else
+                {
+                    MessageBox.Show("There was an error perfoming the booking");
+                    this.updateProperties();
+                    hideOverlay();
+                }
+            }
         }
 
         private void showOverlay() { CalendarOverlayZIndex = 2; updateOverlay(); }

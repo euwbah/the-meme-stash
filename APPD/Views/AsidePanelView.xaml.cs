@@ -18,9 +18,9 @@ namespace APPD.Views
     /// <summary>
     /// Interaction logic for TrendingView.xaml
     /// </summary>
-    public partial class TrendingView : UserControl
+    public partial class AsidePanelView : UserControl
     {
-        public TrendingView()
+        public AsidePanelView()
         {
             InitializeComponent();
         }

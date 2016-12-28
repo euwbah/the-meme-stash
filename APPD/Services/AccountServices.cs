@@ -21,7 +21,7 @@ namespace APPD.Services
         public static List<Account> getAccountsFromDatabase()
         {
             string fileURI = "pack://application:,,,/Assets/SimulatedServer/Database/Accounts.json";
-            StreamReader reader = new StreamReader(Application.GetResourceStream(new Uri(fileURI)).Stream);
+            StreamReader reader = new StreamReader(Application.GetContentStream(new Uri(fileURI)).Stream);
             string accountsJsonFileContents = reader.ReadToEnd();
 
             AccountsJSONObjectBridge deserializedObject =
@@ -34,7 +34,7 @@ namespace APPD.Services
 
         internal static User getAuthor(this Account account)
         {
-            List<User> users = UserServices.readUsersFromDatabase();
+            List<User> users = UserServices.getUsersFromDatabase();
             foreach (User u in users)
             {
                 foreach(int accountID in u.AccountsForRent)
@@ -50,6 +50,54 @@ namespace APPD.Services
             return null;
         }
 
+        internal static List<Account> getAccountsOwnedBy(User user)
+        {
+            return 
+                (
+                from a in getAccountsFromDatabase()
+                where a.Author.ID == user.ID
+                orderby a.Name ascending
+                select a
+            ).ToList();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns> Returns all accounts presently booked by the user. </returns>
+        internal static List<Account> getAccountsRentedBy(User user)
+        {
+            return (
+                from a in getAccountsFromDatabase()
+                where user.AccountsRented.Select(ard => ard.ID).Contains(a.ID)
+                select a
+                ).ToList();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="user"></param>
+        /// <param name="takeAccountsCurrentlyInPossession"></param>
+        /// <returns>
+        /// Returns all accounts presently booked, and either in possession, or otherwise,
+        /// depending on the <code>takeAccountsCurrentlyInPossession</code> parameter.
+        /// </returns>
+        internal static List<Account> getAccountsRentedBy(User user, bool takeAccountsCurrentlyInPossession)
+        {
+            List<int> accountIDsWhereAccountIsCurrentlyInUsersPossession = 
+                user.AccountsRented.Where(ard =>
+                ard.DaysRented.Where(dateTime => dateTime.Date == DateTime.Today).Count() != 0)
+                .Select(x => x.ID).ToList();
+
+            return getAccountsRentedBy(user).Where(x =>
+            {
+                bool pred = accountIDsWhereAccountIsCurrentlyInUsersPossession.Contains(x.ID);
+                return takeAccountsCurrentlyInPossession ? pred : !pred;
+            }).ToList();
+        }
+
         internal static List<Account> getFeaturedAccounts()
         {
             List<Account> accounts = getAccountsFromDatabase();
@@ -57,21 +105,19 @@ namespace APPD.Services
                            .ToList();
         }
 
-        internal static List<Account> getNewAccounts()
+        // Note the nthNewest is 0 index
+        internal static Account getNthNewestAccount(int nthNewest)
         {
             List<Account> featuredAccounts = getFeaturedAccounts();
             List<Account> accounts = getAccountsFromDatabase();
-            return accounts.OrderByDescending(account => account, new AccountDateComparer())
-                           .Where(account => !featuredAccounts.Contains(account))
-                           .Take(3)
-                           .ToList();
+            return accounts.OrderByDescending(account => account, new AccountDateComparer()).ToList().ElementAtOrDefault(nthNewest);
         }
 
         internal static List<AccountRentalData> getAccountRentalDataList(this Account account)
         {
             List<AccountRentalData> returnable = new List<AccountRentalData>();
 
-            List<User> users = UserServices.readUsersFromDatabase();
+            List<User> users = UserServices.getUsersFromDatabase();
             
             foreach(User u in users)
                 returnable.AddRange(u.AccountsRented.Where(acc => acc.ID == account.ID));
@@ -97,7 +143,7 @@ namespace APPD.Services
             for (short daysAfterToday = 0; daysAfterToday <= ConfigServices.MAX_DAYS_BOOKABLE_IN_ADVANCE; daysAfterToday++)
                 listOfBookableDates.Add(DateTime.Today.AddDays(daysAfterToday));
 
-            List<User> users = UserServices.readUsersFromDatabase();
+            List<User> users = UserServices.getUsersFromDatabase();
             foreach(User user in users)
             {
                 foreach(AccountRentalData ard in user.AccountsRented)

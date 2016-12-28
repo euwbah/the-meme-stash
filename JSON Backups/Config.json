@@ -1,0 +1,6 @@
+﻿{
+  "UserIDCounter": 3,
+  "AccountIDCounter": 7,
+  "MaxDaysBookablePerAccountPerUser": 4,
+  "MaxDaysBookableInAdvance": 30
+}

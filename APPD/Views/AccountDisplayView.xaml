@@ -58,25 +58,35 @@
                            Grid.Row="0"
                            Margin="50.4,30,50.4,19.6"
                            Stretch="UniformToFill"
-                           Source="pack://application:,,,/Assets/SimulatedServer/Assets/Images/default.png" />
+                           Source="{Binding CurrentAccount.ImagePath, UpdateSourceTrigger=PropertyChanged}" />
 
                     <!--Information-->
                     <StackPanel Orientation="Vertical" Grid.Column="1" Grid.ColumnSpan="3" Margin="300.4,0,250,-0.4">
-                        <Label Content="{Binding CurrentAccount.Name}" 
-                               FontFamily="Impact"
-                               FontSize="26"
-                               Margin="30 15 30 5"
-                               Height="50"
-                               VerticalContentAlignment="Center"
-                               Width="500"
+                        <TextBox Text="{Binding CurrentAccount.Name, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" 
+                                 Background="{x:Null}"
+                                 BorderThickness="0"
+                                 Focusable="False"
+                                 TextWrapping="Wrap"
+                                 Cursor="Arrow"
+                                 FontFamily="Impact"
+                                 FontSize="26"
+                                 Margin="30 15 30 5"
+                                 Height="50"
+                                 VerticalContentAlignment="Center"
+                                 Width="500"
                                />
-                        <Label Content="{Binding CurrentAccount.Description}"
-                               FontFamily="Segoe UI Light"
-                               FontSize="18"
-                               Foreground="#EE000000"
-                               Margin="30 5"
-                               Height="90"
-                               Width="500"
+                        <TextBox Text="{Binding CurrentAccount.Description, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                 Background="{x:Null}"
+                                 BorderThickness="0"
+                                 Focusable="False"
+                                 TextWrapping="Wrap"
+                                 Cursor="Arrow"
+                                 FontFamily="Segoe UI Light"
+                                 FontSize="18"
+                                 Foreground="#EE000000"
+                                 Margin="30 5"
+                                 Height="90"
+                                 Width="500"
                                />
                         <Grid Margin="30 5" Height="70" Width="500">
                             <Grid.ColumnDefinitions>
@@ -97,7 +107,7 @@
                                                Background="#66000000"
                                                VerticalAlignment="Center"
                                                >
-                                        <Image Source="pack://application:,,,/Assets/SimulatedServer/Assets/Images/default.png" 
+                                        <Image Source="{Binding CurrentAccount.Author.ProfilePicPath}" 
                                                Width="40" Height="40"
                                                Margin="10"
                                                Stretch="Uniform"
@@ -631,6 +641,7 @@
                             HorizontalAlignment="Right"
                             BorderThickness="0"
                             IsEnabled="{Binding ConfirmButtonEnabled}"
+                            Command="{Binding ConfirmButtonClick}"
                             />
                 </StackPanel>
             </Grid>

@@ -21,7 +21,7 @@ namespace APPD.Services
                 if (_trendingTags == null)
                 {
                     string fileURI = "pack://application:,,,/Assets/SimulatedServer/Database/State.json";
-                    StreamReader reader = new StreamReader(Application.GetResourceStream(new Uri(fileURI)).Stream);
+                    StreamReader reader = new StreamReader(Application.GetContentStream(new Uri(fileURI)).Stream);
                     string stateJsonFileContents = reader.ReadToEnd();
 
                     var definition = new

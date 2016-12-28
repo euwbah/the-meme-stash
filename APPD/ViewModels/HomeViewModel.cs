@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace APPD.ViewModels
 {
@@ -26,6 +27,8 @@ namespace APPD.ViewModels
 
         private ICommand _accountCommand;
         private ICommand _logoutCommand;
+        private ICommand _displayCommand;
+        private ICommand _trendingTagCommand;
         private ICommand _searchBarLostFocus;
         private ICommand _searchBarGotFocus;
         private bool searchBarFocused;
@@ -33,7 +36,7 @@ namespace APPD.ViewModels
         private bool _changeScreenAnimationMonostable;
         private double _xTransformFromValue;
 
-
+        private Display _currentDisplay;
 
         public string UsernameDisplayText
         {
@@ -64,12 +67,9 @@ namespace APPD.ViewModels
             get { return _currentSearchString ?? ""; }
             set
             {
-                if (value != _currentSearchString)
-                {
-                    _currentSearchString = value;
-                    OnPropertyChanged("CurrentSearchString");
-                    this.performDisplayListViewUpdate();
-                }
+                _currentSearchString = value;
+                OnPropertyChanged("CurrentSearchString");
+                this.performDisplayListViewUpdate();
             }
         }
         public ArrayList DisplayedItems
@@ -132,6 +132,26 @@ namespace APPD.ViewModels
                 }
 
                 return _logoutCommand;
+            }
+        }
+        public ICommand DisplayCommand
+        {
+            get
+            {
+                if (_displayCommand == null)
+                    _displayCommand = new RelayCommand(text => this.changeDisplayClicked(((string)text).asDisplay()));
+
+                return _displayCommand;
+            }
+        }
+        public ICommand TrendingTagCommand
+        {
+            get
+            {
+                if (_trendingTagCommand == null)
+                    _trendingTagCommand = new RelayCommand(tagStr => this.trendingTagClicked((string)tagStr));
+
+                return _trendingTagCommand;
             }
         }
         public ICommand SearchBarLostFocus
@@ -206,6 +226,70 @@ namespace APPD.ViewModels
                 }
             }
         }
+        
+        private Display currentDisplay
+        {
+            get { return _currentDisplay; }
+            set
+            {
+                _currentDisplay = value;
+                OnPropertyChanged("ExploreForeground");
+                OnPropertyChanged("ExploreBackground");
+                OnPropertyChanged("OwnedForeground");
+                OnPropertyChanged("OwnedBackground");
+                OnPropertyChanged("RentedForeground");
+                OnPropertyChanged("RentedBackground");
+            }
+        }
+
+        public SolidColorBrush ExploreForeground
+        {
+            get
+            {
+                return new SolidColorBrush(currentDisplay == Display.EXPLORE ?
+                    Color.FromArgb(0xff, 0x00, 0x00, 0x00) : Color.FromArgb(0xff, 0xff, 0xff, 0xff));
+            }
+        }
+        public SolidColorBrush ExploreBackground
+        {
+            get
+            {
+                return new SolidColorBrush(currentDisplay == Display.EXPLORE ?
+                    Color.FromArgb(0xff, 0xff, 0xff, 0xff) : Color.FromArgb(0xff, 0x00, 0x00, 0x00));
+            }
+        }
+        public SolidColorBrush OwnedForeground
+        {
+            get
+            {
+                return new SolidColorBrush(currentDisplay == Display.OWNED ?
+                    Color.FromArgb(0xff, 0x00, 0x00, 0x00) : Color.FromArgb(0xff, 0xff, 0xff, 0xff));
+            }
+        }
+        public SolidColorBrush OwnedBackground
+        {
+            get
+            {
+                return new SolidColorBrush(currentDisplay == Display.OWNED ?
+                    Color.FromArgb(0xff, 0xff, 0xff, 0xff) : Color.FromArgb(0xff, 0x00, 0x00, 0x00));
+            }
+        }
+        public SolidColorBrush RentedForeground
+        {
+            get
+            {
+                return new SolidColorBrush(currentDisplay == Display.RENTED ?
+                    Color.FromArgb(0xff, 0x00, 0x00, 0x00) : Color.FromArgb(0xff, 0xff, 0xff, 0xff));
+            }
+        }
+        public SolidColorBrush RentedBackground
+        {
+            get
+            {
+                return new SolidColorBrush(currentDisplay == Display.RENTED ?
+                    Color.FromArgb(0xff, 0xff, 0xff, 0xff) : Color.FromArgb(0xff, 0x00, 0x00, 0x00));
+            }
+        }
 
         public AccountViewModel AccountViewModel { get; set; }
 
@@ -233,29 +317,93 @@ namespace APPD.ViewModels
 
             this.performDisplayListViewUpdate();
         }
+        private void updateProperties(bool resetDisplay)
+        {
+            if (resetDisplay)
+                currentDisplay = Display.EXPLORE;
+            updateProperties();
+        }
 
         private void performDisplayListViewUpdate()
         {
-           if (this.CurrentSearchString.Trim().Length == 0)
+            DisplayedItems = new ArrayList();
+            if (this.CurrentSearchString.Trim().Length == 0)
             {
-                DisplayedItems = new ArrayList();
-                DisplayedItems.Add(new TextWrapper("FEATURED"));
-                DisplayedItems.AddRange(AccountServices.getFeaturedAccounts());
 
-                DisplayedItems.Add(new TextWrapper("NEW"));
-                DisplayedItems.AddRange(AccountServices.getNewAccounts());
+                List<Account> featuredAccounts = AccountServices.getFeaturedAccounts();
+                List<Account> ownedAccounts = AccountServices.getAccountsOwnedBy(parent.State.CurrentLoggedOnUser);
+
+                if (currentDisplay == Display.EXPLORE)
+                {
+
+                    DisplayedItems.Add(new Header("FEATURED"));
+                    DisplayedItems.AddRange(featuredAccounts);
+
+                    DisplayedItems.Add(new Header("NEW"));
+                    int nthCounter = 0;
+                    for (int numberOfNewAccountsDisplayed = 0; numberOfNewAccountsDisplayed < 3;)
+                    {
+                        Account a = AccountServices.getNthNewestAccount(nthCounter);
+                        if (a == null) break;
+
+                        nthCounter++;
+
+                        if ((featuredAccounts.Where(acc => a.ID == acc.ID).Count() == 0) &&
+                            (ownedAccounts.Where(acc => a.ID == acc.ID).Count() == 0))
+                        {
+                            DisplayedItems.Add(a);
+                            numberOfNewAccountsDisplayed++;
+                        }
+                    }
+                }
+                else if (currentDisplay == Display.OWNED)
+                {
+                    DisplayedItems.Add(new Header("OWNED"));
+                    if (ownedAccounts.Count != 0)
+                    {
+                        DisplayedItems.AddRange(ownedAccounts);
+                    }
+                    else
+                        DisplayedItems.Add(new Info("You haven't authored any accounts yet! Lease an account now and get more Đankness!"));
+                }
+                else if (currentDisplay == Display.RENTED)
+                {
+                    List<Account> currentlyInPossession =
+                        AccountServices.getAccountsRentedBy(parent.State.CurrentLoggedOnUser, true);
+                    List<Account> notCurrentlyInPossession =
+                        AccountServices.getAccountsRentedBy(parent.State.CurrentLoggedOnUser, false);
+
+                    if (currentlyInPossession.Count != 0 && notCurrentlyInPossession.Count != 0)
+                    {
+                        DisplayedItems.Add(new Header("ACTIVE"));
+                        if (currentlyInPossession.Count != 0)
+                            DisplayedItems.AddRange(currentlyInPossession);
+                        else
+                            DisplayedItems.Add(new Info("You don't have any accounts currently in possession"));
+
+                        if (notCurrentlyInPossession.Count != 0)
+                        {
+                            DisplayedItems.Add(new Header("BOOKED"));
+                            DisplayedItems.AddRange(notCurrentlyInPossession);
+                        }
+                    }
+                    else
+                    {
+                        DisplayedItems.Add(new Header("RENTED"));
+                        DisplayedItems.Add(new Info("You have no booked accounts"));
+                    }
+                }
             }
             else
             {
                 List<Account> searchedAccounts =
                     SearchServices.PerformSearch(CurrentSearchString, 0, 5, SearchServices.SearchMethod.RELEVANCE);
 
-                DisplayedItems = new ArrayList();
                 DisplayedItems.AddRange(searchedAccounts);
-
-                //DisplayedItems.RemoveRange(0, DisplayedItems.Count);
-                //DisplayedItems.AddRange(searchedAccounts);
             }
+
+            // Add empty text to update and add space at the bottom
+            DisplayedItems.Add(new Info(""));
         }
 
         private void triggerAnimation()
@@ -279,6 +427,17 @@ namespace APPD.ViewModels
             searchBarFocused = true;
             this.performDisplayListViewUpdate();
         }
+        private void changeDisplayClicked(Display display)
+        {
+            currentDisplay = display;
+            CurrentSearchString = "";
+            performDisplayListViewUpdate();
+        }
+        private void trendingTagClicked(string tagStr)
+        {
+            currentDisplay = Display.EXPLORE;
+            CurrentSearchString = tagStr;
+        }
 
         internal void Go(Screen from, Screen to)
         {
@@ -287,8 +446,33 @@ namespace APPD.ViewModels
             this.A = finalPosition - this.B;
             this.triggerAnimation();
         }
+
     }
-    
+
+    internal enum Display
+    {
+        EXPLORE, OWNED, RENTED
+    }
+
+
+    internal static class DisplayEnumExtensions
+    {
+        internal static Display asDisplay(this string str)
+        {
+            switch (str.ToLower().Trim())
+            {
+                case "explore":
+                    return Display.EXPLORE;
+                case "owned":
+                    return Display.OWNED;
+                case "rented":
+                    return Display.RENTED;
+                default:
+                    return Display.EXPLORE;
+            }
+        }
+    }
+
     internal enum Screen
     {
         HOME, ACCOUNT
@@ -310,7 +494,7 @@ namespace APPD.ViewModels
         }
     }
 
-    public class TextWrapper : ObservableObject
+    public class Header : ObservableObject
     {
         private string _text;
         public string Text
@@ -329,7 +513,31 @@ namespace APPD.ViewModels
             }
         }
 
-        public TextWrapper(string text)
+        public Header(string text)
+        {
+            this.Text = text;
+        }
+    }
+    public class Info : ObservableObject
+    {
+        private string _text;
+        public string Text
+        {
+            get
+            {
+                return _text ?? "";
+            }
+            set
+            {
+                if (value != _text)
+                {
+                    _text = value;
+                    OnPropertyChanged("Text");
+                }
+            }
+        }
+
+        public Info(string text)
         {
             this.Text = text;
         }

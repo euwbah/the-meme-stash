@@ -80,7 +80,7 @@
                     HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
                     HorizontalAlignment="Center" VerticalAlignment="Center">
                 <WrapPanel Orientation="Horizontal" VerticalAlignment="Center">
-                    <Image Source="pack://application:,,,/Assets/SimulatedServer/Assets/Images/default.png" 
+                    <Image Source="{Binding parent.State.CurrentLoggedOnUser.ProfilePicPath}" 
                            Margin="15 3"
                            VerticalAlignment="Center"
                            Stretch="Uniform"

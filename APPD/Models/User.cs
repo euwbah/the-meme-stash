@@ -1,4 +1,5 @@
-﻿using System;
+﻿using APPD.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,7 +23,7 @@ namespace APPD.Models
         public int Dankness
         {
             get { return _dankness; }
-            private set
+            internal set
             {
                 if (_dankness != value)
                 {
@@ -34,6 +35,11 @@ namespace APPD.Models
 
         public string ProfilePicPath { get; private set; }
         public string Bio { get; private set; }
+
+
+        #region JSON.NET metas
+        public bool ShouldSerializeProfilePicPath() { return false; }
+        #endregion
 
         internal event DanknessUpdateHandler OnDanknessUpdated;
 
@@ -50,9 +56,14 @@ namespace APPD.Models
             this.Bio = Bio;
         }
 
+        public User PerformRental(List<DateTime> dates, Account account)
+        {
+            return UserServices.PerformRental(dates, account.ID, this);
+        }
+
         private string generateProfilePicPath()
         {
-            return "pack://application:,,,/Assets/SimulatedServer/Assets/Images/" + ID + ".png";
+            return "pack://application:,,,/Assets/SimulatedServer/Assets/Images/Users/" + ID + ".png";
         }
     }
 }
