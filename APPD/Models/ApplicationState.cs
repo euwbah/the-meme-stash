@@ -16,10 +16,11 @@ namespace APPD.Models
         {
             get
             {
-                if (_currentLoggedOnUser == null)
-                    throw new Exception("Program failure: tried to access ApplicationState.CurrentLoggedOnUser when null");
-                else
-                    return _currentLoggedOnUser;
+                //if (_currentLoggedOnUser == null)
+                //    throw new Exception("Program failure: tried to access ApplicationState.CurrentLoggedOnUser when null");
+                //else
+
+                return _currentLoggedOnUser;
             }
             set
             {

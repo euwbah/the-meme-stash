@@ -127,7 +127,6 @@ namespace APPD.ViewModels
                     _logoutCommand = new RelayCommand(param =>
                     {
                         parent.ChangeViewModel("Login");
-                        parent.State.CurrentLoggedOnUser = null;
                     });
                 }
 
