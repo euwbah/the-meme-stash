@@ -22,7 +22,7 @@ namespace APPD.ViewModels
             // Add available pages
             PageViewModels.Add("Login", new LoginViewModel(this));
             PageViewModels.Add("Home", new HomeViewModel(this));
-
+            PageViewModels.Add("Sign Up", new SignUpViewModel(this));
 
             // Set starting page
             CurrentPageViewModel = PageViewModels["Login"];

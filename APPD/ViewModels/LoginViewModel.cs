@@ -20,15 +20,20 @@ namespace APPD.ViewModels
         private string _logInErrorDisplay;
 
         private ICommand _logInCommand;
+        private ICommand _signUpCommand;
+
+        private Visibility _userCreatedMessageVisibility;
 
         public LoginViewModel(MainViewModel parent)
         {
             this.parent = parent;
+            UserCreatedMessageVisibility = Visibility.Collapsed;
         }
 
         public void PageOpen()
         {
-
+            UserCreatedMessageVisibility = Visibility.Collapsed;
+            Username = "";
         }
 
         #region Properties
@@ -70,6 +75,22 @@ namespace APPD.ViewModels
 
                 return _logInCommand;
             }
+        }
+        public ICommand SignUpCommand
+        {
+            get
+            {
+                if (_signUpCommand == null)
+                    _signUpCommand = new RelayCommand(p => parent.ChangeViewModel("Sign Up"));
+
+                return _signUpCommand;
+            }
+        }
+
+        public Visibility UserCreatedMessageVisibility
+        {
+            get { return _userCreatedMessageVisibility; }
+            set { _userCreatedMessageVisibility = value; OnPropertyChanged("UserCreatedMessageVisibility"); }
         }
         #endregion
 

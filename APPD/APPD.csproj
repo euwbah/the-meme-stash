@@ -98,14 +98,17 @@
     <Compile Include="ViewModels\IPageViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\SignUpViewModel.cs" />
     <Compile Include="Views\AccountDisplayView.xaml.cs">
       <DependentUpon>AccountDisplayView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Converters\A_X_Plus_B.cs" />
     <Compile Include="Views\Converters\ConvertDateTime_Account_User_ToCalendarDayBackgroundFillBrush.cs" />
     <Compile Include="Views\Converters\ConvertNullityToVisibility.cs" />
+    <Compile Include="Views\Converters\ConvertPasswordBoxesToArray.cs" />
     <Compile Include="Views\Converters\Hashtaginator2000.cs" />
     <Compile Include="Views\Converters\HomeListViewAccountConverters.cs" />
+    <Compile Include="Views\Converters\InvertVisibility.cs" />
     <Compile Include="Views\HomeDisplayListView.xaml.cs">
       <DependentUpon>HomeDisplayListView.xaml</DependentUpon>
     </Compile>
@@ -120,6 +123,9 @@
     </Compile>
     <Compile Include="Views\AsidePanelView.xaml.cs">
       <DependentUpon>AsidePanelView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SignUpView.xaml.cs">
+      <DependentUpon>SignUpView.xaml</DependentUpon>
     </Compile>
     <Page Include="Views\AccountDisplayView.xaml">
       <SubType>Designer</SubType>
@@ -154,6 +160,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\AsidePanelView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SignUpView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

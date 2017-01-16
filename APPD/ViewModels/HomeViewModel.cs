@@ -127,6 +127,7 @@ namespace APPD.ViewModels
                     _logoutCommand = new RelayCommand(param =>
                     {
                         parent.ChangeViewModel("Login");
+                        parent.PageViewModels["Home"] = new HomeViewModel(parent);
                     });
                 }
 
